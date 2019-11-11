@@ -7,6 +7,7 @@ import {Component, Input, OnInit} from '@angular/core';
 })
 export class NewsMainComponent implements OnInit {
 
+  @Input() id: string;
   @Input() title: string;
   @Input() subtitle: string;
   @Input() content: string;

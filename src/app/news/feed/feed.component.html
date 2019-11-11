@@ -15,10 +15,11 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-content>
+<ion-content #scrollContent (ionScrollEnd)="scrollEnd()" [scrollEvents]="true">
   <app-news-main *ngFor="let news of feedService.newsList"
-               [content]="news.content"
-               [title]="news.title"
-               [subtitle]="news.subtitle">
+                 [id]="news.id"
+                 [content]="news.content"
+                 [title]="news.title"
+                 [subtitle]="news.subtitle">
   </app-news-main>
 </ion-content>

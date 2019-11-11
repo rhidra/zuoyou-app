@@ -13,7 +13,8 @@ const routes: Routes = [
     component: TabsComponent,
     children: [
       { path: '', redirectTo: '/tabs/news', pathMatch: 'full' },
-      { path: 'news', loadChildren: '../news/news.module#NewsModule' },
+      // { path: 'news', loadChildren: './news/news.module#NewsModule' },
+      { path: 'news', loadChildren: () => import('../news/news.module').then((m => m.NewsModule))},
       { path: 'favorite', loadChildren: '../favorite/favorite.module#FavoriteModule' },
     ]
   },

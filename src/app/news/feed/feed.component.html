@@ -1,0 +1,24 @@
+<ion-header class="navbar-view">
+  <ion-toolbar class="first-toolbar" color="primary">
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title>
+      News
+    </ion-title>
+
+    <ion-buttons slot="end">
+      <ion-button>
+        <ion-icon slot="icon-only" name="funnel"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <app-news-main *ngFor="let news of newsList"
+                 [content]="news.content"
+                 [title]="news.title"
+                 [subtitle]="news.subtitle">
+  </app-news-main>
+</ion-content>

@@ -1,0 +1,20 @@
+import { Component, OnInit } from '@angular/core';
+import {NewsFeedService} from './feed.service';
+
+@Component({
+  selector: 'app-feed',
+  templateUrl: './feed.component.html',
+  styleUrls: ['./feed.component.scss'],
+})
+export class NewsFeedComponent implements OnInit {
+
+  constructor(
+      public feedService: NewsFeedService,
+  ) { }
+
+  ngOnInit() {}
+
+  ngAfterViewInit() {
+    this.feedService.load();
+  }
+}

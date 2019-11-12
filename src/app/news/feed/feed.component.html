@@ -1,24 +1,6 @@
-<!--
-<ion-header class="navbar-view">
-  <ion-toolbar class="first-toolbar" color="primary">
-    <ion-buttons slot="start">
-      <ion-menu-button></ion-menu-button>
-    </ion-buttons>
-    <ion-title>
-      News
-    </ion-title>
-
-    <ion-buttons slot="end">
-      <ion-button>
-        <ion-icon slot="icon-only" name="funnel"></ion-icon>
-      </ion-button>
-    </ion-buttons>
-  </ion-toolbar>
-</ion-header>
--->
-
-<ion-content #scrollContent (ionScrollEnd)="scrollEnd()" [scrollEvents]="true">
-  <app-news-panel *ngFor="let news of feedService.newsList"
-                 [item]="news">
-  </app-news-panel>
-</ion-content>
+<ion-slides [options]="slidesOpt">
+  <ion-slide *ngFor="let news of feedService.newsList">
+    <app-news-panel [item]="news" class="full-height">
+    </app-news-panel>
+  </ion-slide>
+</ion-slides>

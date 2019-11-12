@@ -10,11 +10,15 @@ import {NewsPanelComponent} from '../panel/panel.component';
 })
 export class NewsFeedComponent implements OnInit {
 
-  @ViewChild('scrollContent', {static: false}) content: IonContent = null;
-  @ViewChildren(NewsPanelComponent, {read: ElementRef}) newsComponents: QueryList<ElementRef>;
+  // @ViewChild('scrollContent', {static: false}) content: IonContent = null;
+  // @ViewChildren(NewsPanelComponent, {read: ElementRef}) newsComponents: QueryList<ElementRef>;
 
   isLoading: boolean = true;
   currentItem: number;
+
+  slidesOpt = {
+    direction: 'vertical'
+  };
 
   constructor(
       public feedService: NewsFeedService,
@@ -30,6 +34,7 @@ export class NewsFeedComponent implements OnInit {
   }
 
   scrollEnd() {
+    /*
     const list = this.newsComponents.toArray();
     const delta = list[this.currentItem].nativeElement.getBoundingClientRect().top;
     const height = list[this.currentItem].nativeElement.getBoundingClientRect().height;
@@ -38,6 +43,9 @@ export class NewsFeedComponent implements OnInit {
     } else if (delta > 0 && delta > height / 4) {
       this.currentItem--;
     }
-    this.content.scrollByPoint(0, list[this.currentItem].nativeElement.getBoundingClientRect().top, 1000);
+    const y = list[this.currentItem].nativeElement.getBoundingClientRect().top;
+    this.content.scrollByPoint(0, y, 1000);
+    console.log('Scrolling ' + y);
+     */
   }
 }

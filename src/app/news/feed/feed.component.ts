@@ -1,5 +1,5 @@
 import {Component, ElementRef, OnInit, QueryList, ViewChild, ViewChildren} from '@angular/core';
-import {NewsFeedService} from './feed.service';
+import {NewsFeedService} from '../feed.service';
 
 @Component({
   selector: 'app-news-feed',

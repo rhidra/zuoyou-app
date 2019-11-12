@@ -38,6 +38,6 @@ export class NewsFeedComponent implements OnInit {
     } else if (delta > 0 && delta > height / 4) {
       this.currentItem--;
     }
-    this.content.scrollByPoint(0, list[this.currentItem].nativeElement.getBoundingClientRect().top, 750);
+    this.content.scrollByPoint(0, list[this.currentItem].nativeElement.getBoundingClientRect().top, 1000);
   }
 }

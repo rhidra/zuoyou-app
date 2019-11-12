@@ -1,10 +1,14 @@
-<ion-card>
-  <ion-card-header>
-    <ion-card-subtitle>{{subtitle}}</ion-card-subtitle>
-    <ion-card-title>{{title}}</ion-card-title>
-  </ion-card-header>
+<div class="full-height" *ngIf="!item.fullImage">
+  <ion-img *ngIf="item.image" [src]="item.image" class="top-image"></ion-img>
+    <h1 class="news-title">
+      {{item.title}}
+    </h1>
 
-  <ion-card-content>
-    {{content}}
-  </ion-card-content>
-</ion-card>
+    <p [innerHTML]="item.content" class="news-text">
+    </p>
+</div>
+
+<div class="full-height full-image-div" *ngIf="item.fullImage">
+  <ion-img [src]="item.fullImage" class="full-image"></ion-img>
+  <h1 class="news-title full-image-title">{{item.title}}</h1>
+</div>

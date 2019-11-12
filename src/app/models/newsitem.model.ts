@@ -1,16 +1,16 @@
 export class NewsItem {
     id: string = '';
     title: string;
-    subtitle: string;
     content: string = '';
     image: string = '';
+    fullImage: string = '';
 
-    constructor(title: string, subtitle: string = '', content: string = '', id: string = makeid(10)) {
+    constructor(title: string, content: string = '', image: string = '', fullImage: string = '', id: string = makeid(10)) {
         this.title = title;
-        this.subtitle = subtitle;
         this.content = content;
         this.id = id;
-        this.image = '';
+        this.image = image;
+        this.fullImage = fullImage;
     }
 }
 

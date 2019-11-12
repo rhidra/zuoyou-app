@@ -1,0 +1,53 @@
+// TODO : Put in a CSS library global property
+.full-height {
+  height: 100%;
+  overflow: hidden;
+}
+
+// TODO : Put the CSS in a library to avoir hardcoded random values
+
+.top-image {
+  max-height: 30%;
+  overflow: hidden;
+}
+
+.full-image {
+  max-height: 100%;
+  overflow: hidden;
+}
+
+.news-title {
+  font-weight: bold;
+  padding-left: 10px;
+  padding-right: 10px;
+  font-size: 1.5em;
+}
+
+.news-text {
+  padding-left: 10px;
+  padding-right: 5px;
+}
+
+.full-image-div {
+  position: relative;
+}
+
+.full-image-title {
+  position: absolute;
+  top: 70%;
+  color: black;
+  font-size: 1.7em;
+  background: rgba(255,255,255,.7);
+  width: 75%;
+  margin-left: 25%;
+  margin-right: 0;
+  padding-right: 5px;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  text-align: left;
+}
+
+.full-image-title-reversed {
+  color: white;
+  background: rgba(0,0,0,.7);
+}

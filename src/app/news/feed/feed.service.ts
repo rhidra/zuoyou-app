@@ -12,37 +12,52 @@ export class NewsFeedService {
 
   load() {
     return new Promise(resolve => {
-      this.newsList.push(new NewsItem('Interesting story !!', 'Yes it is interesting !', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque mauris erat, ' +
-            'tempor consectetur efficitur at, vulputate pretium orci. Quisque ut sem eu urna elementum ' +
-            'cursus eu nec dui. Maecenas sollicitudin porta massa nec vehicula. ' +
-            'Aliquam libero tellus, vulputate ut dui vitae, laoreet dignissim dui. ' +
-            'Nunc est eros, gravida vitae malesuada eu, varius venenatis metus. Vestibulum ac massa non metus sagittis ' +
-            'iaculis. Vestibulum porta, mi vel aliquet aliquam, dui lectus sagittis orci, non euismod ex dui id massa. ' +
-            'Etiam convallis hendrerit rhoncus. Donec bibendum vestibulum nulla vitae volutpat. Ut et ornare arcu. ' +
-            'Ut vel tellus id libero convallis rhoncus a pellentesque turpis. Fusce et tincidunt nisl. Nunc tempus efficitur enim. ' +
-            'Duis ac orci sed ante posuere placerat. Nulla felis est, vehicula sit amet lacinia tristique, facilisis vitae lorem.'));
-      this.newsList.push(new NewsItem('Another Interesting story !!', 'It is even more interesting !', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque mauris erat, ' +
-            'tempor consectetur efficitur at, vulputate pretium orci. Quisque ut sem eu urna elementum ' +
-            'cursus eu nec dui. Maecenas sollicitudin porta massa nec vehicula. ' +
-            'Aliquam libero tellus, vulputate ut dui vitae, laoreet dignissim dui. ' +
-            'Nunc est eros, gravida vitae malesuada eu, varius venenatis metus. Vestibulum ac massa non metus sagittis ' +
-            'iaculis. Vestibulum porta, mi vel aliquet aliquam, dui lectus sagittis orci, non euismod ex dui id massa. ' +
-            'Etiam convallis hendrerit rhoncus. Donec bibendum vestibulum nulla vitae volutpat. Ut et ornare arcu. ' +
-            'Ut vel tellus id libero convallis rhoncus a pellentesque turpis. Fusce et tincidunt nisl. Nunc tempus efficitur enim. ' +
-            'Duis ac orci sed ante posuere placerat. Nulla felis est, vehicula sit amet lacinia tristique, facilisis vitae lorem.'));
-      this.newsList.push(new NewsItem('Something boring', ':( ...', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque mauris erat, ' +
-            'tempor consectetur efficitur at, vulputate pretium orci. Quisque ut sem eu urna elementum ' +
-            'cursus eu nec dui. Maecenas sollicitudin porta massa nec vehicula. ' +
-            'Aliquam libero tellus, vulputate ut dui vitae, laoreet dignissim dui. ' +
-            'Nunc est eros, gravida vitae malesuada eu, varius venenatis metus. Vestibulum ac massa non metus sagittis ' +
-            'iaculis. Vestibulum porta, mi vel aliquet aliquam, dui lectus sagittis orci, non euismod ex dui id massa. ' +
-            'Etiam convallis hendrerit rhoncus. Donec bibendum vestibulum nulla vitae volutpat. Ut et ornare arcu. '));
-      this.newsList.push(new NewsItem('Super true story !', 'Wow what a story !', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque mauris erat, ' +
-            'tempor consectetur efficitur at, vulputate pretium orci. Quisque ut sem eu urna elementum ' +
-            'cursus eu nec dui. Maecenas sollicitudin porta massa nec vehicula. ' +
-            'Nunc est eros, gravida vitae malesuada eu, varius venenatis metus. Vestibulum ac massa non metus sagittis ' +
-            'iaculis. Vestibulum porta, mi vel aliquet aliquam, dui lectus sagittis orci, non euismod ex dui id massa. ' +
-            'Etiam convallis hendrerit rhoncus. Donec bibendum vestibulum nulla vitae volutpat. Ut et ornare arcu. '));
+      this.newsList.push(new NewsItem('Interesting story !!', '<b>Who:</b> Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque mauris erat.<br/>' +
+        '<b>What:</b> tempor consectetur efficitur at, vulputate pretium orci. Quisque ut sem eu urna elementum<br/>' +
+        '<b>When:</b> cursus eu nec dui. Maecenas sollicitudin porta massa nec vehicula.<br/>' +
+        '<b>Where:</b> Aliquam libero tellus, vulputate ut dui vitae, laoreet dignissim dui.<br/>' +
+        '<b>Why:</b> Nunc est eros, gravida vitae malesuada eu, varius venenatis metus. Vestibulum ac massa non metus sagittis<br/> ' +
+        '<b>How:</b> iaculis. Vestibulum porta, mi vel aliquet aliquam, dui lectus sagittis orci, non euismod ex dui id massa.',
+        'assets/img/badu-live.png'));
+      this.newsList.push(new NewsItem('Another Interesting story !!', '<b>Who:</b> Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque mauris erat.<br/>' +
+        '<b>What:</b> tempor consectetur efficitur at, vulputate pretium orci. Quisque ut sem eu urna elementum<br/>' +
+        '<b>When:</b> cursus eu nec dui. Maecenas sollicitudin porta massa nec vehicula.<br/>' +
+        '<b>Where:</b> Aliquam libero tellus, vulputate ut dui vitae, laoreet dignissim dui.<br/>' +
+        '<b>Why:</b> Nunc est eros, gravida vitae malesuada eu, varius venenatis metus. Vestibulum ac massa non metus sagittis<br/> ' +
+        '<b>How:</b> iaculis. Vestibulum porta, mi vel aliquet aliquam, dui lectus sagittis orci, non euismod ex dui id massa.',
+        'assets/img/img1.jpg'));
+      this.newsList.push(new NewsItem('Something boring', '<b>Who:</b> Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque mauris erat.<br/>' +
+        '<b>What:</b> tempor consectetur efficitur at, vulputate pretium orci. Quisque ut sem eu urna elementum<br/>' +
+        '<b>When:</b> cursus eu nec dui. Maecenas sollicitudin porta massa nec vehicula.<br/>' +
+        '<b>Where:</b> Aliquam libero tellus, vulputate ut dui vitae, laoreet dignissim dui.<br/>' +
+        '<b>Why:</b> Nunc est eros, gravida vitae malesuada eu, varius venenatis metus. Vestibulum ac massa non metus sagittis<br/> ' +
+        '<b>How:</b> iaculis. Vestibulum porta, mi vel aliquet aliquam, dui lectus sagittis orci, non euismod ex dui id massa.',
+        'assets/img/img2.jpg'));
+      this.newsList.push(new NewsItem('Super true story !', '<b>Who:</b> Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque mauris erat.<br/>' +
+        '<b>What:</b> tempor consectetur efficitur at, vulputate pretium orci. Quisque ut sem eu urna elementum<br/>' +
+        '<b>When:</b> cursus eu nec dui. Maecenas sollicitudin porta massa nec vehicula.<br/>' +
+        '<b>Where:</b> Aliquam libero tellus, vulputate ut dui vitae, laoreet dignissim dui.<br/>' +
+        '<b>Why:</b> Nunc est eros, gravida vitae malesuada eu, varius venenatis metus. Vestibulum ac massa non metus sagittis<br/> ' +
+        '<b>How:</b> iaculis. Vestibulum porta, mi vel aliquet aliquam, dui lectus sagittis orci, non euismod ex dui id massa.',
+        '', 'assets/img/img3.jpg'));
+      this.newsList.push(new NewsItem('Super not true story !', '<b>Who:</b> Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque mauris erat.<br/>' +
+        '<b>What:</b> tempor consectetur efficitur at, vulputate pretium orci. Quisque ut sem eu urna elementum<br/>' +
+        '<b>When:</b> cursus eu nec dui. Maecenas sollicitudin porta massa nec vehicula.<br/>' +
+        '<b>Where:</b> Aliquam libero tellus, vulputate ut dui vitae, laoreet dignissim dui.<br/>' +
+        '<b>Why:</b> Nunc est eros, gravida vitae malesuada eu, varius venenatis metus. Vestibulum ac massa non metus sagittis<br/> ' +
+        '<b>How:</b> iaculis. Vestibulum porta, mi vel aliquet aliquam, dui lectus sagittis orci, non euismod ex dui id massa.'));
+      this.newsList.push(new NewsItem('True story !', '<b>Who:</b> Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque mauris erat.<br/>' +
+        '<b>What:</b> tempor consectetur efficitur at, vulputate pretium orci. Quisque ut sem eu urna elementum<br/>' +
+        '<b>When:</b> cursus eu nec dui. Maecenas sollicitudin porta massa nec vehicula.<br/>' +
+        '<b>Where:</b> Aliquam libero tellus, vulputate ut dui vitae, laoreet dignissim dui.<br/>' +
+        '<b>Why:</b> Nunc est eros, gravida vitae malesuada eu, varius venenatis metus. Vestibulum ac massa non metus sagittis<br/> ' +
+        '<b>How:</b> iaculis. Vestibulum porta, mi vel aliquet aliquam, dui lectus sagittis orci, non euismod ex dui id massa.'));
+      this.newsList.push(new NewsItem('Wow a story !!!', '<b>Who:</b> Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque mauris erat.<br/>' +
+        '<b>What:</b> tempor consectetur efficitur at, vulputate pretium orci. Quisque ut sem eu urna elementum<br/>' +
+        '<b>When:</b> cursus eu nec dui. Maecenas sollicitudin porta massa nec vehicula.<br/>' +
+        '<b>Where:</b> Aliquam libero tellus, vulputate ut dui vitae, laoreet dignissim dui.<br/>' +
+        '<b>Why:</b> Nunc est eros, gravida vitae malesuada eu, varius venenatis metus. Vestibulum ac massa non metus sagittis<br/> ' +
+        '<b>How:</b> iaculis. Vestibulum porta, mi vel aliquet aliquam, dui lectus sagittis orci, non euismod ex dui id massa.'));
       resolve();
     });
   }

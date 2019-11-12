@@ -19,9 +19,6 @@
 
 <ion-content #scrollContent (ionScrollEnd)="scrollEnd()" [scrollEvents]="true">
   <app-news-panel *ngFor="let news of feedService.newsList"
-                 [id]="news.id"
-                 [content]="news.content"
-                 [title]="news.title"
-                 [subtitle]="news.subtitle">
+                 [item]="news">
   </app-news-panel>
 </ion-content>

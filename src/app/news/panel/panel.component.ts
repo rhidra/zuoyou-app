@@ -1,4 +1,5 @@
 import {Component, Input, OnInit} from '@angular/core';
+import {NewsItem} from '../../models/newsitem.model';
 
 @Component({
   selector: 'app-news-panel',
@@ -7,10 +8,7 @@ import {Component, Input, OnInit} from '@angular/core';
 })
 export class NewsPanelComponent implements OnInit {
 
-  @Input() id: string;
-  @Input() title: string;
-  @Input() subtitle: string;
-  @Input() content: string;
+  @Input() item: NewsItem;
 
   constructor() { }
 

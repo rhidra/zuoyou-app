@@ -1,3 +1,4 @@
+<!--
 <ion-header class="navbar-view">
   <ion-toolbar class="first-toolbar" color="primary">
     <ion-buttons slot="start">
@@ -14,12 +15,13 @@
     </ion-buttons>
   </ion-toolbar>
 </ion-header>
+-->
 
 <ion-content #scrollContent (ionScrollEnd)="scrollEnd()" [scrollEvents]="true">
-  <app-news-main *ngFor="let news of feedService.newsList"
+  <app-news-panel *ngFor="let news of feedService.newsList"
                  [id]="news.id"
                  [content]="news.content"
                  [title]="news.title"
                  [subtitle]="news.subtitle">
-  </app-news-main>
+  </app-news-panel>
 </ion-content>

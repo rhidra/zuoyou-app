@@ -4,13 +4,13 @@ import { CommonModule } from '@angular/common';
 import { NewsRoutingModule } from './news-routing.module';
 import {IonicModule} from '@ionic/angular';
 import {NewsFeedComponent} from './feed/feed.component';
-import {NewsMainComponent} from './main/main.component';
+import {NewsPanelComponent} from './panel/panel.component';
 
 
 @NgModule({
   declarations: [
       NewsFeedComponent,
-      NewsMainComponent,
+      NewsPanelComponent,
   ],
   imports: [
     CommonModule,

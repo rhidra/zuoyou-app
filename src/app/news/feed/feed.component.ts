@@ -1,7 +1,7 @@
 import {Component, ElementRef, OnInit, QueryList, ViewChild, ViewChildren} from '@angular/core';
 import {NewsFeedService} from './feed.service';
 import {IonContent} from '@ionic/angular';
-import {NewsMainComponent} from '../main/main.component';
+import {NewsPanelComponent} from '../panel/panel.component';
 
 @Component({
   selector: 'app-news-feed',
@@ -11,7 +11,7 @@ import {NewsMainComponent} from '../main/main.component';
 export class NewsFeedComponent implements OnInit {
 
   @ViewChild('scrollContent', {static: false}) content: IonContent = null;
-  @ViewChildren(NewsMainComponent, {read: ElementRef}) newsComponents: QueryList<ElementRef>;
+  @ViewChildren(NewsPanelComponent, {read: ElementRef}) newsComponents: QueryList<ElementRef>;
 
   isLoading: boolean = true;
   currentItem: number;

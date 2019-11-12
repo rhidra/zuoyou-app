@@ -1,11 +1,11 @@
 import {Component, Input, OnInit} from '@angular/core';
 
 @Component({
-  selector: 'app-news-main',
-  templateUrl: './main.component.html',
-  styleUrls: ['./main.component.scss'],
+  selector: 'app-news-panel',
+  templateUrl: './panel.component.html',
+  styleUrls: ['./panel.component.scss'],
 })
-export class NewsMainComponent implements OnInit {
+export class NewsPanelComponent implements OnInit {
 
   @Input() id: string;
   @Input() title: string;

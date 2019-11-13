@@ -1,4 +1,4 @@
-<div class="full-height" *ngIf="!panel.fullImage">
+<div class="full-height" *ngIf="!panel.fullImage && !panel.fullVideo">
   <ion-img *ngIf="panel.image" [src]="panel.image" class="top-image"></ion-img>
 
   <vg-player *ngIf="!panel.image && panel.video" class="top-image" (onPlayerReady)="onPlayerReady($event)">
@@ -9,7 +9,7 @@
       <vg-scrub-bar-buffering-time></vg-scrub-bar-buffering-time>
     </vg-scrub-bar>
 
-    <video [vgMedia]="media" #media id="singleVideo" preload="auto" autoplay muted>
+    <video [vgMedia]="media" #media preload="auto" autoplay muted>
       <source [src]="panel.video" type="video/mp4">
     </video>
   </vg-player>
@@ -22,8 +22,21 @@
   </p>
 </div>
 
-<div class="full-height full-image-div" *ngIf="panel.fullImage">
-  <ion-img [src]="panel.fullImage" class="full-image"></ion-img>
+<div class="full-height full-image-div" *ngIf="panel.fullImage || panel.fullVideo">
+  <ion-img *ngIf="panel.fullImage" [src]="panel.fullImage" class="full-image"></ion-img>
   <h1 class="news-title full-image-title">{{panel.title}}</h1>
+
+  <vg-player *ngIf="!panel.fullImage && panel.fullVideo" class="full-image" (onPlayerReady)="onPlayerReady($event)">
+    <vg-overlay-play></vg-overlay-play>
+    <vg-buffering></vg-buffering>
+    <vg-scrub-bar>
+      <vg-scrub-bar-current-time></vg-scrub-bar-current-time>
+      <vg-scrub-bar-buffering-time></vg-scrub-bar-buffering-time>
+    </vg-scrub-bar>
+
+    <video [vgMedia]="media" #media preload="auto" autoplay muted>
+      <source [src]="panel.fullVideo" type="video/mp4">
+    </video>
+  </vg-player>
 </div>
 

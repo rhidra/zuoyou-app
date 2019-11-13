@@ -1,5 +1,7 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnInit, QueryList, ViewChild, ViewChildren} from '@angular/core';
 import {NewsFeedService} from '../feed.service';
+import {IonSlides} from '@ionic/angular';
+import {NewsItemComponent} from '../item/item.component';
 
 @Component({
   selector: 'app-news-feed',
@@ -7,6 +9,9 @@ import {NewsFeedService} from '../feed.service';
   styleUrls: ['./feed.component.scss'],
 })
 export class NewsFeedComponent implements OnInit {
+
+  @ViewChild('slides', {static: false}) slides: IonSlides;
+  @ViewChildren(NewsItemComponent) newsItems: QueryList<NewsItemComponent>;
 
   isLoading: boolean = true;
   currentItem: number;
@@ -27,5 +32,11 @@ export class NewsFeedComponent implements OnInit {
       this.currentItem = 0;
       this.isLoading = false;
     });
+  }
+
+  slideChanged(event) {
+    const items = this.newsItems.toArray();
+    this.slides.getActiveIndex().then(slideIndex => items[slideIndex].startViewing());
+    this.slides.getPreviousIndex().then(slideIndex => items[slideIndex].stopViewing());
   }
 }

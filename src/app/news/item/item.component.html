@@ -1,8 +1,9 @@
-<swiper [config]="config">
+<swiper [config]="config" #swiperComp>
     <div class="swiper-wrapper">
         <div class="swiper-slide" *ngFor="let panel of item.panels">
             <app-news-panel [panel]="panel" class="full-height">
             </app-news-panel>
         </div>
     </div>
+    <div class="swiper-pagination"></div>
 </swiper>

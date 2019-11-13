@@ -1,7 +1,9 @@
+
 <swiper [config]="config">
     <div class="swiper-wrapper">
         <div class="swiper-slide slide1 full-height full-width" *ngFor="let panel of item.panels">
-            <app-news-panel [panel]="panel" class="full-height"></app-news-panel>
+            <app-news-panel [panel]="panel" class="full-height">
+            </app-news-panel>
         </div>
     </div>
 </swiper>

@@ -1,7 +1,7 @@
 <div class="full-height" *ngIf="!panel.fullImage">
   <ion-img *ngIf="panel.image" [src]="panel.image" class="top-image"></ion-img>
 
-  <vg-player *ngIf="!panel.image && panel.video && isActivated" class="top-image" (onPlayerReady)="onPlayerReady($event)">
+  <vg-player *ngIf="!panel.image && panel.video" class="top-image" (onPlayerReady)="onPlayerReady($event)">
     <vg-overlay-play></vg-overlay-play>
     <vg-buffering></vg-buffering>
     <vg-scrub-bar>

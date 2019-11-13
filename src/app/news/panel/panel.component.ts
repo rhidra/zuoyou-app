@@ -12,7 +12,6 @@ export class NewsPanelComponent implements OnInit {
   @Input() panel: NewsPanel;
 
   videoPlayer: VgAPI = null;
-  isActivated: boolean = false;
 
   constructor() { }
 
@@ -24,14 +23,12 @@ export class NewsPanelComponent implements OnInit {
   }
 
   startViewing() {
-    this.isActivated = true;
     if (this.videoPlayer) {
       this.videoPlayer.play();
     }
   }
 
   stopViewing() {
-    this.isActivated = false;
     if (this.videoPlayer) {
       this.videoPlayer.pause();
     }

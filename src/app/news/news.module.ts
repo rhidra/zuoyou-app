@@ -6,6 +6,7 @@ import {IonicModule} from '@ionic/angular';
 import {NewsFeedComponent} from './feed/feed.component';
 import {NewsPanelComponent} from './panel/panel.component';
 import {NewsItemComponent} from './item/item.component';
+import {Angular2UsefulSwiperModule} from 'angular2-useful-swiper';
 
 
 @NgModule({
@@ -17,7 +18,8 @@ import {NewsItemComponent} from './item/item.component';
   imports: [
     CommonModule,
     NewsRoutingModule,
-    IonicModule
+    IonicModule,
+    Angular2UsefulSwiperModule,
   ]
 })
 export class NewsModule { }

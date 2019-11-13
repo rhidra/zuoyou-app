@@ -1,4 +1,4 @@
-import {Component, ElementRef, OnInit, QueryList, ViewChild, ViewChildren} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {NewsFeedService} from '../feed.service';
 
 @Component({
@@ -12,7 +12,8 @@ export class NewsFeedComponent implements OnInit {
   currentItem: number;
 
   slidesOpt = {
-    direction: 'vertical'
+    direction: 'vertical',
+    slidesPerView: 1,
   };
 
   constructor(

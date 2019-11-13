@@ -1,16 +1,18 @@
+import {NewsPanel} from './newspanel.model';
+
 export class NewsItem {
     id: string = '';
-    title: string;
-    content: string = '';
-    image: string = '';
-    fullImage: string = '';
+    panels: Array<NewsPanel> = [];
 
-    constructor(title: string, content: string = '', image: string = '', fullImage: string = '', id: string = makeid(10)) {
-        this.title = title;
-        this.content = content;
+    constructor(panelCenter: NewsPanel, panelLeft: NewsPanel = null, panelRight: NewsPanel = null, id: string = makeid(10)) {
+        this.panels.push(panelCenter);
+        if (panelLeft) {
+            this.panels.push(panelLeft);
+        }
+        if (panelRight) {
+            this.panels.push(panelRight);
+        }
         this.id = id;
-        this.image = image;
-        this.fullImage = fullImage;
     }
 }
 

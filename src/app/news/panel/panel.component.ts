@@ -1,5 +1,5 @@
 import {Component, Input, OnInit} from '@angular/core';
-import {NewsItem} from '../../models/newsitem.model';
+import {NewsPanel} from '../../models/newspanel.model';
 
 @Component({
   selector: 'app-news-panel',
@@ -8,7 +8,7 @@ import {NewsItem} from '../../models/newsitem.model';
 })
 export class NewsPanelComponent implements OnInit {
 
-  @Input() item: NewsItem;
+  @Input() panel: NewsPanel;
 
   constructor() { }
 

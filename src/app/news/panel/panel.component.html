@@ -1,14 +1,14 @@
-<div class="full-height" *ngIf="!item.fullImage">
-  <ion-img *ngIf="item.image" [src]="item.image" class="top-image"></ion-img>
+<div class="full-height" *ngIf="!panel.fullImage">
+  <ion-img *ngIf="panel.image" [src]="panel.image" class="top-image"></ion-img>
     <h1 class="news-title">
-      {{item.title}}
+      {{panel.title}}
     </h1>
 
-    <p [innerHTML]="item.content" class="news-text">
+    <p [innerHTML]="panel.content" class="news-text">
     </p>
 </div>
 
-<div class="full-height full-image-div" *ngIf="item.fullImage">
-  <ion-img [src]="item.fullImage" class="full-image"></ion-img>
-  <h1 class="news-title full-image-title">{{item.title}}</h1>
+<div class="full-height full-image-div" *ngIf="panel.fullImage">
+  <ion-img [src]="panel.fullImage" class="full-image"></ion-img>
+  <h1 class="news-title full-image-title">{{panel.title}}</h1>
 </div>

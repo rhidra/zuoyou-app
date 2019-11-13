@@ -37,9 +37,14 @@
               },
               {
                 "input": "src/global.scss"
+              },
+              {
+                "input": "node_modules/swiper/css/swiper.css"
               }
             ],
-            "scripts": []
+            "scripts": [
+              "node_modules/swiper/js/swiper.js"
+            ]
           },
           "configurations": {
             "production": {

@@ -11,8 +11,9 @@ export class NewsItemComponent implements OnInit {
   @Input() item: NewsItem;
 
   config = {
-    pagination: '.swiper-pagination', // Pagination Class defined
-    spaceBetween: 0 // Space between each Item
+    pagination: '.swiper-pagination',
+    spaceBetween: 0,
+    initialSlide: 1,
   };
 
   constructor() { }

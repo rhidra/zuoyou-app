@@ -58,19 +58,19 @@ export class NewsFeedService {
       const p3l = new NewsPanel('True story !', '', '', 'assets/img/img3.jpg');
       const p3r = new NewsPanel('True story !', '', '', 'assets/img/img4.jpg');
 
-      const p7 = new NewsPanel('Wow a story !!!', '<b>Who:</b> Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque mauris erat.<br/>' +
-        '<b>What:</b> tempor consectetur efficitur at, vulputate pretium orci. Quisque ut sem eu urna elementum<br/>' +
-        '<b>When:</b> cursus eu nec dui. Maecenas sollicitudin porta massa nec vehicula.<br/>' +
-        '<b>Where:</b> Aliquam libero tellus, vulputate ut dui vitae, laoreet dignissim dui.<br/>' +
-        '<b>Why:</b> Nunc est eros, gravida vitae malesuada eu, varius venenatis metus. Vestibulum ac massa non metus sagittis<br/> ' +
-        '<b>How:</b> iaculis. Vestibulum porta, mi vel aliquet aliquam, dui lectus sagittis orci, non euismod ex dui id massa.',
-        '', '', '', 'assets/videos/rendu.mp4');
+      const p4c = new NewsPanel('');
+      const p4l = new NewsPanel('True story !', '', '', 'assets/img/img2.jpg');
+      const p4r = new NewsPanel('');
+
+      const p5c = new NewsPanel('');
+      const p5l = new NewsPanel('');
+      const p5r = new NewsPanel('');
 
       this.newsList.push(new NewsItem(p1c, p1l, p1r));
       this.newsList.push(new NewsItem(p2c, p2l, p2r));
       this.newsList.push(new NewsItem(p3c, p3l, p3r));
-      this.newsList.push(new NewsItem(p7, p7, p7));
-      this.newsList.push(new NewsItem(p7, p7, p7));
+      this.newsList.push(new NewsItem(p4c, p4l, p4r));
+      this.newsList.push(new NewsItem(p5c, p5l, p5l));
       resolve();
     });
   }

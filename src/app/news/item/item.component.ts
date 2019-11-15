@@ -20,6 +20,7 @@ export class NewsItemComponent implements OnInit {
     pagination: '.swiper-pagination',
     spaceBetween: 0,
     initialSlide: 1,
+    nested: true,
     on: {
       slideChange: () => this.slideChanged(),
     }

@@ -70,7 +70,7 @@ export class NewsFeedService {
       this.newsList.push(new NewsItem(p2c, p2l, p2r));
       this.newsList.push(new NewsItem(p3c, p3l, p3r));
       this.newsList.push(new NewsItem(p4c, p4l, p4r));
-      this.newsList.push(new NewsItem(p5c, p5l, p5l));
+      this.newsList.push(new NewsItem(p5c, p5l, p5r));
       resolve();
     });
   }

@@ -14,7 +14,7 @@
     </video>
   </vg-player>
 
-  <h1 class="news-title">
+  <h1 class="news-title" *ngIf="panel.title">
     {{panel.title}}
   </h1>
 
@@ -24,7 +24,7 @@
 
 <div class="full-height full-image-div" *ngIf="panel.fullImage || panel.fullVideo">
   <ion-img *ngIf="panel.fullImage" [src]="panel.fullImage" class="full-image"></ion-img>
-  <h1 class="news-title full-image-title">{{panel.title}}</h1>
+  <h1 class="news-title full-image-title" *ngIf="panel.title">{{panel.title}}</h1>
 
   <vg-player *ngIf="!panel.fullImage && panel.fullVideo" class="full-image" (onPlayerReady)="onPlayerReady($event)">
     <vg-overlay-play></vg-overlay-play>

@@ -1,9 +1,10 @@
 <ion-content *ngIf="home">
   <ion-img [src]="home.image" class="home-image"></ion-img>
 
-  <h2 class="home-image-title"><div class="home-center-title">Good Morning, Shanghai</div></h2>
+  <div class="home-image-title"><div class="home-center-title">Good Morning, Shanghai</div></div>
   <h2 class="home-subtitle">上海，早上好~</h2>
   <h1 class="home-title">5 things you need to know today</h1>
+
   <p [innerHTML]="home.content" class="home-content">
   </p>
 </ion-content>

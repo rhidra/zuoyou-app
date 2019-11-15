@@ -5,10 +5,10 @@ export class NewsItem {
     panels: Array<NewsPanel> = [];
 
     constructor(panelCenter: NewsPanel, panelLeft: NewsPanel = null, panelRight: NewsPanel = null, id: string = makeid(10)) {
-        this.panels.push(panelCenter);
         if (panelLeft) {
             this.panels.push(panelLeft);
         }
+        this.panels.push(panelCenter);
         if (panelRight) {
             this.panels.push(panelRight);
         }

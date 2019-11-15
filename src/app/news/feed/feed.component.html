@@ -1,4 +1,9 @@
 <ion-slides [options]="slidesOpt" (ionSlideDidChange)="slideChanged($event)" #slides>
+  <ion-slide style="height: 100%">
+    <app-news-home class="full-height full-width" [home]="feedService.home">
+    </app-news-home>
+  </ion-slide>
+
   <ion-slide *ngFor="let item of feedService.newsList" style="height: 100%">
     <app-news-item [item]="item" class="full-height full-width">
     </app-news-item>

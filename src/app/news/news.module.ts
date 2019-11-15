@@ -11,13 +11,15 @@ import {VgBufferingModule} from 'videogular2/compiled/src/buffering/buffering';
 import {VgOverlayPlayModule} from 'videogular2/compiled/src/overlay-play/overlay-play';
 import {VgControlsModule} from 'videogular2/compiled/src/controls/controls';
 import {VgCoreModule} from 'videogular2/compiled/src/core/core';
+import {NewsHomeComponent} from './home/home.component';
 
 
 @NgModule({
   declarations: [
-      NewsFeedComponent,
-      NewsPanelComponent,
-      NewsItemComponent,
+    NewsFeedComponent,
+    NewsPanelComponent,
+    NewsItemComponent,
+    NewsHomeComponent,
   ],
   imports: [
     CommonModule,

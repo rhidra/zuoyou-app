@@ -58,13 +58,13 @@ export class NewsFeedService {
       const p3l = new NewsPanel('', '', '', 'assets/img/img3.jpg');
       const p3r = new NewsPanel('True story !', '', '', 'assets/img/img2.jpg');
 
-      const p4c = new NewsPanel('The story behind 网红');
-      const p4l = new NewsPanel('Title', '<b>Who:</b> Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque mauris erat.<br/>' +
+      const p4c = new NewsPanel('The story behind 网红', '<b>Who:</b> Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque mauris erat.<br/>' +
         '<b>What:</b> tempor consectetur efficitur at, vulputate pretium orci. Quisque ut sem eu urna elementum<br/>' +
         '<b>When:</b> cursus eu nec dui. Maecenas sollicitudin porta massa nec vehicula.<br/>' +
         '<b>Where:</b> Aliquam libero tellus, vulputate ut dui vitae, laoreet dignissim dui.<br/>' +
         '<b>Why:</b> Nunc est eros, gravida vitae malesuada eu, varius venenatis metus. Vestibulum ac massa non metus sagittis<br/> ' +
-        '<b>How:</b> iaculis. Vestibulum porta, mi vel aliquet aliquam, dui lectus sagittis orci, non euismod ex dui id massa.',
+        '<b>How:</b> iaculis. Vestibulum porta, mi vel aliquet aliquam, dui lectus sagittis orci, non euismod ex dui id massa.');
+      const p4l = new NewsPanel('Title', '',
         '', 'assets/img/img2.jpg');
       const p4r = new NewsPanel('', '', '', 'assets/img/img4.jpg');
 

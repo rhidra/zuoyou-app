@@ -26,7 +26,7 @@ export class NewsFeedService {
         '<b>Why:</b> Nunc est eros, gravida vitae malesuada eu, varius venenatis metus. Vestibulum ac massa non metus sagittis',
         'assets/img/img9.jpg');
       const p1l = new NewsPanel('', '', '', 'assets/img/video.jpg');
-      const p1r = new NewsPanel('', '', '', 'assets/img/img6.jpg');
+      const p1r = new NewsPanel('', '', '', 'assets/img/img15.jpg');
 
       const p2c = new NewsPanel('Kim Kardashian teams up with Taobao for 11.11', '<b>Who:</b> Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque mauris erat.<br/>' +
         '<b>What:</b> tempor consectetur efficitur at, vulputate pretium orci. Quisque ut sem eu urna elementum<br/>' +

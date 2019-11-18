@@ -4,7 +4,12 @@
   overflow: hidden;
 }
 
-// TODO : Put the CSS in a library to avoir hardcoded random values
+.toolbar-filler {
+  width: 100%;
+  height: 56px;
+}
+
+// TODO : Put the CSS in a library to avoid hardcoded random values
 
 .top-image {
   max-height: 30%;

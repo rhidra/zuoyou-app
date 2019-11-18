@@ -1,4 +1,6 @@
 <div class="full-height" *ngIf="!panel.fullImage && !panel.fullVideo">
+  <div class="toolbar-filler"></div>
+
   <ion-img *ngIf="panel.image" [src]="panel.image" class="top-image"></ion-img>
 
   <vg-player *ngIf="!panel.image && panel.video" class="top-image" (onPlayerReady)="onPlayerReady($event)">

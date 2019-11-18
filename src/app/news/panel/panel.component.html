@@ -25,6 +25,8 @@
 </div>
 
 <div class="full-height full-image-div" *ngIf="panel.fullImage || panel.fullVideo">
+  <div class="toolbar-filler"></div>
+
   <ion-img *ngIf="panel.fullImage" [src]="panel.fullImage" class="full-image"></ion-img>
   <h1 class="news-title full-image-title" *ngIf="panel.title">{{panel.title}}</h1>
 

@@ -12,6 +12,7 @@ import {VgOverlayPlayModule} from 'videogular2/compiled/src/overlay-play/overlay
 import {VgControlsModule} from 'videogular2/compiled/src/controls/controls';
 import {VgCoreModule} from 'videogular2/compiled/src/core/core';
 import {NewsHomeComponent} from './home/home.component';
+import {FontAwesomeModule} from '@fortawesome/angular-fontawesome';
 
 
 @NgModule({
@@ -30,6 +31,7 @@ import {NewsHomeComponent} from './home/home.component';
     VgControlsModule,
     VgOverlayPlayModule,
     VgBufferingModule,
+    FontAwesomeModule,
   ]
 })
 export class NewsModule { }

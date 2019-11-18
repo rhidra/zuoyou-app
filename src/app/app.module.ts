@@ -9,6 +9,9 @@ import { StatusBar } from '@ionic-native/status-bar/ngx';
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
 import {NewsModule} from './news/news.module';
+import {FontAwesomeModule} from '@fortawesome/angular-fontawesome';
+import {library} from '@fortawesome/fontawesome-svg-core';
+import {fas} from '@fortawesome/free-solid-svg-icons';
 
 @NgModule({
   declarations: [AppComponent],
@@ -18,6 +21,7 @@ import {NewsModule} from './news/news.module';
     IonicModule.forRoot(),
     AppRoutingModule,
     NewsModule,
+    FontAwesomeModule
   ],
   providers: [
     StatusBar,
@@ -26,4 +30,8 @@ import {NewsModule} from './news/news.module';
   ],
   bootstrap: [AppComponent]
 })
-export class AppModule {}
+export class AppModule {
+  constructor() {
+    library.add(fas);
+  }
+}

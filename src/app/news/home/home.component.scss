@@ -11,18 +11,18 @@
   text-align: center;
 
   position: absolute;
-  top: 50%;
+  top: 58.35%;
   left: 50%;
   margin-top: 0;
-  min-width: 60%;
+  min-width: 67%;
 
   .home-center-title {
     position: relative;
     left: -50%;
     bottom: 16px;
-    background: black;
-    border: 1px solid #999999;
-    color: white;
+    background: var(--ion-color-primary);
+    color: var(--ion-color-primary-contrast);
+    font-weight: bold;
     padding: 7px 16px;
   }
 }
@@ -34,8 +34,18 @@
 }
 
 .home-title {
-  text-transform: uppercase;
-  font-size: 1em;
+  margin-top: 0;
+
+  .home-title-center {
+    margin: 0 auto;
+    padding: 7px 10px;
+    width: 75%;
+    text-transform: uppercase;
+    font-size: 0.8em;
+    font-weight: bold;
+    background: var(--ion-color-primary);
+    color: var(--ion-color-primary-contrast);
+  }
 }
 
 .home-content {
@@ -43,4 +53,6 @@
   line-height: 1.5em;
   margin-right: 5px;
   margin-left: 5px;
+  margin-top: 5px;
+  font-size: 0.9em;
 }

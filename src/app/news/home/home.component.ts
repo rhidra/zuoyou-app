@@ -1,5 +1,5 @@
 import {Component, Input, OnInit} from '@angular/core';
-import {NewsHome} from '../../models/newshome.model';
+import {NewsGroup} from '../../models/newsgroup.model';
 
 @Component({
   selector: 'app-news-home',
@@ -8,7 +8,7 @@ import {NewsHome} from '../../models/newshome.model';
 })
 export class NewsHomeComponent implements OnInit {
 
-  @Input() home: NewsHome;
+  @Input() group: NewsGroup;
 
   constructor() { }
 

@@ -1,6 +1,6 @@
 import {Component, Input, OnInit} from '@angular/core';
-import {NewsPanel} from '../../models/newspanel.model';
 import {VgAPI} from 'videogular2/compiled/src/core/services/vg-api';
+import {NewsItem} from "../../models/newsitem.model";
 
 @Component({
   selector: 'app-news-panel',
@@ -9,7 +9,8 @@ import {VgAPI} from 'videogular2/compiled/src/core/services/vg-api';
 })
 export class NewsPanelComponent implements OnInit {
 
-  @Input() panel: NewsPanel;
+  @Input() video: string;
+  @Input() item: NewsItem;
 
   videoPlayer: VgAPI = null;
 

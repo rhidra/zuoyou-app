@@ -42,7 +42,7 @@
     ],
     "no-empty": false,
     "no-inferrable-types": [
-      true,
+      false,
       "ignore-params"
     ],
     "no-non-null-assertion": true,
@@ -83,6 +83,7 @@
       "app",
       "page",
       "kebab-case"
-    ]
+    ],
+    "variable-name": false
   }
 }

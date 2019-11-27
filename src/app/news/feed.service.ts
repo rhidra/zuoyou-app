@@ -2,6 +2,8 @@ import { Injectable } from '@angular/core';
 import {NewsItem} from '../models/newsitem.model';
 import {NewsPanel} from '../models/newspanel.model';
 import {NewsHome} from '../models/newshome.model';
+import {HttpClient} from "@angular/common/http";
+import {Observable} from "rxjs";
 
 @Injectable({
   providedIn: 'root'
@@ -11,7 +13,15 @@ export class NewsFeedService {
   newsList: Array<NewsItem> = [];
   home: NewsHome;
 
-  constructor() { }
+  constructor(
+      private http: HttpClient,
+  ) { }
+
+  makeRequest() {
+    console.log('hi');
+    this.http.get('http://localhost:9000/testAPI', {responseType: 'text'})
+      .subscribe(data => console.log(data));
+  }
 
   load() {
     return new Promise(resolve => {

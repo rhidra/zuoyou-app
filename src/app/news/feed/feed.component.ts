@@ -32,6 +32,8 @@ export class NewsFeedComponent implements OnInit {
       this.currentItem = 0;
       this.isLoading = false;
     });
+
+    this.feedService.makeRequest();
   }
 
   slideChanged(event) {

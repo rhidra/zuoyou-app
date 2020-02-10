@@ -4,17 +4,14 @@ import {TabsComponent} from './tabs.component';
 
 
 const routes: Routes = [
+  { path: '', redirectTo: '/tabs/news', pathMatch: 'full' },
   {
-    path: '',
-    redirectTo: '/tabs/news',
-    pathMatch: 'full'
-  }, {
     path: 'tabs',
     component: TabsComponent,
     children: [
       { path: '', redirectTo: '/tabs/news', pathMatch: 'full' },
-      // { path: 'news', loadChildren: './news/news.module#NewsModule' },
       { path: 'news', loadChildren: () => import('../news/news.module').then((m => m.NewsModule))},
+      { path: 'account', loadChildren: () => import('../account/account.module').then((m => m.AccountModule))},
       { path: 'favorite', loadChildren: '../favorite/favorite.module#FavoriteModule' },
     ]
   },

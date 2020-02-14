@@ -34,15 +34,6 @@ export class LoginComponent implements OnInit {
   }
 
   login() {
-    // Send phone number to the backend
-    // Backend generate SMS code linked to the timestamp
-    // Backend store info temporarily in the DB
-    // Use API YunPian to send SMS code
-    // User receives the SMS, input the code and send it to the backend
-    // Backend test the validity of the code
-    // Backend search the user in Okta, either create the user or just get his ID
-    // Backend authenticate the user with Okta's API and get the token
-    // Mobile app get the token and use it in every backend call
-    // Mobile app grants the access to the content
+    this.authService.login(this.form.value.phone, this.form.value.code);
   }
 }

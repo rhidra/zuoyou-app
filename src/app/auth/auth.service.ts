@@ -7,8 +7,9 @@ import {HttpClient} from '@angular/common/http';
 })
 export class AuthService {
 
-  delaySize = 10;
+  delaySize = 30;
   delay = 0;
+  id: string;
 
   constructor(
       private oauthService: OAuthService,
@@ -19,11 +20,12 @@ export class AuthService {
     return this.oauthService.hasValidAccessToken();
   }
 
-  sendCode(phoneNumber: string): Promise<any> {
+  sendCode(phone: string): Promise<any> {
     return new Promise<any>((resolve, reject) => {
       console.log('send phone number...');
-      this.http.post('http://localhost:9000/auth/', {phone: phoneNumber}).subscribe(() => {
+      this.http.post('http://localhost:9000/auth/', {id: this.id, phone}).subscribe((user: any) => {
         console.log('received SMS :', 123456);
+        this.id = user.id;
         this.startTimer();
         resolve();
       }, () => reject());
@@ -39,5 +41,13 @@ export class AuthService {
       }
     };
     timer();
+  }
+
+  login(phone: string, code: string) {
+    this.http.post('http://localhost:9000/auth/login', {id: this.id, phone, code}).subscribe(res => {
+      this.delay = 0;
+      this.id = '';
+      console.log(res);
+    });
   }
 }

@@ -13,6 +13,7 @@ import {FontAwesomeModule} from '@fortawesome/angular-fontawesome';
 import {library} from '@fortawesome/fontawesome-svg-core';
 import {fas} from '@fortawesome/free-solid-svg-icons';
 import {HttpClientModule} from '@angular/common/http';
+import {OAuthModule} from 'angular-oauth2-oidc';
 
 @NgModule({
   declarations: [AppComponent],
@@ -24,6 +25,7 @@ import {HttpClientModule} from '@angular/common/http';
     AppRoutingModule,
     NewsModule,
     FontAwesomeModule,
+    OAuthModule.forRoot(),
   ],
   providers: [
     StatusBar,

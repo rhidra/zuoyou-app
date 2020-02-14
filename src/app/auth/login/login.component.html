@@ -14,9 +14,9 @@
       </ion-item>
       <ion-item>
         <ion-input placeholder="SMS Code" i18n-placeholder maxlength="6" formControlName="code" type="text"></ion-input>
-        <ion-button i18n [disabled]="delay > 0 || form.controls['phone'].invalid" (click)="sendCode()">
+        <ion-button i18n [disabled]="authService.delay > 0 || form.controls['phone'].invalid" (click)="sendCode()">
           Send Code
-          <span *ngIf="delay > 0">&nbsp;({{delay}})</span>
+          <span *ngIf="authService.delay > 0">&nbsp;({{authService.delay}})</span>
         </ion-button>
       </ion-item>
 

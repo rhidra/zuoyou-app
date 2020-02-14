@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import {CanActivate, Router} from '@angular/router';
-import {OAuthService} from 'angular-oauth2-oidc';
+import {AuthService} from './auth.service';
 
 @Injectable({
   providedIn: 'root'
@@ -9,14 +9,17 @@ export class AuthGuardService implements CanActivate {
 
   constructor(
       private router: Router,
-      private oauthService: OAuthService,
+      private authService: AuthService
   ) { }
 
   canActivate(): boolean {
-    if (!this.oauthService.hasValidAccessToken()) {
+    console.log('Controle d\'authentification...');
+    if (!this.authService.isAuthenticated()) {
+      console.log('Pas connecté !');
       this.router.navigate(['auth']);
       return false;
     }
+    console.log('Connecté :) !');
 
     return true;
   }

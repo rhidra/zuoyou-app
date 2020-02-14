@@ -1,6 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {NavController} from '@ionic/angular';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
+import {AuthService} from '../auth.service';
 
 @Component({
   selector: 'app-login',
@@ -10,11 +11,11 @@ import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 export class LoginComponent implements OnInit {
 
   form: FormGroup;
-  delay = 0;
 
   constructor(
       private navCtrl: NavController,
       private fb: FormBuilder,
+      private authService: AuthService
   ) {}
 
   ngOnInit() {
@@ -29,22 +30,7 @@ export class LoginComponent implements OnInit {
   }
 
   sendCode() {
-    console.log('send phone number...');
-    setTimeout(() => {
-      console.log('received SMS :', 123456);
-      this.startTimer();
-    }, 500);
-  }
-
-  startTimer() {
-    this.delay = 10;
-    const timer = () => {
-      this.delay--;
-      if (this.delay > 0) {
-        setTimeout(timer, 1000);
-      }
-    };
-    timer();
+    this.authService.sendCode(this.form.value.phone);
   }
 
   login() {

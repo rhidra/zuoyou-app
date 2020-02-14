@@ -22,9 +22,7 @@ export class AuthService {
 
   sendCode(phone: string): Promise<any> {
     return new Promise<any>((resolve, reject) => {
-      console.log('send phone number...');
       this.http.post('http://localhost:9000/auth/', {id: this.id, phone}).subscribe((user: any) => {
-        console.log('received SMS :', 123456);
         this.id = user.id;
         this.startTimer();
         resolve();

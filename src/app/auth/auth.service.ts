@@ -26,7 +26,7 @@ export class AuthService {
         this.id = user.id;
         this.startTimer();
         resolve();
-      }, () => reject());
+      }, err => reject(err));
     });
   }
 

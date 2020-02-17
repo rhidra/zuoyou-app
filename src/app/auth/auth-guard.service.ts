@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import {ActivatedRouteSnapshot, CanActivate, Router, RouterStateSnapshot} from '@angular/router';
 import {AuthService} from './auth.service';
+import {NavController} from '@ionic/angular';
 
 @Injectable({
   providedIn: 'root'
@@ -8,7 +9,7 @@ import {AuthService} from './auth.service';
 export class AuthGuardService implements CanActivate {
 
   constructor(
-      private router: Router,
+      private navCtrl: NavController,
       private authService: AuthService
   ) { }
 
@@ -17,7 +18,7 @@ export class AuthGuardService implements CanActivate {
       if (token) {
         return new Promise(r => r(true));
       } else {
-        this.router.navigate(['auth'], {queryParams: {returnUrl: state.url}});
+        this.navCtrl.navigateForward(['/', 'auth'], {queryParams: {returnUrl: state.url}});
         return new Promise(r => r(false));
       }
     });

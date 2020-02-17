@@ -1,7 +1,6 @@
 import { Injectable } from '@angular/core';
 import {ActivatedRouteSnapshot, CanActivate, Router, RouterStateSnapshot} from '@angular/router';
 import {AuthService} from './auth.service';
-import {isBoolean} from 'util';
 
 @Injectable({
   providedIn: 'root'
@@ -14,19 +13,13 @@ export class AuthGuardService implements CanActivate {
   ) { }
 
   canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Promise<boolean> {
-    return new Promise<boolean>(resolve => {
-      this.authService.getToken().then(token => {
-        console.log('Controle d\'authentification...');
-
-        if (token) {
-          console.log('Connecté :) !');
-          resolve(true);
-        } else {
-          console.log('Login obligatoire !');
-          this.router.navigate(['auth'], {queryParams: {returnUrl: state.url}});
-          resolve(false);
-        }
-      });
+    return this.authService.getToken().then(token => {
+      if (token) {
+        return new Promise(r => r(true));
+      } else {
+        this.router.navigate(['auth'], {queryParams: {returnUrl: state.url}});
+        return new Promise(r => r(false));
+      }
     });
   }
 }

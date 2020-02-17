@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
-import {OAuthService} from 'angular-oauth2-oidc';
 import {HttpClient} from '@angular/common/http';
+import {User} from '../models/user.model';
+import * as jwt_decode from 'jwt-decode';
 
 @Injectable({
   providedIn: 'root'
@@ -9,24 +10,42 @@ export class AuthService {
 
   delaySize = 30;
   delay = 0;
-  id: string;
+  pendingId: string;
+  user: User;
+  refreshToken: string;
+  accessToken: string;
 
-  constructor(
-      private oauthService: OAuthService,
-      private http: HttpClient,
-  ) { }
+  getToken(): Promise<any> {
+    return new Promise<string>(resolve => {
+      if (!this.isTokenExpired()) { return resolve(this.accessToken); }
+      if (!this.user) { return resolve(null); }
 
-  isAuthenticated(): boolean {
-    return this.oauthService.hasValidAccessToken();
+      this.http.post('http://localhost:9000/auth/token', {id: this.user._id, refreshToken: this.refreshToken})
+          .subscribe((res: any) => {
+            console.log('Refresh token :', res.token);
+            this.accessToken = res.token;
+            resolve(this.accessToken);
+          }, () => resolve(null));
+    });
   }
 
-  sendCode(phone: string): Promise<any> {
+  constructor(private http: HttpClient) { }
+
+  isTokenExpired(): boolean {
+    if (!this.accessToken) { return true; }
+    const decoded = jwt_decode(this.accessToken);
+    if (decoded.exp === undefined) { return false; }
+    const date = new Date(0).setUTCSeconds(decoded.exp);
+    return !(date.valueOf() > new Date().valueOf());
+  }
+
+  requestCode(phone: string): Promise<any> {
     return new Promise<any>((resolve, reject) => {
-      this.http.post('http://localhost:9000/auth/', {id: this.id, phone}).subscribe((user: any) => {
-        this.id = user.id;
+      this.http.post('http://localhost:9000/auth/phone/', {id: this.pendingId, phone}).subscribe((user: any) => {
+        this.pendingId = user.id;
         this.startTimer();
         resolve();
-      }, err => reject(err));
+      }, reject);
     });
   }
 
@@ -42,10 +61,18 @@ export class AuthService {
   }
 
   login(phone: string, code: string) {
-    this.http.post('http://localhost:9000/auth/login', {id: this.id, phone, code}).subscribe(res => {
-      this.delay = 0;
-      this.id = '';
-      console.log(res);
+    return new Promise(resolve => {
+      this.http.post('http://localhost:9000/auth/phone/login', {id: this.pendingId, phone, code}).subscribe((res: any) => {
+        this.delay = 0;
+        this.pendingId = '';
+        this.refreshToken = res.refreshToken;
+        this.user = new User();
+        this.user._id = res.id;
+        this.user.email = res.email;
+        this.user.phone = res.phone;
+        this.accessToken = res.token;
+        resolve();
+      });
     });
   }
 }

@@ -12,8 +12,9 @@ import {NewsModule} from './news/news.module';
 import {FontAwesomeModule} from '@fortawesome/angular-fontawesome';
 import {library} from '@fortawesome/fontawesome-svg-core';
 import {fas} from '@fortawesome/free-solid-svg-icons';
-import {HttpClientModule} from '@angular/common/http';
+import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
 import {OAuthModule} from 'angular-oauth2-oidc';
+import {AuthInterceptor} from './auth/auth.interceptor';
 
 @NgModule({
   declarations: [AppComponent],
@@ -30,7 +31,8 @@ import {OAuthModule} from 'angular-oauth2-oidc';
   providers: [
     StatusBar,
     SplashScreen,
-    { provide: RouteReuseStrategy, useClass: IonicRouteStrategy }
+    { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
+    { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true },
   ],
   bootstrap: [AppComponent]
 })

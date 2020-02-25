@@ -15,6 +15,7 @@ import {fas} from '@fortawesome/free-solid-svg-icons';
 import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
 import {OAuthModule} from 'angular-oauth2-oidc';
 import {AuthInterceptor} from './auth/auth.interceptor';
+import {NativeStorage} from '@ionic-native/native-storage/ngx';
 
 @NgModule({
   declarations: [AppComponent],
@@ -31,6 +32,7 @@ import {AuthInterceptor} from './auth/auth.interceptor';
   providers: [
     StatusBar,
     SplashScreen,
+    NativeStorage,
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
     { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true },
   ],

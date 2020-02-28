@@ -11,10 +11,9 @@ import {TopicComponent} from '../topic/topic.component';
 export class NewsFeedComponent implements OnInit {
 
   @ViewChild('slides', {static: false}) slides: IonSlides;
-  @ViewChildren(TopicComponent) newsItems: QueryList<TopicComponent>;
+  @ViewChildren(TopicComponent) topicComponents: QueryList<TopicComponent>;
 
   isLoading: boolean = true;
-  currentItem: number;
 
   slidesOpt = {
     direction: 'vertical',
@@ -25,18 +24,20 @@ export class NewsFeedComponent implements OnInit {
       public feedService: NewsFeedService,
   ) { }
 
-  ngOnInit() {}
-
-  ngAfterViewInit() {
+  ngOnInit() {
     this.feedService.load().then(() => {
-      this.currentItem = 0;
       this.isLoading = false;
+      // TODO: This does not work. The first video to appear should be in autoplay
+      setTimeout(() => {
+        const topics = this.topicComponents.toArray();
+        topics[0].startViewing();
+      });
     });
   }
 
   slideChanged(event) {
-    const items = this.newsItems.toArray();
-    this.slides.getActiveIndex().then(slideIndex => items[slideIndex].startViewing());
-    this.slides.getPreviousIndex().then(slideIndex => items[slideIndex].stopViewing());
+    const topics = this.topicComponents.toArray();
+    this.slides.getActiveIndex().then(slideIndex => topics[slideIndex].startViewing());
+    this.slides.getPreviousIndex().then(slideIndex => topics[slideIndex].stopViewing());
   }
 }

@@ -1,7 +1,7 @@
 import {Component, OnInit, QueryList, ViewChild, ViewChildren} from '@angular/core';
 import {NewsFeedService} from '../feed.service';
 import {IonSlides} from '@ionic/angular';
-import {NewsItemComponent} from '../item/item.component';
+import {TopicComponent} from '../topic/topic.component';
 
 @Component({
   selector: 'app-news-feed',
@@ -11,7 +11,7 @@ import {NewsItemComponent} from '../item/item.component';
 export class NewsFeedComponent implements OnInit {
 
   @ViewChild('slides', {static: false}) slides: IonSlides;
-  @ViewChildren(NewsItemComponent) newsItems: QueryList<NewsItemComponent>;
+  @ViewChildren(TopicComponent) newsItems: QueryList<TopicComponent>;
 
   isLoading: boolean = true;
   currentItem: number;

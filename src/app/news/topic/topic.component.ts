@@ -1,19 +1,19 @@
 import {Component, Input, OnInit, QueryList, ViewChild, ViewChildren} from '@angular/core';
-import {NewsItem} from '../../models/newsitem.model';
-import {NewsPanelComponent} from '../panel/panel.component';
+import {Topic} from '../../models/topic.model';
+import {PanelComponent} from '../panel/panel.component';
 import {SwiperComponent} from 'angular2-useful-swiper';
 
 @Component({
-  selector: 'app-news-item',
-  templateUrl: './item.component.html',
-  styleUrls: ['./item.component.scss'],
+  selector: 'app-news-topic',
+  templateUrl: './topic.component.html',
+  styleUrls: ['./topic.component.scss'],
 })
-export class NewsItemComponent implements OnInit {
+export class TopicComponent implements OnInit {
 
-  @Input() item: NewsItem;
+  @Input() topic: Topic;
 
   @ViewChild('swiperComp', {static: false}) swiperComponent: SwiperComponent;
-  @ViewChildren(NewsPanelComponent) newsPanel: QueryList<NewsPanelComponent>;
+  @ViewChildren(PanelComponent) newsPanel: QueryList<PanelComponent>;
 
   currentSlide: number = 1;
   config = {

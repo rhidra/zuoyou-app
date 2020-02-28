@@ -1,17 +1,26 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {VgAPI} from 'videogular2/compiled/src/core/services/vg-api';
-import {NewsItem} from "../../models/newsitem.model";
+import {TopicPanel} from '../../models/topic.model';
 
 @Component({
   selector: 'app-news-panel',
   templateUrl: './panel.component.html',
   styleUrls: ['./panel.component.scss'],
 })
-export class NewsPanelComponent implements OnInit {
+export class PanelComponent implements OnInit {
 
-  @Input() video: string;
-  @Input() item: NewsItem;
 
+  _panel: TopicPanel;
+  @Input()
+  set panel(p: TopicPanel) {
+    console.log(p);
+    this.type = p.quiz ? 'quiz' : p.text ? 'text' : 'video';
+    this._panel = p;
+  }
+  get panel(): TopicPanel { return this._panel; }
+
+  type: string;
+  video: string;
   videoPlayer: VgAPI = null;
 
   constructor() { }

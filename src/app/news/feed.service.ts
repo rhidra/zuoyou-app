@@ -1,13 +1,13 @@
 import { Injectable } from '@angular/core';
 import {HttpClient} from '@angular/common/http';
-import {NewsGroup} from '../models/newsgroup.model';
+import {Topic} from '../models/topic.model';
 
 @Injectable({
   providedIn: 'root'
 })
 export class NewsFeedService {
 
-  newsGroup: NewsGroup;
+  topics: Array<Topic>;
 
   constructor(
       private http: HttpClient,
@@ -15,8 +15,9 @@ export class NewsFeedService {
 
   load() {
     return new Promise(resolve => {
-      this.http.get('http://localhost:9000/news/latest').subscribe((data: any) => {
-        this.newsGroup = data;
+      this.http.get('http://localhost:9000/topic/').subscribe((data: any) => {
+        this.topics = data;
+        console.log(this.topics);
         resolve();
       });
     });

@@ -1,15 +1,15 @@
 <swiper [config]="config" #swiperComp>
     <div class="swiper-wrapper">
         <div class="swiper-slide">
-            <app-news-panel [video]="item.videoLeft" class="full-height">
+            <app-news-panel [panel]="topic.leftPanel" class="full-height">
             </app-news-panel>
         </div>
         <div class="swiper-slide">
-            <app-news-panel [item]="item" class="full-height">
+            <app-news-panel [panel]="{video: topic.video, text: null, image: null, quiz: null}" class="full-height">
             </app-news-panel>
         </div>
         <div class="swiper-slide">
-            <app-news-panel [video]="item.videoRight" class="full-height">
+            <app-news-panel [panel]="topic.rightPanel" class="full-height">
             </app-news-panel>
         </div>
     </div>

@@ -13,7 +13,6 @@ export class PanelComponent implements OnInit {
   _panel: TopicPanel;
   @Input()
   set panel(p: TopicPanel) {
-    console.log(p);
     this.type = p.quiz ? 'quiz' : p.text ? 'text' : 'video';
     this._panel = p;
   }

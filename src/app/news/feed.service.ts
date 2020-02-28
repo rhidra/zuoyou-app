@@ -17,7 +17,6 @@ export class NewsFeedService {
     return new Promise(resolve => {
       this.http.get('http://localhost:9000/topic/').subscribe((data: any) => {
         this.topics = data;
-        console.log(this.topics);
         resolve();
       });
     });

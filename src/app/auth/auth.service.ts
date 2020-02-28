@@ -80,9 +80,7 @@ export class AuthService {
         this.pendingId = '';
         this.refreshToken = res.refreshToken;
         this.user = new User();
-        this.user._id = res.id;
-        this.user.email = res.email;
-        this.user.phone = res.phone;
+        Object.assign(this.user, res.user);
         this.accessToken = res.token;
         const promises = [];
         promises.push(this.storage.setItem('refreshToken', this.refreshToken));

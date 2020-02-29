@@ -1,14 +1,35 @@
-// TODO : Put in a CSS library global property
-.full-height {
-  height: 100%;
-  overflow: hidden;
-}
+.app-feed {
+  // TODO : Put in a CSS library global property
+  .full-height {
+    height: 100%;
+    overflow: hidden;
+  }
 
-.full-width {
-  width: 100%;
-}
+  .full-width {
+    width: 100%;
+  }
 
-ion-slides {
-  width: 100%;
-  height: 100%;
+  ion-header {
+    visibility: hidden;
+    position: absolute;
+
+    ion-toolbar {
+      --color: white;
+      --min-height: 36px;
+      --background: none;
+      background: linear-gradient(#000000d9, #0000);
+      visibility: visible;
+    }
+
+    ion-title {
+      font-family: 'Hanzipen';
+    }
+  }
+
+  ion-slides {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+  }
+
 }

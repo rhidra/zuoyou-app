@@ -22,6 +22,13 @@
   object-fit: cover;
 }
 
+.full-video {
+  width: 100%;
+  height: auto;
+  overflow: hidden;
+  object-fit: cover;
+}
+
 .news-title {
   font-weight: bold;
   padding-left: 10px;

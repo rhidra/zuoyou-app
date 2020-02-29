@@ -6,7 +6,6 @@ import {TopicComponent} from '../topic/topic.component';
 @Component({
   selector: 'app-news-feed',
   templateUrl: './feed.component.html',
-  styleUrls: ['./feed.component.scss'],
 })
 export class NewsFeedComponent implements OnInit {
 

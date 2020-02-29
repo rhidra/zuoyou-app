@@ -6,7 +6,6 @@ import {SwiperComponent} from 'angular2-useful-swiper';
 @Component({
   selector: 'app-news-topic',
   templateUrl: './topic.component.html',
-  styleUrls: ['./topic.component.scss'],
 })
 export class TopicComponent implements OnInit {
 

@@ -1,17 +1,37 @@
-<swiper [config]="config" #swiperComp>
-    <div class="swiper-wrapper">
-        <div class="swiper-slide">
-            <app-news-panel [panel]="topic.leftPanel" class="full-height">
-            </app-news-panel>
+<div class="app-topic">
+    <div class="topic-buttons full-width">
+        <div class="topic-button">
+            <ion-button>
+                <ion-icon slot="icon-only" name="share"></ion-icon>
+            </ion-button>
         </div>
-        <div class="swiper-slide">
-            <app-news-panel [panel]="{video: topic.video, text: null, image: null, quiz: null}" class="full-height">
-            </app-news-panel>
+        <div class="topic-button">
+            <ion-button>
+                <ion-icon slot="icon-only" name="heart"></ion-icon>
+            </ion-button>
         </div>
-        <div class="swiper-slide">
-            <app-news-panel [panel]="topic.rightPanel" class="full-height">
-            </app-news-panel>
+        <div class="topic-button">
+            <ion-button>
+                <ion-icon slot="icon-only" name="refresh"></ion-icon>
+            </ion-button>
         </div>
     </div>
-    <div class="swiper-pagination"></div>
-</swiper>
+
+    <swiper [config]="config" #swiperComp>
+        <div class="swiper-wrapper">
+            <div class="swiper-slide">
+                <app-news-panel [panel]="topic.leftPanel" class="full-height">
+                </app-news-panel>
+            </div>
+            <div class="swiper-slide">
+                <app-news-panel [panel]="{video: topic.video, text: null, image: null, quiz: null}" class="full-height">
+                </app-news-panel>
+            </div>
+            <div class="swiper-slide">
+                <app-news-panel [panel]="topic.rightPanel" class="full-height">
+                </app-news-panel>
+            </div>
+        </div>
+        <div class="swiper-pagination"></div>
+    </swiper>
+</div>

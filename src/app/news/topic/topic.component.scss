@@ -29,11 +29,21 @@
         height: 45px;
         --border-radius: 32px;
         font-size: 11px;
-        --background: #FFFFFF90;
+        --background: #DDDDDDA0;
         --color: black;
         --color-activated: #353535;
         padding-bottom: 6px;
       }
     }
+  }
+
+  .topic-hashtag {
+    z-index: 11;
+    position: absolute;
+    bottom: 5%;
+    color: white;
+    text-shadow: black 1px 1px 5px;
+    font-size: 1.2em;
+    margin-left: 12px;
   }
 }

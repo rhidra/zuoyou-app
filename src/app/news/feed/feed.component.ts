@@ -38,7 +38,6 @@ export class NewsFeedComponent implements OnInit {
     // TODO: Find something more elegant
     setTimeout(() => {
       const topics = this.topicComponents.toArray();
-      console.log(topics);
       topics.forEach(topic => topic.init());
     }, 500);
   }

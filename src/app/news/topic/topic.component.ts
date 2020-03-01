@@ -37,7 +37,6 @@ export class TopicComponent {
   ) { }
 
   init() {
-    console.log('ljndsfojs');
     this.authService.getToken().then(token => {
       if (token) {
         this.feedService.checkLike(this.topic).then(liked => this.hasLiked = liked);

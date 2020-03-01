@@ -10,8 +10,8 @@
                 <ion-icon slot="icon-only" name="heart"></ion-icon>
             </ion-button>
         </div>
-        <div class="topic-button">
-            <ion-button>
+        <div class="topic-button" *ngIf="showRewind">
+            <ion-button (click)="rewind()">
                 <ion-icon slot="icon-only" name="refresh"></ion-icon>
             </ion-button>
         </div>

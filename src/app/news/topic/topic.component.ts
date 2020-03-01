@@ -15,6 +15,7 @@ export class TopicComponent implements OnInit {
   @ViewChildren(PanelComponent) newsPanel: QueryList<PanelComponent>;
 
   currentSlide: number = 1;
+  showRewind = true;
   config = {
     pagination: '.swiper-pagination',
     spaceBetween: 0,
@@ -50,9 +51,15 @@ export class TopicComponent implements OnInit {
 
   startPanel(panelIndex: number) {
     this.newsPanel.find((_, index) => index === panelIndex).startViewing();
+    this.showRewind = (panelIndex === 1) || (panelIndex === 0 && !!this.topic.leftPanel.video)
+                      || (panelIndex === 2 && !!this.topic.rightPanel.video);
   }
 
   stopPanel(panelIndex: number) {
     this.newsPanel.find((_, index) => index === panelIndex).stopViewing();
+  }
+
+  rewind() {
+    this.newsPanel.find((_, index) => index === this.currentSlide).rewind();
   }
 }

@@ -52,4 +52,20 @@
     font-size: 1.5em;
     margin-left: 12px;
   }
+
+  .topic-clapback {
+    z-index: 12;
+    position: absolute;
+    bottom: 10%;
+    width: 100%;
+    padding-right: 12px;
+
+    ion-button {
+      float: right;
+      width: 60px;
+      height: 60px;
+      --border-radius: 43px;
+      font-size: 15px;
+    }
+  }
 }

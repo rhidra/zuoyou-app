@@ -3,6 +3,7 @@ import {HttpClient} from '@angular/common/http';
 import {User} from '../models/user.model';
 import * as jwt_decode from 'jwt-decode';
 import {NativeStorage} from '@ionic-native/native-storage/ngx';
+import {Platform} from '@ionic/angular';
 
 @Injectable({
   providedIn: 'root'
@@ -33,6 +34,7 @@ export class AuthService {
   constructor(
     private http: HttpClient,
     private storage: NativeStorage,
+    private platform: Platform,
   ) {
     this.loadFromStorage();
   }
@@ -83,8 +85,10 @@ export class AuthService {
         Object.assign(this.user, res.user);
         this.accessToken = res.token;
         const promises = [];
-        promises.push(this.storage.setItem('refreshToken', this.refreshToken));
-        promises.push(this.storage.setItem('user', this.user));
+        if (this.platform.is('hybrid')) {
+          promises.push(this.storage.setItem('refreshToken', this.refreshToken));
+          promises.push(this.storage.setItem('user', this.user));
+        }
         Promise.all(promises).then(resolve).catch(reject);
       });
     });

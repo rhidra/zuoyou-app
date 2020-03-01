@@ -1,30 +1,37 @@
-<div class="full-height full-image-div" *ngIf="type === 'video'">
-  <vg-player class="full-video" (onPlayerReady)="onPlayerReady($event)">
-    <vg-buffering></vg-buffering>
-    <vg-scrub-bar>
-      <vg-scrub-bar-current-time></vg-scrub-bar-current-time>
-      <vg-scrub-bar-buffering-time></vg-scrub-bar-buffering-time>
-    </vg-scrub-bar>
+<div class="app-topic-panel">
+  <div class="full-height full-image-div" *ngIf="type === 'video'">
+    <div class="topic-author">
+      <span>{{panel.author.name || panel.author.email}}</span>
+      <ion-icon color="primary" name="checkmark-circle-outline" *ngIf="panel.author.verified"></ion-icon>
+    </div>
 
-    <video [vgMedia]="media" #media preload="auto" autoplay muted>
-      <source [src]="panel.video" type="video/mp4">
-    </video>
-  </vg-player>
-</div>
+    <vg-player class="full-video" (onPlayerReady)="onPlayerReady($event)">
+      <vg-buffering></vg-buffering>
+      <vg-scrub-bar>
+        <vg-scrub-bar-current-time></vg-scrub-bar-current-time>
+        <vg-scrub-bar-buffering-time></vg-scrub-bar-buffering-time>
+      </vg-scrub-bar>
 
-<div class="full-height" *ngIf="type === 'text'">
-  <ion-img *ngIf="panel.image" [src]="panel.image" class="top-image"></ion-img>
+      <video [vgMedia]="media" #media preload="auto" autoplay muted>
+        <source [src]="panel.video" type="video/mp4">
+      </video>
+    </vg-player>
+  </div>
 
-  <!--
-  <h1 class="news-title" *ngIf="panel.title">
-    {{item.title}}
-  </h1>
-  -->
+  <div class="full-height" *ngIf="type === 'text'">
+    <ion-img *ngIf="panel.image" [src]="panel.image" class="top-image"></ion-img>
 
-  <p [innerHTML]="panel.text" class="news-text">
-  </p>
-</div>
+    <!--
+    <h1 class="news-title" *ngIf="panel.title">
+      {{item.title}}
+    </h1>
+    -->
 
-<div class="full-height" *ngIf="type === 'quizz'">
+    <p [innerHTML]="panel.text" class="news-text">
+    </p>
+  </div>
 
+  <div class="full-height" *ngIf="type === 'quizz'">
+
+  </div>
 </div>

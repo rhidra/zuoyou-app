@@ -1,74 +1,88 @@
-// TODO : Put in a CSS library global property
-.full-height {
-  height: 100%;
-  overflow: hidden;
-}
+.app-topic-panel {
+  // TODO : Put in a CSS library global property
+  .full-height {
+    height: 100%;
+    overflow: hidden;
+  }
 
-.toolbar-filler {
-  width: 100%;
-  height: 56px;
-}
+  .toolbar-filler {
+    width: 100%;
+    height: 56px;
+  }
 
-// TODO : Put the CSS in a library to avoid hardcoded random values
+  // TODO : Put the CSS in a library to avoid hardcoded random values
 
-.top-image {
-  max-height: 30%;
-  overflow: hidden;
-}
+  .top-image {
+    max-height: 30%;
+    overflow: hidden;
+  }
 
-.full-image {
-  height: 100%;
-  overflow: hidden;
-  object-fit: cover;
-}
+  .full-image {
+    height: 100%;
+    overflow: hidden;
+    object-fit: cover;
+  }
 
-.full-video {
-  width: 100%;
-  height: auto;
-  overflow: hidden;
-  object-fit: cover;
-}
+  .full-video {
+    width: 100%;
+    height: auto;
+    overflow: hidden;
+    object-fit: cover;
+  }
 
-.news-title {
-  font-weight: bold;
-  padding-left: 10px;
-  padding-right: 10px;
-  font-size: 1.5em;
-  
-  text-align: left;
-}
+  .news-title {
+    font-weight: bold;
+    padding-left: 10px;
+    padding-right: 10px;
+    font-size: 1.5em;
 
-.news-text {
-  padding-left: 10px;
-  padding-right: 5px;
-  text-align: left;
-  font-size: 0.9em;
-}
+    text-align: left;
+  }
 
-.full-image-div {
-  position: relative;
-}
+  .news-text {
+    padding-left: 10px;
+    padding-right: 5px;
+    text-align: left;
+    font-size: 0.9em;
+  }
 
-.full-image-title {
-  position: absolute;
-  top: 70%;
-  color: black;
-  font-size: 1.7em;
-  background: rgba(255,255,255,.7);
-  width: 75%;
-  margin-left: 25%;
-  margin-right: 0;
-  padding-right: 5px;
-  padding-top: 5px;
-  padding-bottom: 5px;
-  text-align: left;
-}
+  .full-image-div {
+    position: relative;
+  }
 
-.full-image-title-reversed {
-  color: white;
-  background: rgba(0,0,0,.7);
-}
+  .full-image-title {
+    position: absolute;
+    top: 70%;
+    color: black;
+    font-size: 1.7em;
+    background: rgba(255, 255, 255, .7);
+    width: 75%;
+    margin-left: 25%;
+    margin-right: 0;
+    padding-right: 5px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    text-align: left;
+  }
 
-vg-scrub-bar {
-  bottom: 0;
+  .full-image-title-reversed {
+    color: white;
+    background: rgba(0, 0, 0, .7);
+  }
+
+  vg-scrub-bar {
+    bottom: 0;
+  }
+
+  .topic-author {
+    z-index: 12;
+    position: absolute;
+    bottom: 15%;
+    color: white;
+    text-shadow: black 1px 1px 5px;
+    font-size: 1.5em;
+    margin-left: 12px;
+    width: 80%;
+    text-align: left;
+  }
 }

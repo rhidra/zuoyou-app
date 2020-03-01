@@ -15,7 +15,7 @@ export class NewsFeedService {
 
   load() {
     return new Promise(resolve => {
-      this.http.get('http://localhost:9000/topic/').subscribe((data: any) => {
+      this.http.get('http://localhost:9000/topic/', {params: {populate: true, approved: true}} as any).subscribe((data: any) => {
         this.topics = data;
         resolve();
       });

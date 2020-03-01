@@ -5,7 +5,6 @@ import {TopicPanel} from '../../models/topic.model';
 @Component({
   selector: 'app-news-panel',
   templateUrl: './panel.component.html',
-  styleUrls: ['./panel.component.scss'],
 })
 export class PanelComponent implements OnInit {
 

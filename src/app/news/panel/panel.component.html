@@ -2,7 +2,7 @@
   <div class="full-height full-image-div" *ngIf="type === 'video'">
     <div class="topic-author" *ngIf="panel && panel.author">
       <span>{{panel.author.name || panel.author.email}}</span>
-      <ion-icon color="primary" name="checkmark-circle-outline" *ngIf="panel.author.verified"></ion-icon>
+      <ion-icon name="checkmark-circle-outline" *ngIf="panel.author.verified"></ion-icon>
     </div>
 
     <vg-player class="full-video" (onPlayerReady)="onPlayerReady($event)">

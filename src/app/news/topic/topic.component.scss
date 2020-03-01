@@ -36,8 +36,9 @@
       }
 
       ion-button.liked {
-        --color: red;
-        --color-activated: red;
+        --background: var(--ion-color-primary);
+        --color: var(--ion-color-primary-contrast);
+        --color-activated: var(--ion-color-light);
       }
     }
   }

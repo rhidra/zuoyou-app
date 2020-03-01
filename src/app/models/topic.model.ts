@@ -8,7 +8,7 @@ export class Topic {
     approved: boolean;
     date: string;
 
-    centerPanel: Topic;
+    centerPanel: TopicPanel;
     leftPanel: TopicPanel;
     rightPanel: TopicPanel;
 }

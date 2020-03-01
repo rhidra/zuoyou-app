@@ -6,7 +6,7 @@
             </ion-button>
         </div>
         <div class="topic-button">
-            <ion-button>
+            <ion-button [ngClass]="{'liked': hasLiked}" (click)="like()">
                 <ion-icon slot="icon-only" name="heart"></ion-icon>
             </ion-button>
         </div>

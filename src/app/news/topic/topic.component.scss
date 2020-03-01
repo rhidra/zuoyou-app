@@ -34,6 +34,11 @@
         --color-activated: #353535;
         padding-bottom: 6px;
       }
+
+      ion-button.liked {
+        --color: red;
+        --color-activated: red;
+      }
     }
   }
 

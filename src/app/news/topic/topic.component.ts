@@ -2,12 +2,15 @@ import {Component, Input, OnInit, QueryList, ViewChild, ViewChildren} from '@ang
 import {Topic} from '../../models/topic.model';
 import {PanelComponent} from '../panel/panel.component';
 import {SwiperComponent} from 'angular2-useful-swiper';
+import {AuthService} from '../../auth/auth.service';
+import {NavController} from '@ionic/angular';
+import {NewsFeedService} from '../feed.service';
 
 @Component({
   selector: 'app-news-topic',
   templateUrl: './topic.component.html',
 })
-export class TopicComponent implements OnInit {
+export class TopicComponent {
 
   @Input() topic: Topic;
 
@@ -16,6 +19,7 @@ export class TopicComponent implements OnInit {
 
   currentSlide: number = 1;
   showRewind = true;
+  hasLiked = false;
   config = {
     pagination: '.swiper-pagination',
     spaceBetween: 0,
@@ -26,9 +30,20 @@ export class TopicComponent implements OnInit {
     }
   };
 
-  constructor() { }
+  constructor(
+    private authService: AuthService,
+    private navCtrl: NavController,
+    private feedService: NewsFeedService,
+  ) { }
 
-  ngOnInit() {}
+  init() {
+    console.log('ljndsfojs');
+    this.authService.getToken().then(token => {
+      if (token) {
+        this.feedService.checkLike(this.topic).then(liked => this.hasLiked = liked);
+      }
+    });
+  }
 
   startViewing() {
     this.startPanel(this.currentSlide);
@@ -57,6 +72,20 @@ export class TopicComponent implements OnInit {
 
   stopPanel(panelIndex: number) {
     this.newsPanel.find((_, index) => index === panelIndex).stopViewing();
+  }
+
+  like() {
+    this.authService.getToken().then(token => {
+      if (!token) {
+        this.navCtrl.navigateForward(['/', 'auth']);
+      } else {
+        if (this.hasLiked) {
+          this.feedService.unlike(this.topic).then(() => this.hasLiked = false);
+        } else {
+          this.feedService.like(this.topic).then(() => this.hasLiked = true);
+        }
+      }
+    });
   }
 
   rewind() {

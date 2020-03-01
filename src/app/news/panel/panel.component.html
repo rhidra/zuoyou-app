@@ -1,6 +1,6 @@
 <div class="app-topic-panel">
   <div class="full-height full-image-div" *ngIf="type === 'video'">
-    <div class="topic-author">
+    <div class="topic-author" *ngIf="panel && panel.author">
       <span>{{panel.author.name || panel.author.email}}</span>
       <ion-icon color="primary" name="checkmark-circle-outline" *ngIf="panel.author.verified"></ion-icon>
     </div>

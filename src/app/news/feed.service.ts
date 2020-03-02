@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {Topic} from '../models/topic.model';
+import {environment as env} from '../../environments/environment';
 
 @Injectable({
   providedIn: 'root'
@@ -15,7 +16,7 @@ export class NewsFeedService {
 
   load(): Promise<void> {
     return new Promise(resolve => {
-      this.http.get('http://localhost:9000/topic/', {params: {populate: true, approved: true}} as any).subscribe((data: any) => {
+      this.http.get(env.apiUrl + 'topic/', {params: {populate: true, approved: true}} as any).subscribe((data: any) => {
         this.topics = data;
         resolve();
       });
@@ -24,7 +25,7 @@ export class NewsFeedService {
 
   checkLike(topic: Topic): Promise<boolean> {
     return new Promise<boolean>(resolve => {
-      this.http.get('http://localhost:9000/like/topic', {params: {topic: topic._id}}).subscribe((data: any) => {
+      this.http.get(env.apiUrl + 'like/topic', {params: {topic: topic._id}}).subscribe((data: any) => {
         resolve(!!data);
       });
     });
@@ -32,7 +33,7 @@ export class NewsFeedService {
 
   like(topic: Topic): Promise<void> {
     return new Promise(resolve => {
-      this.http.post('http://localhost:9000/like/topic', {topic: topic._id}).subscribe((data: any) => {
+      this.http.post(env.apiUrl + 'like/topic', {topic: topic._id}).subscribe((data: any) => {
         resolve();
       });
     });
@@ -40,7 +41,7 @@ export class NewsFeedService {
 
   unlike(topic: Topic): Promise<void> {
     return new Promise(resolve => {
-      this.http.delete('http://localhost:9000/like/topic', {body: {topic: topic._id}} as any).subscribe((data: any) => {
+      this.http.delete(env.apiUrl + 'like/topic', {body: {topic: topic._id}} as any).subscribe((data: any) => {
         resolve();
       });
     });

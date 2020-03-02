@@ -4,6 +4,7 @@ import {User} from '../models/user.model';
 import * as jwt_decode from 'jwt-decode';
 import {NativeStorage} from '@ionic-native/native-storage/ngx';
 import {Platform} from '@ionic/angular';
+import {environment as env} from '../../environments/environment';
 
 @Injectable({
   providedIn: 'root'
@@ -23,7 +24,7 @@ export class AuthService {
       if (!this.isTokenExpired()) { return resolve(this.accessToken); }
       if (!this.user || !this.refreshToken) { return resolve(null); }
 
-      this.http.post('http://localhost:9000/auth/token', {id: this.user._id, refreshToken: this.refreshToken})
+      this.http.post(env.apiUrl + 'auth/token', {id: this.user._id, refreshToken: this.refreshToken})
           .subscribe((res: any) => {
             this.accessToken = res.token;
             resolve(this.accessToken);
@@ -56,7 +57,7 @@ export class AuthService {
 
   requestCode(phone: string): Promise<any> {
     return new Promise<any>((resolve, reject) => {
-      this.http.post('http://localhost:9000/auth/phone/', {id: this.pendingId, phone}).subscribe((user: any) => {
+      this.http.post(env.apiUrl + 'auth/phone/', {id: this.pendingId, phone}).subscribe((user: any) => {
         this.pendingId = user.id;
         this.startTimer();
         resolve();
@@ -77,7 +78,7 @@ export class AuthService {
 
   login(phone: string, code: string) {
     return new Promise((resolve, reject) => {
-      this.http.post('http://localhost:9000/auth/phone/login', {id: this.pendingId, phone, code}).subscribe((res: any) => {
+      this.http.post(env.apiUrl + 'auth/phone/login', {id: this.pendingId, phone, code}).subscribe((res: any) => {
         this.delay = 0;
         this.pendingId = '';
         this.refreshToken = res.refreshToken;

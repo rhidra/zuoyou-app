@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {HttpClient} from '@angular/common/http';
+import {environment as env} from '../../../environments/environment';
 
 @Component({
   selector: 'app-account',
@@ -15,7 +16,7 @@ export class AccountComponent implements OnInit {
   data: any = {};
 
   ngOnInit() {
-    this.http.get('http://localhost:9000/auth/data').subscribe(data => this.data = data);
+    this.http.get(env.apiUrl + 'auth/data').subscribe(data => this.data = data);
   }
 
 }

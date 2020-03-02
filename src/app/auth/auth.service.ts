@@ -1,10 +1,11 @@
-import { Injectable } from '@angular/core';
+import {Inject, Injectable} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {User} from '../models/user.model';
 import * as jwt_decode from 'jwt-decode';
 import {NativeStorage} from '@ionic-native/native-storage/ngx';
 import {Platform} from '@ionic/angular';
 import {environment as env} from '../../environments/environment';
+import {LOCAL_STORAGE, WebStorageService} from 'ngx-webstorage-service';
 
 @Injectable({
   providedIn: 'root'
@@ -36,14 +37,21 @@ export class AuthService {
     private http: HttpClient,
     private storage: NativeStorage,
     private platform: Platform,
+    @Inject(LOCAL_STORAGE) private storageDev: WebStorageService,
+
   ) {
     this.loadFromStorage();
   }
 
   loadFromStorage(): Promise<any> {
     const p = [];
-    p.push(new Promise(r => this.storage.getItem('refreshToken').then(t => this.refreshToken = t as any).catch(null).finally(r)));
-    p.push(new Promise(r => this.storage.getItem('user').then(u => this.user = u as any).catch(null).finally(r)));
+    if (this.platform.is('hybrid')) {
+      p.push(new Promise(r => this.storage.getItem('refreshToken').then(t => this.refreshToken = t as any).catch(null).finally(r)));
+      p.push(new Promise(r => this.storage.getItem('user').then(u => this.user = u as any).catch(null).finally(r)));
+    } else if (!env.production) {
+      this.refreshToken = this.storageDev.get('refreshToken');
+      this.user = this.storageDev.get('user');
+    }
     return Promise.all(p);
   }
 
@@ -89,6 +97,9 @@ export class AuthService {
         if (this.platform.is('hybrid')) {
           promises.push(this.storage.setItem('refreshToken', this.refreshToken));
           promises.push(this.storage.setItem('user', this.user));
+        } else if (!env.production) {
+          this.storageDev.set('refreshToken', this.refreshToken);
+          this.storageDev.set('user', this.user);
         }
         Promise.all(promises).then(resolve).catch(reject);
       });

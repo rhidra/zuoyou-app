@@ -32,6 +32,7 @@
   src: url('assets/fonts/hanzipen.otf');
 }
 
+@import "app/app.component";
 @import "app/news/feed/feed.component";
 @import "app/news/topic/topic.component";
 @import "app/news/panel/panel.component";

@@ -1,17 +1,37 @@
 <ion-app>
   <ion-menu side="start" menuId="first" contentId="content1">
-    <ion-header>
-      <ion-toolbar>
-        <ion-title>Navigate</ion-title>
-      </ion-toolbar>
-    </ion-header>
+    <ion-menu-toggle auto-hide="true">
+      <ion-item *ngIf="authService.user" routerLink="/account" class="menu-header">
+        <ion-avatar slot="start">
+          <img [src]="authService.user.image"/>
+        </ion-avatar>
+        <ion-label>
+          <h3>{{authService.user.name}}</h3>
+          <p>{{authService.user.email}}</p>
+        </ion-label>
+      </ion-item>
+    </ion-menu-toggle>
 
     <ion-content>
       <ion-list>
         <ion-menu-toggle auto-hide="true">
-          <ion-item routerLink="/news" routerDirection="forward" i18n>
-            <ion-icon name="home" slot="start"></ion-icon>
+          <ion-item routerLink="/feed" routerDirection="forward" i18n>
+            <ion-icon color="primary" name="reader" slot="start"></ion-icon>
             News
+          </ion-item>
+        </ion-menu-toggle>
+
+        <ion-menu-toggle auto-hide="true">
+          <ion-item routerLink="/news" routerDirection="forward" i18n>
+            <ion-icon color="primary" name="chatbubbles" slot="start"></ion-icon>
+            Messages
+          </ion-item>
+        </ion-menu-toggle>
+
+        <ion-menu-toggle auto-hide="true">
+          <ion-item routerLink="/news" routerDirection="forward" i18n>
+            <ion-icon color="primary" name="cog" slot="start"></ion-icon>
+            Settings
           </ion-item>
         </ion-menu-toggle>
       </ion-list>

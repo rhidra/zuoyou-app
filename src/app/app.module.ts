@@ -13,7 +13,6 @@ import {FontAwesomeModule} from '@fortawesome/angular-fontawesome';
 import {library} from '@fortawesome/fontawesome-svg-core';
 import {fas} from '@fortawesome/free-solid-svg-icons';
 import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
-import {OAuthModule} from 'angular-oauth2-oidc';
 import {AuthInterceptor} from './auth/auth.interceptor';
 import {NativeStorage} from '@ionic-native/native-storage/ngx';
 
@@ -27,7 +26,6 @@ import {NativeStorage} from '@ionic-native/native-storage/ngx';
     AppRoutingModule,
     NewsModule,
     FontAwesomeModule,
-    OAuthModule.forRoot(),
   ],
   providers: [
     StatusBar,

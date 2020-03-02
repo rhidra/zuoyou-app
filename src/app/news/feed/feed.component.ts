@@ -1,7 +1,8 @@
 import {Component, OnInit, QueryList, ViewChild, ViewChildren} from '@angular/core';
 import {NewsFeedService} from '../feed.service';
-import {IonSlides} from '@ionic/angular';
+import {IonSlides, MenuController, NavController} from '@ionic/angular';
 import {TopicComponent} from '../topic/topic.component';
+import {AuthService} from '../../auth/auth.service';
 
 @Component({
   selector: 'app-news-feed',
@@ -21,6 +22,9 @@ export class NewsFeedComponent implements OnInit {
 
   constructor(
       public feedService: NewsFeedService,
+      private authService: AuthService,
+      private navCtrl: NavController,
+      private menuCtrl: MenuController,
   ) { }
 
   ngOnInit() {
@@ -46,5 +50,15 @@ export class NewsFeedComponent implements OnInit {
     const topics = this.topicComponents.toArray();
     this.slides.getActiveIndex().then(slideIndex => topics[slideIndex].startViewing());
     this.slides.getPreviousIndex().then(slideIndex => topics[slideIndex].stopViewing());
+  }
+
+  menuClick() {
+    this.authService.getToken().then(token => {
+      if (token) {
+        this.menuCtrl.toggle();
+      } else {
+        this.navCtrl.navigateForward(['/', 'auth']);
+      }
+    });
   }
 }

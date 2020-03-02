@@ -15,10 +15,14 @@
 
     ion-toolbar {
       --color: white;
-      --min-height: 36px;
+      --min-height: 40px;
       --background: none;
       background: linear-gradient(#000000d9, #0000);
       visibility: visible;
+      ion-button {
+        font-family: Hanzipen;
+        font-size: 1.2em;
+      }
     }
 
     ion-title {

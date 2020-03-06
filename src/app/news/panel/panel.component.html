@@ -31,7 +31,12 @@
     </p>
   </div>
 
-  <div class="full-height" *ngIf="type === 'quizz'">
-
+  <div class="full-height panel-quiz" *ngIf="type === 'quiz' && !isLoading">
+    <h1 i18n>QUIZ</h1>
+    <h2>{{quiz.question}}</h2>
+    <h3>{{quiz.content}}</h3>
+    <div class="quiz-buttons">
+      <ion-button *ngFor="let choice of quiz.choices" [ngClass]="'quiz-button-' + choice.color" (click)="vote(choice._id)">{{choice.text}}</ion-button>
+    </div>
   </div>
 </div>

@@ -85,4 +85,44 @@
     width: 80%;
     text-align: left;
   }
+
+  .panel-quiz {
+    //background: var(--ion-color-primary);
+    //color: var(--ion-color-primary-contrast);
+
+    h1 {
+      text-align: left;
+      margin-top: 50px;
+      margin-left: 12px;
+    }
+    h2 {
+      text-align: left;
+      font-size: 1.6em;
+      margin-top: 15%;
+      margin-left: 12px;
+    }
+    h3 {
+      text-align: left;
+      font-size: 1em;
+      margin-left: 12px;
+    }
+    .quiz-buttons {
+      margin-top: 20%;
+      ion-button {
+        margin-left: 24px;
+        margin-right: 24px;
+        margin-bottom: 24px;
+        --background: purple;
+      }
+      ion-button.quiz-button-red {--background: red}
+      ion-button.quiz-button-green {--background: green}
+      ion-button.quiz-button-blue {--background: blue}
+      ion-button.quiz-button-orange {--background: orange}
+      ion-button.quiz-button-purple {--background: purple}
+      ion-button.quiz-button-black {--background: black}
+      ion-button.quiz-button-white {--background: white}
+      ion-button.quiz-button-yellow {--background: yellow}
+      ion-button.quiz-button-grey {--background: grey}
+    }
+  }
 }

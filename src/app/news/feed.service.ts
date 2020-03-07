@@ -8,7 +8,7 @@ import {environment as env} from '../../environments/environment';
 })
 export class NewsFeedService {
 
-  topics: Array<Topic>;
+  topics: Array<Topic> = [];
 
   constructor(
       private http: HttpClient,
@@ -20,6 +20,17 @@ export class NewsFeedService {
         this.topics = data;
         resolve();
       });
+    });
+  }
+
+  getTopic(id: string): Promise<Topic> {
+    return new Promise<Topic>(resolve => {
+      const topic = this.topics.find(t => t._id === id);
+      if (topic) {
+        resolve(topic);
+      } else {
+        this.http.get(env.apiUrl + 'topic/' + id).subscribe((data: Topic) => resolve(data));
+      }
     });
   }
 

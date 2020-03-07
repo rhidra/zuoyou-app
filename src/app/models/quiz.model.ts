@@ -4,9 +4,11 @@ export class Quiz {
   content: string;
   topic: string;
 
-  choices: Array<{
-    _id: string;
-    text: string,
-    color: string,
-  }> = [];
+  choices: Array<QuizChoice> = [];
+}
+
+export class QuizChoice {
+  _id: string;
+  text: string;
+  color: string;
 }

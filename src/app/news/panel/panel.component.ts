@@ -2,7 +2,8 @@ import {Component, Input, OnInit} from '@angular/core';
 import {VgAPI} from 'videogular2/compiled/src/core/services/vg-api';
 import {TopicPanel} from '../../models/topic.model';
 import {QuizService} from '../quiz.service';
-import {Quiz} from '../../models/quiz.model';
+import {Quiz, QuizChoice} from '../../models/quiz.model';
+import {AuthService} from '../../auth/auth.service';
 
 @Component({
   selector: 'app-news-panel',
@@ -26,10 +27,12 @@ export class PanelComponent implements OnInit {
   video: string;
   videoPlayer: VgAPI = null;
   quiz: Quiz;
+  quizChoice: string;
   isLoading = false;
 
   constructor(
     private quizService: QuizService,
+    private authService: AuthService,
   ) { }
 
   ngOnInit() {}
@@ -63,9 +66,14 @@ export class PanelComponent implements OnInit {
       this.quiz = quiz;
       this.isLoading = false;
     });
+    this.authService.getToken().then(token => {
+      if (token) {
+        this.quizService.getVote(this.panel.quiz).then(quizChoice => {this.quizChoice = quizChoice; console.log(quizChoice)});
+      }
+    });
   }
 
   vote(choiceId: string) {
-    this.quizService.vote(this.quiz, choiceId);
+    this.quizService.vote(this.quiz, choiceId).then(() => this.quizChoice = choiceId);
   }
 }

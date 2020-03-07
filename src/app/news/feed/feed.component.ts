@@ -53,12 +53,8 @@ export class NewsFeedComponent implements OnInit {
   }
 
   menuClick() {
-    this.authService.getToken().then(token => {
-      if (token) {
-        this.menuCtrl.toggle();
-      } else {
-        this.navCtrl.navigateForward(['/', 'auth']);
-      }
+    this.authService.onAuthenticated(true).then(() => {
+      this.menuCtrl.toggle();
     });
   }
 }

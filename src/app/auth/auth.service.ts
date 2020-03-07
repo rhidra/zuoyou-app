@@ -3,7 +3,7 @@ import {HttpClient} from '@angular/common/http';
 import {User} from '../models/user.model';
 import * as jwt_decode from 'jwt-decode';
 import {NativeStorage} from '@ionic-native/native-storage/ngx';
-import {Platform} from '@ionic/angular';
+import {NavController, Platform} from '@ionic/angular';
 import {environment as env} from '../../environments/environment';
 import {LOCAL_STORAGE, WebStorageService} from 'ngx-webstorage-service';
 
@@ -37,6 +37,7 @@ export class AuthService {
     private http: HttpClient,
     private storage: NativeStorage,
     private platform: Platform,
+    private navCtrl: NavController,
     @Inject(LOCAL_STORAGE) private storageDev: WebStorageService,
 
   ) {
@@ -61,6 +62,20 @@ export class AuthService {
     if (decoded.exp === undefined) { return false; }
     const date = new Date(0).setUTCSeconds(decoded.exp);
     return !(date.valueOf() > new Date().valueOf());
+  }
+
+  onAuthenticated(redirectLogin: boolean = false): Promise<void> {
+    return new Promise<void>((resolve, reject) => {
+      this.getToken().then(token => {
+        if (token) {
+          resolve();
+        } else if (redirectLogin) {
+          this.navCtrl.navigateForward(['/auth']);
+        } else {
+          reject();
+        }
+      });
+    });
   }
 
   requestCode(phone: string): Promise<any> {

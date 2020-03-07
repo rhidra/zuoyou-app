@@ -37,10 +37,8 @@ export class TopicComponent {
   ) { }
 
   init() {
-    this.authService.getToken().then(token => {
-      if (token) {
-        this.feedService.checkLike(this.topic).then(liked => this.hasLiked = liked);
-      }
+    this.authService.onAuthenticated().then(() => {
+      this.feedService.checkLike(this.topic).then(liked => this.hasLiked = liked);
     });
   }
 
@@ -74,15 +72,11 @@ export class TopicComponent {
   }
 
   like() {
-    this.authService.getToken().then(token => {
-      if (!token) {
-        this.navCtrl.navigateForward(['/', 'auth']);
+    this.authService.onAuthenticated(true).then(() => {
+      if (this.hasLiked) {
+        this.feedService.unlike(this.topic).then(() => this.hasLiked = false);
       } else {
-        if (this.hasLiked) {
-          this.feedService.unlike(this.topic).then(() => this.hasLiked = false);
-        } else {
-          this.feedService.like(this.topic).then(() => this.hasLiked = true);
-        }
+        this.feedService.like(this.topic).then(() => this.hasLiked = true);
       }
     });
   }

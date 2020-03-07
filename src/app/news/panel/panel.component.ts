@@ -66,14 +66,14 @@ export class PanelComponent implements OnInit {
       this.quiz = quiz;
       this.isLoading = false;
     });
-    this.authService.getToken().then(token => {
-      if (token) {
-        this.quizService.getVote(this.panel.quiz).then(quizChoice => this.quizChoice = quizChoice);
-      }
+    this.authService.onAuthenticated().then(() => {
+      this.quizService.getVote(this.panel.quiz).then(quizChoice => this.quizChoice = quizChoice);
     });
   }
 
   vote(choiceId: string) {
-    this.quizService.vote(this.quiz, choiceId).then(() => this.quizChoice = choiceId);
+    this.authService.onAuthenticated(true).then(() => {
+      this.quizService.vote(this.quiz, choiceId).then(() => this.quizChoice = choiceId);
+    });
   }
 }

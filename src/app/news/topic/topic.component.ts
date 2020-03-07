@@ -3,7 +3,6 @@ import {Topic} from '../../models/topic.model';
 import {PanelComponent} from '../panel/panel.component';
 import {SwiperComponent} from 'angular2-useful-swiper';
 import {AuthService} from '../../auth/auth.service';
-import {NavController} from '@ionic/angular';
 import {NewsFeedService} from '../feed.service';
 
 @Component({
@@ -32,7 +31,6 @@ export class TopicComponent {
 
   constructor(
     private authService: AuthService,
-    private navCtrl: NavController,
     private feedService: NewsFeedService,
   ) { }
 

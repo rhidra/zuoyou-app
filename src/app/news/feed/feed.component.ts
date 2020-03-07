@@ -1,6 +1,6 @@
 import {Component, OnInit, QueryList, ViewChild, ViewChildren} from '@angular/core';
 import {NewsFeedService} from '../feed.service';
-import {IonSlides, MenuController, NavController} from '@ionic/angular';
+import {IonSlides, MenuController} from '@ionic/angular';
 import {TopicComponent} from '../topic/topic.component';
 import {AuthService} from '../../auth/auth.service';
 
@@ -23,7 +23,6 @@ export class NewsFeedComponent implements OnInit {
   constructor(
       public feedService: NewsFeedService,
       private authService: AuthService,
-      private navCtrl: NavController,
       private menuCtrl: MenuController,
   ) { }
 

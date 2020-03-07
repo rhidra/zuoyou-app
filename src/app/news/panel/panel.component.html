@@ -27,7 +27,8 @@
     </h1>
     -->
 
-    <p [innerHTML]="panel.text" class="news-text">
+    <p *ngIf="!tappingText || !panel.textAlt" [innerHTML]="panel.text" class="news-text">
+    <p *ngIf="tappingText && panel.textAlt" [innerHTML]="panel.textAlt" class="news-text">
     </p>
   </div>
 

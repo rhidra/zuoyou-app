@@ -16,6 +16,7 @@ export class Topic {
 export class TopicPanel {
     video: string;
     text: string;
+    textAlt: string;
     image: string;
     quiz: string;
     author: User;

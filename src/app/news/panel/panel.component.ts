@@ -1,4 +1,4 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, HostListener, Input, OnInit} from '@angular/core';
 import {VgAPI} from 'videogular2/compiled/src/core/services/vg-api';
 import {TopicPanel} from '../../models/topic.model';
 import {QuizService} from '../quiz.service';
@@ -25,9 +25,11 @@ export class PanelComponent implements OnInit {
 
   type: string;
   video: string;
+  tappingText: boolean = false;
   videoPlayer: VgAPI = null;
   quiz: Quiz;
   quizChoice: string;
+  isActive = false;
   isLoading = false;
 
   constructor(
@@ -43,6 +45,7 @@ export class PanelComponent implements OnInit {
   }
 
   startViewing() {
+    this.isActive = true;
     if (this.videoPlayer) {
       this.videoPlayer.play();
     }
@@ -55,8 +58,23 @@ export class PanelComponent implements OnInit {
   }
 
   stopViewing() {
+    this.isActive = false;
     if (this.videoPlayer) {
       this.videoPlayer.pause();
+    }
+  }
+
+  @HostListener('document:touchstart', ['$event'])
+  startTappingText(event) {
+    if (this.isActive && this.type === 'text') {
+      this.tappingText = true;
+    }
+  }
+
+  @HostListener('document:touchend', ['$event'])
+  stopTappingText(event) {
+    if (this.isActive && this.type === 'text') {
+      this.tappingText = false;
     }
   }
 

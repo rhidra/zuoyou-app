@@ -3,6 +3,7 @@ import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
 
 const routes: Routes = [
   { path: '', loadChildren: () => import('./news/news.module').then(m => m.NewsModule) },
+  { path: 'reaction', loadChildren: () => import('./reaction/reaction.module').then(m => m.ReactionModule) },
   { path: 'auth', loadChildren: () => import('./auth/auth.module').then(m => m.AuthModule) },
   { path: 'account', loadChildren: () => import('./account/account.module').then(m => m.AccountModule) },
 ];

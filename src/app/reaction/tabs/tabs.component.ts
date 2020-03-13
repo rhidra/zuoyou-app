@@ -1,14 +1,14 @@
 import { Component, OnInit } from '@angular/core';
 import {ActivatedRoute} from '@angular/router';
-import {NewsFeedService} from '../feed.service';
 import {Topic} from '../../models/topic.model';
+import {NewsFeedService} from '../../news/feed.service';
 
 @Component({
   selector: 'app-react',
-  templateUrl: './react.component.html',
-  styleUrls: ['./react.component.scss'],
+  templateUrl: './tabs.component.html',
+  styleUrls: ['./tabs.component.scss'],
 })
-export class ReactComponent implements OnInit {
+export class ReactTabsComponent implements OnInit {
 
   topic: Topic;
 
@@ -25,5 +25,4 @@ export class ReactComponent implements OnInit {
       }
     });
   }
-
 }

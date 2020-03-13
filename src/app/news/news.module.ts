@@ -12,7 +12,6 @@ import {VgControlsModule} from 'videogular2/compiled/src/controls/controls';
 import {VgCoreModule} from 'videogular2/compiled/src/core/core';
 import {FontAwesomeModule} from '@fortawesome/angular-fontawesome';
 import {TopicComponent} from './topic/topic.component';
-import {ReactComponent} from './react/react.component';
 
 
 @NgModule({
@@ -20,7 +19,6 @@ import {ReactComponent} from './react/react.component';
     NewsFeedComponent,
     PanelComponent,
     TopicComponent,
-    ReactComponent,
   ],
   imports: [
     CommonModule,

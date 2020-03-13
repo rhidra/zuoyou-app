@@ -33,7 +33,8 @@
   </div>
 
   <div class="full-height panel-quiz" *ngIf="type === 'quiz' && !isLoading">
-    <h1 i18n>QUIZ</h1>
+    <h1 *ngIf="!quiz.isPoll" i18n>QUIZ</h1>
+    <h1 *ngIf="quiz.isPoll" i18n>POLL</h1>
     <h2>{{quiz.question}}</h2>
     <h3>{{quiz.content}}</h3>
     <div class="quiz-buttons">

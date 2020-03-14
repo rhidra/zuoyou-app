@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { MediaCapture } from '@ionic-native/media-capture/ngx';
+import { MediaCapture, MediaFile } from '@ionic-native/media-capture/ngx';
 
 @Component({
   selector: 'app-video-edit',
@@ -13,13 +13,18 @@ export class ReactVideoEditComponent implements OnInit {
    * https://github.com/apache/cordova-plugin-media-capture
    */
 
+  video: MediaFile;
+
   constructor(
     private mediaCapture: MediaCapture,
   ) { }
 
   ngOnInit() {
+  }
+
+  startVideo() {
     this.mediaCapture.captureVideo()
-      .then(data => console.log(data))
+      .then((data: Array<MediaFile>) => this.video = data[0])
       .catch(err => console.error(err));
   }
 }

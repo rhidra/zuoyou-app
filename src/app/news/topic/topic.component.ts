@@ -36,7 +36,6 @@ export class TopicComponent {
 
   init() {
     this.authService.onAuthenticated().then(() => {
-      console.log('exec auth');
       this.feedService.checkLike(this.topic).then(liked => this.hasLiked = liked);
     }).catch(() => {});
   }

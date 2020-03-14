@@ -25,9 +25,13 @@
 
   .full-video {
     width: 100%;
-    height: auto;
     overflow: hidden;
     object-fit: cover;
+    video {
+      // TODO: The width allow for a full screen video but is not generalized on every phone format
+      width: 108vw;
+      height: 100%;
+    }
   }
 
   .news-title {
@@ -44,10 +48,6 @@
     padding-right: 5px;
     text-align: left;
     font-size: 0.9em;
-  }
-
-  .full-image-div {
-    position: relative;
   }
 
   .full-image-title {

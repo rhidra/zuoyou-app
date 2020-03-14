@@ -1,11 +1,11 @@
-<div class="app-topic-panel">
-  <div class="full-height full-image-div" *ngIf="type === 'video'">
+<div class="app-topic-panel full-height">
+  <div class="full-height" *ngIf="type === 'video'">
     <div class="topic-author" *ngIf="panel && panel.author">
       <span>{{panel.author.name || panel.author.email}}</span>
       <ion-icon name="checkmark-circle-outline" *ngIf="panel.author.verified"></ion-icon>
     </div>
 
-    <vg-player class="full-video" (onPlayerReady)="onPlayerReady($event)">
+    <vg-player class="full-video full-height" (onPlayerReady)="onPlayerReady($event)">
       <vg-buffering></vg-buffering>
       <vg-scrub-bar>
         <vg-scrub-bar-current-time></vg-scrub-bar-current-time>

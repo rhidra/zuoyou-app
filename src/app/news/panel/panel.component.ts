@@ -1,4 +1,4 @@
-import {Component, HostListener, Input, OnInit} from '@angular/core';
+import {Component, HostListener, Input, NgZone, OnInit} from '@angular/core';
 import {VgAPI} from 'videogular2/compiled/src/core/services/vg-api';
 import {TopicPanel} from '../../models/topic.model';
 import {QuizService} from '../quiz.service';
@@ -35,6 +35,7 @@ export class PanelComponent implements OnInit {
   constructor(
     private quizService: QuizService,
     private authService: AuthService,
+    private ngZone: NgZone,
   ) { }
 
   ngOnInit() {}
@@ -67,14 +68,14 @@ export class PanelComponent implements OnInit {
   @HostListener('document:touchstart', ['$event'])
   startTappingText(event) {
     if (this.isActive && this.type === 'text') {
-      this.tappingText = true;
+      this.ngZone.run(() => this.tappingText = true);
     }
   }
 
   @HostListener('document:touchend', ['$event'])
   stopTappingText(event) {
     if (this.isActive && this.type === 'text') {
-      this.tappingText = false;
+      this.ngZone.run(() => this.tappingText = false);
     }
   }
 

@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { MediaCapture } from '@ionic-native/media-capture/ngx';
 
 @Component({
   selector: 'app-video-edit',
@@ -7,8 +8,18 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ReactVideoEditComponent implements OnInit {
 
-  constructor() { }
+  /**
+   * For docs about the cordova media capture plugin, see :
+   * https://github.com/apache/cordova-plugin-media-capture
+   */
 
-  ngOnInit() {}
+  constructor(
+    private mediaCapture: MediaCapture,
+  ) { }
 
+  ngOnInit() {
+    this.mediaCapture.captureVideo()
+      .then(data => console.log(data))
+      .catch(err => console.error(err));
+  }
 }

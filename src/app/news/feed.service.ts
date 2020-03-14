@@ -15,11 +15,11 @@ export class NewsFeedService {
   ) { }
 
   load(): Promise<void> {
-    return new Promise(resolve => {
+    return new Promise((resolve, reject) => {
       this.http.get(env.apiUrl + 'topic/', {params: {populate: true, approved: true}} as any).subscribe((data: any) => {
         this.topics = data;
         resolve();
-      });
+      }, reject);
     });
   }
 

@@ -16,6 +16,7 @@ import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
 import {AuthInterceptor} from './auth/auth.interceptor';
 import {NativeStorage} from '@ionic-native/native-storage/ngx';
 import {MediaCapture} from '@ionic-native/media-capture/ngx';
+import {MediaCaptureMock} from '../mocks/media-capture';
 
 @NgModule({
   declarations: [AppComponent],
@@ -32,7 +33,7 @@ import {MediaCapture} from '@ionic-native/media-capture/ngx';
     StatusBar,
     SplashScreen,
     NativeStorage,
-    MediaCapture,
+    { provide: MediaCapture, useClass: window.hasOwnProperty('cordova') ? MediaCapture : MediaCaptureMock },
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
     { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true },
   ],

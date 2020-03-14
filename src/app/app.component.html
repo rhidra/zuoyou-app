@@ -3,7 +3,7 @@
     <ion-menu-toggle auto-hide="true">
       <ion-item *ngIf="authService.user" routerLink="/account" class="menu-header">
         <ion-avatar slot="start">
-          <img [src]="authService.user.image"/>
+          <img [src]="host + authService.user.image"/>
         </ion-avatar>
         <ion-label>
           <h3>{{authService.user.name}}</h3>

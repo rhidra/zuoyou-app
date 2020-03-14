@@ -16,14 +16,14 @@
       </vg-scrub-bar>
 
       <video [vgMedia]="media" #media preload="auto" autoplay muted>
-        <source [src]="panel.video" type="video/mp4">
+        <source [src]="host + panel.video" type="video/mp4">
       </video>
     </vg-player>
   </div>
 
   <!-- TEXT + IMAGE -->
   <div class="full-height" *ngIf="type === 'text'">
-    <ion-img *ngIf="panel.image" [src]="panel.image" class="top-image"></ion-img>
+    <ion-img *ngIf="panel.image" [src]="host + panel.image" class="top-image"></ion-img>
     <!-- TODO: Maybe remove ?
     <h1 class="news-title" *ngIf="panel.title">
       {{item.title}}

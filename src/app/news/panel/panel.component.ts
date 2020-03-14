@@ -2,8 +2,9 @@ import {Component, HostListener, Input, NgZone, OnInit} from '@angular/core';
 import {VgAPI} from 'videogular2/compiled/src/core/services/vg-api';
 import {TopicPanel} from '../../models/topic.model';
 import {QuizService} from '../quiz.service';
-import {Quiz, QuizChoice} from '../../models/quiz.model';
+import {Quiz} from '../../models/quiz.model';
 import {AuthService} from '../../auth/auth.service';
+import {environment as env} from '../../../environments/environment';
 
 @Component({
   selector: 'app-news-panel',
@@ -31,6 +32,7 @@ export class PanelComponent implements OnInit {
   quizChoice: string;
   isActive = false;
   isLoading = false;
+  host = env.mediaHost;
 
   constructor(
     private quizService: QuizService,

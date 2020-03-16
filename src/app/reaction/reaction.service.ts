@@ -3,7 +3,6 @@ import {HttpClient} from '@angular/common/http';
 import {environment as env} from '../../environments/environment';
 import {Reaction} from '../models/reaction.model';
 import { MediaFile } from '@ionic-native/media-capture/ngx';
-import {Topic} from '../models/topic.model';
 
 @Injectable({
   providedIn: 'root'
@@ -22,7 +21,7 @@ export class ReactionService {
     });
   }
 
-  setPendingMedia(media: MediaFile, topic?: Topic) {
+  setPendingMedia(media: MediaFile) {
     this.media = media;
   }
 

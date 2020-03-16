@@ -25,8 +25,6 @@ export class ReactVideoCreateComponent implements OnInit {
    * Maybe a customization can be done through modifying the cordova media capture plugin.
    */
 
-  topic: Topic;
-
   constructor(
     private mediaCapture: MediaCapture,
     private fileChooser: FileChooser,
@@ -40,7 +38,7 @@ export class ReactVideoCreateComponent implements OnInit {
 
   startVideo() {
     this.mediaCapture.captureVideo().then((data: Array<MediaFile>) => {
-      this.reactionService.setPendingMedia(data[0], this.topic);
+      this.reactionService.setPendingMedia(data[0]);
       this.navCtrl.navigateForward(['/', 'reaction', 'edit', this.activatedRoute.snapshot.parent.params.idTopic]);
     });
   }

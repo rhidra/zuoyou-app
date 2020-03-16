@@ -8,7 +8,7 @@ import {FileChooser} from '@ionic-native/file-chooser/ngx';
 import {AuthService} from '../../auth/auth.service';
 import {NewsFeedService} from '../../news/feed.service';
 import {ReactionService} from '../reaction.service';
-import {NavController} from '@ionic/angular';
+import {LoadingController, NavController, ToastController} from '@ionic/angular';
 import {ActivatedRoute} from '@angular/router';
 import {File} from '@ionic-native/file/ngx';
 import {Topic} from '../../models/topic.model';
@@ -21,11 +21,11 @@ import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 })
 export class ReactVideoEditComponent implements OnInit {
 
-  progress = 0;
   topic: Topic;
   media: MediaFile;
   reaction: Reaction;
   form: FormGroup;
+  loading: any;
 
   constructor(
     private authService: AuthService,
@@ -36,6 +36,8 @@ export class ReactVideoEditComponent implements OnInit {
     private fb: FormBuilder,
     private activatedRoute: ActivatedRoute,
     private feedService: NewsFeedService,
+    private toastCtrl: ToastController,
+    private loadingCtrl: LoadingController,
   ) { }
 
   ngOnInit() {
@@ -46,6 +48,7 @@ export class ReactVideoEditComponent implements OnInit {
       }
     });
     this.media = this.reactionService.getPendingMedia();
+    this.loadingCtrl.create({message: 'Please wait...'}).then(l => this.loading = l);
     this.initForm();
   }
 
@@ -56,7 +59,7 @@ export class ReactVideoEditComponent implements OnInit {
   }
 
   onSubmit() {
-    this.progress = 0;
+    this.loading.present();
     const directory = this.media.fullPath.substring(0, this.media.fullPath.lastIndexOf('/'));
 
     this.file.readAsArrayBuffer(directory, this.media.name)
@@ -65,7 +68,6 @@ export class ReactVideoEditComponent implements OnInit {
         const uploadData = new FormData();
         uploadData.append('media', blob, this.media.name);
         this.http.post(env.apiUrl + 'media', uploadData, {reportProgress: true, observe: 'events'}).subscribe((r: any) => {
-          this.progress = r.type === HttpEventType.UploadProgress ? r.loaded / r.total : .95;
           if (r.type === HttpEventType.Response) {
             resolve(r.body.filename);
           }
@@ -81,7 +83,8 @@ export class ReactVideoEditComponent implements OnInit {
         return this.reactionService.create(this.reaction);
 
       }).then(reaction => {
-        this.progress = 1;
+        this.loading.dismiss();
+        this.toastCtrl.create({message: 'Clapback successfully published !', duration: 1000}).then(toast => toast.present());
         this.navCtrl.navigateBack(['/']);
       });
   }

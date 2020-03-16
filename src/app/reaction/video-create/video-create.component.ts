@@ -1,10 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { MediaCapture, MediaFile } from '@ionic-native/media-capture/ngx';
 import {FileChooser} from '@ionic-native/file-chooser/ngx';
-import {HttpClient} from '@angular/common/http';
-import {File} from '@ionic-native/file/ngx';
-import {Reaction} from '../../models/reaction.model';
-import {AuthService} from '../../auth/auth.service';
 import {NewsFeedService} from '../../news/feed.service';
 import {ActivatedRoute} from '@angular/router';
 import {Topic} from '../../models/topic.model';

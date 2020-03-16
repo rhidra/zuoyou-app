@@ -19,6 +19,7 @@ import {MediaCapture} from '@ionic-native/media-capture/ngx';
 import {MediaCaptureMock} from '../mocks/media-capture';
 import {FileChooser} from '@ionic-native/file-chooser/ngx';
 import {File} from '@ionic-native/file/ngx';
+import {FilePath} from '@ionic-native/file-path/ngx';
 
 @NgModule({
   declarations: [AppComponent],
@@ -37,6 +38,7 @@ import {File} from '@ionic-native/file/ngx';
     NativeStorage,
     File,
     FileChooser,
+    FilePath,
     { provide: MediaCapture, useClass: window.hasOwnProperty('cordova') ? MediaCapture : MediaCaptureMock },
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
     { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true },

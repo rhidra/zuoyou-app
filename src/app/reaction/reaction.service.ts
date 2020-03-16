@@ -9,7 +9,7 @@ import { MediaFile } from '@ionic-native/media-capture/ngx';
 })
 export class ReactionService {
 
-  media: MediaFile;
+  url: string;
 
   constructor(
     private http: HttpClient,
@@ -21,13 +21,13 @@ export class ReactionService {
     });
   }
 
-  setPendingMedia(media: MediaFile) {
-    this.media = media;
+  setPendingMediaUrl(url: string) {
+    this.url = url;
   }
 
-  getPendingMedia(): MediaFile {
-    const m: MediaFile = this.media;
-    this.media = null;
-    return m;
+  getPendingMediaUrl(): string {
+    const u: string = this.url;
+    this.url = null;
+    return u;
   }
 }

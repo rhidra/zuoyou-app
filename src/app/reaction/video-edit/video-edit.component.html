@@ -12,13 +12,13 @@
 <ion-content>
   <form [formGroup]="form" (ngSubmit)="onSubmit()">
     <ion-list>
-      <ion-item *ngIf="media">
+      <ion-item *ngIf="mediaUrl">
         <ion-avatar slot="start">
           <img src="https://gravatar.com/avatar/dba6bae8c566f9d4041fb9cd9ada7741?d=identicon&f=y">
         </ion-avatar>
         <ion-label>
-          <h2>{{media.name}}</h2>
-          <h3>{{media.fullPath}}</h3>
+          <h2>{{mediaUrl}}</h2>
+          <h3>{{mediaUrl}}</h3>
         </ion-label>
       </ion-item>
 

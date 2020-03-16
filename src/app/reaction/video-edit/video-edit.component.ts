@@ -3,8 +3,6 @@ import {environment as env} from '../../../environments/environment';
 import {HttpClient, HttpEventType} from '@angular/common/http';
 import {Reaction} from '../../models/reaction.model';
 import * as moment from 'moment';
-import {MediaCapture, MediaFile} from '@ionic-native/media-capture/ngx';
-import {FileChooser} from '@ionic-native/file-chooser/ngx';
 import {AuthService} from '../../auth/auth.service';
 import {NewsFeedService} from '../../news/feed.service';
 import {ReactionService} from '../reaction.service';
@@ -22,7 +20,7 @@ import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 export class ReactVideoEditComponent implements OnInit {
 
   topic: Topic;
-  media: MediaFile;
+  mediaUrl: string;
   reaction: Reaction;
   form: FormGroup;
   loading: any;
@@ -47,7 +45,7 @@ export class ReactVideoEditComponent implements OnInit {
         this.feedService.getTopic(id).then(topic => this.topic = topic);
       }
     });
-    this.media = this.reactionService.getPendingMedia();
+    this.mediaUrl = this.reactionService.getPendingMediaUrl();
     this.loadingCtrl.create({message: 'Please wait...'}).then(l => this.loading = l);
     this.initForm();
   }
@@ -60,13 +58,14 @@ export class ReactVideoEditComponent implements OnInit {
 
   onSubmit() {
     this.loading.present();
-    const directory = this.media.fullPath.substring(0, this.media.fullPath.lastIndexOf('/'));
+    const directory = this.mediaUrl.substring(0, this.mediaUrl.lastIndexOf('/'));
+    const name = this.mediaUrl.substring(this.mediaUrl.lastIndexOf('/') + 1);
 
-    this.file.readAsArrayBuffer(directory, this.media.name)
+    this.file.readAsArrayBuffer(directory, name)
       .then((data: ArrayBuffer) => new Promise(resolve => {
         const blob = new Blob([data], {type: 'video/mp4'});
         const uploadData = new FormData();
-        uploadData.append('media', blob, this.media.name);
+        uploadData.append('media', blob, name);
         this.http.post(env.apiUrl + 'media', uploadData, {reportProgress: true, observe: 'events'}).subscribe((r: any) => {
           if (r.type === HttpEventType.Response) {
             resolve(r.body.filename);

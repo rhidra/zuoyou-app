@@ -3,9 +3,9 @@ import { MediaCapture, MediaFile } from '@ionic-native/media-capture/ngx';
 import {FileChooser} from '@ionic-native/file-chooser/ngx';
 import {NewsFeedService} from '../../news/feed.service';
 import {ActivatedRoute} from '@angular/router';
-import {Topic} from '../../models/topic.model';
 import {ReactionService} from '../reaction.service';
 import {NavController} from '@ionic/angular';
+import {FilePath} from '@ionic-native/file-path/ngx';
 
 @Component({
   selector: 'app-video-create',
@@ -32,13 +32,14 @@ export class ReactVideoCreateComponent implements OnInit {
     private reactionService: ReactionService,
     private navCtrl: NavController,
     private activatedRoute: ActivatedRoute,
+    private filePath: FilePath,
   ) { }
 
   ngOnInit() {}
 
   startVideo() {
     this.mediaCapture.captureVideo().then((data: Array<MediaFile>) => {
-      this.reactionService.setPendingMedia(data[0]);
+      this.reactionService.setPendingMediaUrl(data[0].fullPath);
       this.navCtrl.navigateForward(['/', 'reaction', 'edit', this.activatedRoute.snapshot.parent.params.idTopic]);
     });
   }
@@ -46,7 +47,11 @@ export class ReactVideoCreateComponent implements OnInit {
   pickVideo() {
     // TODO: Use another plugin for iOS (iOS Cordova File Picker)
     this.fileChooser.open({mime: 'video/mp4'})
-      .then(data => console.log(data))
+      .then(uri => this.filePath.resolveNativePath(uri))
+      .then(uri => {
+        this.reactionService.setPendingMediaUrl(uri);
+        this.navCtrl.navigateForward(['/', 'reaction', 'edit', this.activatedRoute.snapshot.parent.params.idTopic]);
+      })
       .catch(err => console.error(err));
   }
 }

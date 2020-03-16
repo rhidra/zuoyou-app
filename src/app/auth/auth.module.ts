@@ -11,12 +11,12 @@ import {FormsModule, ReactiveFormsModule} from '@angular/forms';
   declarations: [
       LoginComponent,
   ],
-    imports: [
-        CommonModule,
-        AuthRoutingModule,
-        IonicModule,
-        FormsModule,
-        ReactiveFormsModule
-    ]
+  imports: [
+      CommonModule,
+      AuthRoutingModule,
+      IonicModule,
+      FormsModule,
+      ReactiveFormsModule
+  ],
 })
 export class AuthModule { }

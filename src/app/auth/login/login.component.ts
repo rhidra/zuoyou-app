@@ -3,6 +3,7 @@ import {NavController} from '@ionic/angular';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {AuthService} from '../auth.service';
 import {ActivatedRoute, Router} from '@angular/router';
+import {environment as env} from '../../../environments/environment';
 
 @Component({
   selector: 'app-login',
@@ -30,7 +31,7 @@ export class LoginComponent implements OnInit {
   initForm() {
     this.form = this.fb.group({
       phone: ['', [Validators.pattern('[0-9]{10,12}'), Validators.required]],
-      code: ['', [Validators.pattern('[0-9]{6}'), Validators.required]],
+      code: env.production ? ['', [Validators.pattern('[0-9]{6}'), Validators.required]] : [''],
     });
   }
 

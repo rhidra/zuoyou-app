@@ -66,29 +66,34 @@
   .panel-quiz {
     //background: var(--ion-color-primary);
     //color: var(--ion-color-primary-contrast);
+    background-image: url("/assets/img/bg.png");
+    background-size: contain;
+    //background-repeat: no-repeat;
+    color: white;
 
-    h1 {
+    h1, h2, h3 {
+      text-transform: uppercase;
       text-align: left;
-      margin-top: 50px;
       margin-left: 12px;
+      span {
+        background: var(--ion-color-primary);
+        padding: 3px 12px 3px 3px;
+      }
+    }
+    h1 {
+      margin-top: 50px;
     }
     h2 {
-      text-align: left;
       font-size: 1.6em;
       margin-top: 15%;
-      margin-left: 12px;
     }
     h3 {
-      text-align: left;
-      font-size: 1em;
-      margin-left: 12px;
+      font-size: .8em;
     }
     .quiz-buttons {
       margin-top: 20%;
       ion-button {
-        margin-left: 24px;
-        margin-right: 24px;
-        margin-bottom: 24px;
+        margin-bottom: 12px;
         --background: purple;
       }
       ion-button.quiz-button-red {--background: red}

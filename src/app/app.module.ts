@@ -36,9 +36,9 @@ import {FilePath} from '@ionic-native/file-path/ngx';
     StatusBar,
     SplashScreen,
     NativeStorage,
-    File,
-    FileChooser,
-    FilePath,
+    File, // TODO: Make a mock for File plugin
+    FileChooser, // TODO: Make a mock for FileChooser plugin
+    FilePath, // TODO: Make a mock for FilePath plugin
     { provide: MediaCapture, useClass: window.hasOwnProperty('cordova') ? MediaCapture : MediaCaptureMock },
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
     { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true },

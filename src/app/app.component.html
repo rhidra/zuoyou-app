@@ -1,9 +1,9 @@
 <ion-app>
-  <ion-menu side="start" menuId="first" contentId="content1">
+  <ion-menu side="start" menuId="first" contentId="content1" type="push" [swipeGesture]="false">
     <ion-menu-toggle auto-hide="true">
       <ion-item *ngIf="authService.user" routerLink="/account" class="menu-header">
         <ion-avatar slot="start">
-          <img [src]="host + authService.user.image"/>
+          <ion-img [src]="authService.user.image ? (host + authService.user.image) : '/assets/img/avatar.png'" alt="avatar"></ion-img>
         </ion-avatar>
         <ion-label>
           <h3>{{authService.user.name}}</h3>
@@ -15,9 +15,9 @@
     <ion-content>
       <ion-list>
         <ion-menu-toggle auto-hide="true">
-          <ion-item routerLink="/feed" routerDirection="forward" i18n>
+          <ion-item routerLink="/grid" routerDirection="forward" i18n>
             <ion-icon color="primary" name="apps" slot="start"></ion-icon>
-            News
+            Grid
           </ion-item>
         </ion-menu-toggle>
 

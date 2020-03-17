@@ -64,11 +64,8 @@
   // QUIZ
   // TODO: Change design of the quiz
   .panel-quiz {
-    //background: var(--ion-color-primary);
-    //color: var(--ion-color-primary-contrast);
     background-image: url("/assets/img/bg.png");
     background-size: contain;
-    //background-repeat: no-repeat;
     color: white;
 
     h1, h2, h3 {
@@ -94,17 +91,21 @@
       margin-top: 20%;
       ion-button {
         margin-bottom: 12px;
-        --background: purple;
+        --background: white;
+        color: black;
+        min-width: 200px;
+        --border-radius: 20px;
+        text-transform: inherit;
       }
-      ion-button.quiz-button-red {--background: red}
-      ion-button.quiz-button-green {--background: green}
-      ion-button.quiz-button-blue {--background: blue}
-      ion-button.quiz-button-orange {--background: orange}
-      ion-button.quiz-button-purple {--background: purple}
-      ion-button.quiz-button-black {--background: black}
-      ion-button.quiz-button-white {--background: white}
-      ion-button.quiz-button-yellow {--background: yellow}
-      ion-button.quiz-button-grey {--background: grey}
+      ion-button.quiz-button-red {--background: red; color: white;}
+      ion-button.quiz-button-green {--background: green; color: white;}
+      ion-button.quiz-button-blue {--background: blue; color: white;}
+      ion-button.quiz-button-orange {--background: orange; color: white;}
+      ion-button.quiz-button-purple {--background: purple; color: white;}
+      ion-button.quiz-button-black {--background: black; color: white;}
+      ion-button.quiz-button-white {--background: white; color: black;}
+      ion-button.quiz-button-yellow {--background: yellow; color: white;}
+      ion-button.quiz-button-grey {--background: grey; color: white;}
     }
   }
 }

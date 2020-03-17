@@ -42,9 +42,8 @@
     <h3><span>{{quiz.content}}</span></h3>
     <div class="quiz-buttons">
       <div *ngFor="let choice of quiz.choices">
-        <ion-button [ngClass]="'quiz-button-' + choice.color" (click)="vote(choice._id)">
+        <ion-button [ngClass]="quizChoice && quizChoice === choice._id ? 'quiz-button-' + choice.color : ''" (click)="vote(choice._id)">
           {{choice.text}}
-          <span *ngIf="quizChoice && quizChoice === choice._id">(Choosen)</span>
         </ion-button>
       </div>
     </div>

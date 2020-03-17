@@ -94,7 +94,8 @@ export class PanelComponent implements OnInit {
 
   vote(choiceId: string) {
     this.authService.onAuthenticated(true).then(() => {
-      this.quizService.vote(this.quiz, choiceId).then(() => this.quizChoice = choiceId);
+      this.quizChoice = choiceId;
+      this.quizService.vote(this.quiz, choiceId);
     });
   }
 }

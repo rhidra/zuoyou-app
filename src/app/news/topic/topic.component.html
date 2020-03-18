@@ -18,7 +18,7 @@
     </div>
 
     <div class="topic-hashtag">
-        <span>#{{topic.hashtag}}</span>
+        <a [routerLink]="['/', 'reaction', topic._id]">#{{topic.hashtag}}</a>
     </div>
 
     <div class="topic-clapback">

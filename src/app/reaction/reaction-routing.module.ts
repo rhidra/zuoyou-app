@@ -5,6 +5,7 @@ import {ReactVideoCreateComponent} from './video-create/video-create.component';
 import {ReactTextEditComponent} from './text-edit/text-edit.component';
 import {ReactVideoEditComponent} from './video-edit/video-edit.component';
 import {AuthGuardService} from '../auth/auth-guard.service';
+import {ReactSearchComponent} from './search/search.component';
 
 
 const routes: Routes = [
@@ -14,6 +15,7 @@ const routes: Routes = [
       { path: 'text', component: ReactTextEditComponent },
   ]},
   { path: 'edit/:idTopic', component: ReactVideoEditComponent, canActivate: [AuthGuardService] },
+  { path: ':idTopic', component: ReactSearchComponent },
 ];
 
 @NgModule({

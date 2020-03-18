@@ -9,6 +9,7 @@ import {IonicModule} from '@ionic/angular';
 import {ReactVideoEditComponent} from './video-edit/video-edit.component';
 import {ReactiveFormsModule} from '@angular/forms';
 import {ReactionService} from './reaction.service';
+import {ReactSearchComponent} from './search/search.component';
 
 
 @NgModule({
@@ -17,6 +18,7 @@ import {ReactionService} from './reaction.service';
     ReactTextEditComponent,
     ReactVideoCreateComponent,
     ReactVideoEditComponent,
+    ReactSearchComponent,
   ],
   imports: [
     CommonModule,

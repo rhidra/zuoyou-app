@@ -22,11 +22,9 @@
               {{reaction.text.length > 100 ? (reaction.text | slice:0:100) + '...' : reaction.text}}
             </div>
             <div class="footer-text">
-              <!-- TODO: Add a like clapback system -->
-              34
+              {{reaction.likesCounter}}
               <ion-icon icon="heart"></ion-icon>
-              <!-- TODO: Add a comment clapback system -->
-              12
+              {{reaction.commentsCounter}}
               <ion-icon name="chatbubbles"></ion-icon>
             </div>
           </div>

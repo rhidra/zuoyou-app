@@ -101,4 +101,17 @@
   </div>
 
 </ion-content>
+
+<ion-footer class="app-footer-reaction-detail">
+  <ion-toolbar>
+    <ion-textarea placeholder="Write a comment..." i18n-placeholder></ion-textarea>
+
+    <ion-buttons slot="end">
+      <ion-button>
+        <ion-icon slot="icon-only" name="send"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-footer>
+
 <ion-spinner *ngIf="isLoading"></ion-spinner>

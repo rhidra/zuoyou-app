@@ -7,11 +7,10 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-content *ngIf="!isLoading" class="app-reaction-detail">
+<ion-content class="app-reaction-detail">
 
-  <div class="full-height">
-
-
+  <div class="full-height" *ngIf="!isLoading">
+    
     <div class="reaction-buttons full-width">
       <div class="reaction-button">
         <ion-button>

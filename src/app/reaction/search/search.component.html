@@ -11,8 +11,24 @@
   <ion-grid *ngIf="!isLoading">
     <ion-row>
       <ion-col size="6" *ngFor="let reaction of reactionService.videos.get(idTopic)">
-        <div class="reaction-card">
-          {{reaction.text}}
+        <div class="reaction-card" [routerLink]="['/', 'reaction', 'detail', reaction._id]">
+          <ion-img [src]="host + reaction.video + '?thumbnail'"></ion-img>
+          <div class="footer-reaction">
+            <ion-avatar class="avatar">
+              <img [src]="host + reaction.user.image" alt="Avatar">
+            </ion-avatar>
+            <div class="description">
+              {{reaction.text.length > 100 ? (reaction.text | slice:0:100) + '...' : reaction.text}}
+            </div>
+            <div class="footer-text">
+              <!-- TODO: Add a like clapback system -->
+              34
+              <ion-icon icon="heart"></ion-icon>
+              <!-- TODO: Add a comment clapback system -->
+              12
+              <ion-icon name="chatbubbles"></ion-icon>
+            </div>
+          </div>
         </div>
       </ion-col>
     </ion-row>

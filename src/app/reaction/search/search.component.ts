@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {ReactionService} from '../reaction.service';
 import {ActivatedRoute} from '@angular/router';
+import {environment as env} from '../../../environments/environment';
 
 @Component({
   selector: 'app-reaction-search',
@@ -11,6 +12,7 @@ export class ReactSearchComponent implements OnInit {
 
   idTopic: string;
   isLoading = true;
+  host = env.mediaHost;
 
   constructor(
     private reactionService: ReactionService,

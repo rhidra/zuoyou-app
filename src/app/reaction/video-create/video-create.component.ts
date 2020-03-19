@@ -10,7 +10,6 @@ import {FilePath} from '@ionic-native/file-path/ngx';
 @Component({
   selector: 'app-video-create',
   templateUrl: './video-create.component.html',
-  styleUrls: ['./video-create.component.scss'],
 })
 export class ReactVideoCreateComponent implements OnInit {
 

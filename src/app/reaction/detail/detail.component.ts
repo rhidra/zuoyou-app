@@ -4,9 +4,8 @@ import {ReactionService} from '../reaction.service';
 import {Reaction} from '../../models/reaction.model';
 
 @Component({
-  selector: 'app-detail',
+  selector: 'app-reaction-detail',
   templateUrl: './detail.component.html',
-  styleUrls: ['./detail.component.scss'],
 })
 export class ReactDetailComponent implements OnInit {
 

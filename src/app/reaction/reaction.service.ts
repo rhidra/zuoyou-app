@@ -49,6 +49,30 @@ export class ReactionService {
     });
   }
 
+  checkLike(reaction: Reaction): Promise<boolean> {
+    return new Promise<boolean>(resolve => {
+      this.http.get(env.apiUrl + 'like/reaction', {params: {reaction: reaction._id}}).subscribe((data: any) => {
+        resolve(!!data);
+      });
+    });
+  }
+
+  like(reaction: Reaction): Promise<void> {
+    return new Promise<void>(resolve => {
+      this.http.post(env.apiUrl + 'like/reaction', {reaction: reaction._id}).subscribe((data: any) => {
+        resolve();
+      });
+    });
+  }
+
+  unlike(reaction: Reaction): Promise<void> {
+    return new Promise<void>(resolve => {
+      this.http.delete(env.apiUrl + 'like/reaction', {body: {reaction: reaction._id}} as any).subscribe((data: any) => {
+        resolve();
+      });
+    });
+  }
+
   setPendingMediaUrl(url: string) {
     this.url = url;
   }

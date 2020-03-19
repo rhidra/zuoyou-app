@@ -3,15 +3,15 @@ import {Topic} from './topic.model';
 import {Reaction} from './reaction.model';
 
 export class Comment {
-  _id: string;
+  _id?: string;
 
-  topic: string | Topic;
-  reaction: string | Reaction;
+  topic?: string | Topic;
+  reaction?: string | Reaction;
 
   user: string | User;
-  date: string;
+  date?: string;
 
   text: string;
 
-  likesCounter: number;
+  likesCounter?: number;
 }

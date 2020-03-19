@@ -2,7 +2,7 @@ import {User} from './user.model';
 import {Topic} from './topic.model';
 
 export class Reaction {
-  _id: string;
+  _id?: string;
 
   topic: string | Topic;
   user: string | User;
@@ -11,7 +11,7 @@ export class Reaction {
   video: string;
   text: string;
 
-  likesCounter: number;
-  commentsCounter: number;
-  viewsCounter: number;
+  likesCounter?: number;
+  commentsCounter?: number;
+  viewsCounter?: number;
 }

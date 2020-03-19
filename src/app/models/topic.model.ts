@@ -1,7 +1,7 @@
 import {User} from './user.model';
 
 export class Topic {
-    _id: string;
+    _id?: string;
     title: string;
 
     hashtag: string;
@@ -12,10 +12,10 @@ export class Topic {
     leftPanel: TopicPanel;
     rightPanel: TopicPanel;
 
-    likesCounter: number;
-    viewsCounter: number;
-    commentsCounter: number;
-    clapbacksCounter: number;
+    likesCounter?: number;
+    viewsCounter?: number;
+    commentsCounter?: number;
+    clapbacksCounter?: number;
 }
 
 export class TopicPanel {

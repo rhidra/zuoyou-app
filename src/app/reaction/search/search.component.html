@@ -22,8 +22,10 @@
               {{reaction.text.length > 100 ? (reaction.text | slice:0:100) + '...' : reaction.text}}
             </div>
             <div class="footer-text">
+              {{reaction.viewsCounter}}
+              <ion-icon icon="eye"></ion-icon> &nbsp;
               {{reaction.likesCounter}}
-              <ion-icon icon="heart"></ion-icon>
+              <ion-icon icon="heart"></ion-icon> &nbsp;
               {{reaction.commentsCounter}}
               <ion-icon name="chatbubbles"></ion-icon>
             </div>

@@ -78,20 +78,20 @@
         </li>
       </ul>
 
-      <div class="reaction-comments">
-        <div class="reaction-comment">
+      <div class="reaction-comments" *ngIf="!isLoadingComments">
+        <div class="reaction-comment" *ngFor="let comment of commentService.reactionsComments.get(reaction._id)">
           <ion-avatar>
-            <img [src]="host + reaction.user.image" alt="Avatar"/>
+            <img [src]="host + comment.user.image" alt="Avatar"/>
           </ion-avatar>
           <ion-label>
             <h2>
-              {{reaction.user.name}}
+              {{comment.user.name}}
               <!-- TODO: Add badges -->
-              <ion-icon name="checkmark-circle-outline" *ngIf="reaction.user.verified"></ion-icon>
+              <ion-icon name="checkmark-circle-outline" *ngIf="comment.user.verified"></ion-icon>
             </h2>
             <div class="comment-text">
-              Comment text
-              <span class="comment-date">3h ago</span>
+              {{comment.text}}
+              <span class="comment-date">{{comment.date | date}}</span>
             </div>
           </ion-label>
         </div>
@@ -103,10 +103,10 @@
 
 <ion-footer class="app-footer-reaction-detail">
   <ion-toolbar>
-    <ion-textarea placeholder="Write a comment..." i18n-placeholder></ion-textarea>
+    <ion-textarea placeholder="Write a comment..." i18n-placeholder [(ngModel)]="comment"></ion-textarea>
 
     <ion-buttons slot="end">
-      <ion-button>
+      <ion-button (click)="sendComment()">
         <ion-icon slot="icon-only" name="send"></ion-icon>
       </ion-button>
     </ion-buttons>

@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {environment as env} from '../../environments/environment';
 import {Comment} from '../models/comment.model';
+import {AuthService} from '../auth/auth.service';
 
 @Injectable({
   providedIn: 'root'
@@ -13,11 +14,21 @@ export class CommentService {
 
   constructor(
     private http: HttpClient,
+    private authService: AuthService,
   ) { }
 
   create(comment: Comment): Promise<Comment> {
     return new Promise<Comment>(resolve => {
-      this.http.post(env.apiUrl + 'comment/', comment).subscribe((data: any) => resolve(data));
+      this.http.post(env.apiUrl + 'comment/', comment).subscribe((data: Comment) => {
+        if (data.topic) {
+          (this.topicsComments.get(data.topic as string) || []).push(data);
+        }
+        if (data.reaction) {
+          (this.reactionsComments.get(data.reaction as string) || []).push(data);
+        }
+        data.user = this.authService.user;
+        resolve(data);
+      });
     });
   }
 

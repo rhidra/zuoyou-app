@@ -71,9 +71,7 @@ export class ReactDetailComponent implements OnInit {
           reaction: this.reaction._id,
           text: this.comment,
           user: this.authService.user._id,
-        }).then(comment => {
-          this.comment = '';
-        });
+        }).then(() => this.comment = '');
       }
     });
   }

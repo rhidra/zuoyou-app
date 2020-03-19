@@ -2,8 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import {ActivatedRoute} from '@angular/router';
 import {ReactionService} from '../reaction.service';
 import {Reaction} from '../../models/reaction.model';
-import {HttpClient} from '@angular/common/http';
-import {environment} from '../../../environments/environment';
 
 @Component({
   selector: 'app-detail',

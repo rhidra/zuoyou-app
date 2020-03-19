@@ -23,7 +23,7 @@ export class ReactSearchComponent implements OnInit {
     this.activatedRoute.params.subscribe(params => {
       this.idTopic = params.idTopic;
       if (this.idTopic) {
-        this.reactionService.loadVideos(this.idTopic).then(() => this.isLoading = false);
+        this.reactionService.search(this.idTopic).then(() => this.isLoading = false);
       }
     });
   }

@@ -10,8 +10,7 @@ import { MediaFile } from '@ionic-native/media-capture/ngx';
 export class ReactionService {
 
   url: string;
-  videos = new Map<string, Array<Reaction>>();
-  texts = new Map<string, Array<Reaction>>();
+  reactions = new Map<string, Array<Reaction>>();
 
   constructor(
     private http: HttpClient,
@@ -23,19 +22,10 @@ export class ReactionService {
     });
   }
 
-  loadVideos(idTopic: string): Promise<void> {
+  search(idTopic: string): Promise<void> {
     return new Promise<void>(resolve => {
-      this.http.get(env.apiUrl + 'reaction', {params: {populate: true, type: 'video', topic: idTopic}} as any).subscribe((data: any) => {
-        this.videos.set(idTopic, data);
-        resolve();
-      });
-    });
-  }
-
-  loadTexts(idTopic: string): Promise<void> {
-    return new Promise<void>(resolve => {
-      this.http.get(env.apiUrl + 'reaction', {params: {populate: true, type: 'text', topic: idTopic}} as any).subscribe((data: any) => {
-        this.texts.set(idTopic, data);
+      this.http.get(env.apiUrl + 'reaction', {params: {populate: true, topic: idTopic}} as any).subscribe((data: any) => {
+        this.reactions.set(idTopic, data);
         resolve();
       });
     });
@@ -44,15 +34,12 @@ export class ReactionService {
   get(id: string): Promise<Reaction> {
     return new Promise<Reaction>(resolve => {
       let reaction: Reaction = null;
-      for (const map of [this.videos, this.texts]) {
-        for (const [_, reactions] of map.entries()) {
-          const result = reactions.find(r => r._id === id);
-          if (result) {
-            reaction = result;
-            break;
-          }
+      for (const [_, reactions] of this.reactions.entries()) {
+        const result = reactions.find(r => r._id === id);
+        if (result) {
+          reaction = result;
+          break;
         }
-        if (reaction) { break; }
       }
       if (reaction) {
         resolve(reaction);

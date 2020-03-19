@@ -67,11 +67,11 @@
         </li>
         <li>
           <ion-icon name="eye"></ion-icon>
-          14 &nbsp;
+          {{reaction.viewsCounter}} &nbsp;
           <ion-icon name="heart"></ion-icon>
-          2 &nbsp;
+          {{reaction.likesCounter}} &nbsp;
           <ion-icon name="chatbubbles"></ion-icon>
-          56
+          {{reaction.commentsCounter}}
         </li>
         <li *ngIf="reaction.text">
           <ion-icon name="create"></ion-icon>

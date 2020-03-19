@@ -11,6 +11,11 @@ export class Topic {
     centerPanel: TopicPanel;
     leftPanel: TopicPanel;
     rightPanel: TopicPanel;
+
+    likesCounter: number;
+    viewsCounter: number;
+    commentsCounter: number;
+    clapbacksCounter: number;
 }
 
 export class TopicPanel {

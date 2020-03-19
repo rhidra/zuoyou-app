@@ -10,6 +10,7 @@ import {ReactVideoEditComponent} from './video-edit/video-edit.component';
 import {ReactiveFormsModule} from '@angular/forms';
 import {ReactionService} from './reaction.service';
 import {ReactSearchComponent} from './search/search.component';
+import {ReactDetailComponent} from './detail/detail.component';
 
 
 @NgModule({
@@ -19,6 +20,7 @@ import {ReactSearchComponent} from './search/search.component';
     ReactVideoCreateComponent,
     ReactVideoEditComponent,
     ReactSearchComponent,
+    ReactDetailComponent,
   ],
   imports: [
     CommonModule,

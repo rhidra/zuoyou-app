@@ -41,6 +41,27 @@ export class ReactionService {
     });
   }
 
+  get(id: string): Promise<Reaction> {
+    return new Promise<Reaction>(resolve => {
+      let reaction: Reaction = null;
+      for (const map of [this.videos, this.texts]) {
+        for (const [_, reactions] of map.entries()) {
+          const result = reactions.find(r => r._id === id);
+          if (result) {
+            reaction = result;
+            break;
+          }
+        }
+        if (reaction) { break; }
+      }
+      if (reaction) {
+        resolve(reaction);
+      } else {
+        this.http.get(env.apiUrl + 'reaction/' + id).subscribe((data: any) => resolve(data));
+      }
+    });
+  }
+
   setPendingMediaUrl(url: string) {
     this.url = url;
   }

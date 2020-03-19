@@ -13,6 +13,7 @@
       <ion-col size="6" *ngFor="let reaction of reactionService.reactions.get(idTopic)">
         <div class="reaction-card" [routerLink]="['/', 'reaction', 'detail', reaction._id]">
           <ion-img [src]="host + reaction.video + '?thumbnail'"></ion-img>
+
           <div class="footer-reaction">
             <ion-avatar class="avatar">
               <img [src]="host + reaction.user.image" alt="Avatar">

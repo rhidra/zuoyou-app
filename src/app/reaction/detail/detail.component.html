@@ -1,3 +1,104 @@
-<p>
-  detail works!
-</p>
+<ion-header class="app-header-reaction-detail">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/"></ion-back-button>
+    </ion-buttons>
+    <ion-title i18n>Clapback</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content *ngIf="!isLoading" class="app-reaction-detail">
+
+  <div class="full-height">
+
+
+    <div class="reaction-buttons full-width">
+      <div class="reaction-button">
+        <ion-button>
+          <ion-icon slot="icon-only" name="share"></ion-icon>
+        </ion-button>
+      </div>
+      <div class="reaction-button">
+        <ion-button [ngClass]="{'liked': hasLiked}" (click)="like()">
+          <ion-icon slot="icon-only" name="heart"></ion-icon>
+        </ion-button>
+      </div>
+      <div class="reaction-button">
+        <ion-button (click)="rewind()">
+          <ion-icon slot="icon-only" name="refresh"></ion-icon>
+        </ion-button>
+      </div>
+      <div class="reaction-button">
+        <ion-button>
+          <ion-icon slot="icon-only" name="warning"></ion-icon>
+        </ion-button>
+      </div>
+    </div>
+
+    <vg-player class="full-video full-height" (onPlayerReady)="onPlayerReady($event)">
+      <vg-buffering></vg-buffering>
+      <vg-scrub-bar>
+        <vg-scrub-bar-current-time></vg-scrub-bar-current-time>
+        <vg-scrub-bar-buffering-time></vg-scrub-bar-buffering-time>
+      </vg-scrub-bar>
+
+      <video [vgMedia]="media" #media preload="auto" autoplay>
+        <source [src]="host + reaction.video" type="video/mp4">
+      </video>
+    </vg-player>
+
+    <div class="reaction-footer">
+      
+      <div class="reaction-author">
+        <ion-avatar>
+          <img [src]="host + reaction.user.image" alt="Avatar">
+        </ion-avatar>
+        <div class="author-name">
+          <span>{{reaction.user.name}}</span>
+          <!-- TODO: Add badges -->
+          <ion-icon name="checkmark-circle-outline" *ngIf="reaction.user.verified"></ion-icon>
+        </div>
+      </div>
+
+      <ul class="reaction-stats">
+        <li>
+          <ion-icon name="calendar"></ion-icon>
+          {{reaction.date | date}}
+        </li>
+        <li>
+          <ion-icon name="eye"></ion-icon>
+          14 &nbsp;
+          <ion-icon name="heart"></ion-icon>
+          2 &nbsp;
+          <ion-icon name="chatbubbles"></ion-icon>
+          56
+        </li>
+        <li *ngIf="reaction.text">
+          <ion-icon name="create"></ion-icon>
+          {{reaction.text}}
+        </li>
+      </ul>
+
+      <div class="reaction-comments">
+        <div class="reaction-comment">
+          <ion-avatar>
+            <img [src]="host + reaction.user.image" alt="Avatar"/>
+          </ion-avatar>
+          <ion-label>
+            <h2>
+              {{reaction.user.name}}
+              <!-- TODO: Add badges -->
+              <ion-icon name="checkmark-circle-outline" *ngIf="reaction.user.verified"></ion-icon>
+            </h2>
+            <div class="comment-text">
+              Comment text
+              <span class="comment-date">3h ago</span>
+            </div>
+          </ion-label>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</ion-content>
+<ion-spinner *ngIf="isLoading"></ion-spinner>

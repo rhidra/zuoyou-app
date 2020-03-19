@@ -11,6 +11,9 @@ import {ReactiveFormsModule} from '@angular/forms';
 import {ReactionService} from './reaction.service';
 import {ReactSearchComponent} from './search/search.component';
 import {ReactDetailComponent} from './detail/detail.component';
+import {VgCoreModule} from 'videogular2/compiled/src/core/core';
+import {VgControlsModule} from 'videogular2/compiled/src/controls/controls';
+import {VgBufferingModule} from 'videogular2/compiled/src/buffering/buffering';
 
 
 @NgModule({
@@ -26,7 +29,10 @@ import {ReactDetailComponent} from './detail/detail.component';
     CommonModule,
     ReactionRoutingModule,
     IonicModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    VgCoreModule,
+    VgControlsModule,
+    VgBufferingModule
   ],
   providers: [
     ReactionService,

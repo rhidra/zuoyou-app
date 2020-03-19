@@ -6,6 +6,8 @@ import {Reaction} from '../../models/reaction.model';
 import {AuthService} from '../../auth/auth.service';
 import * as moment from 'moment';
 import {LoadingController, NavController} from '@ionic/angular';
+import {Comment} from '../../models/comment.model';
+import {CommentService} from '../comment.service';
 
 @Component({
   selector: 'app-text-edit',
@@ -20,7 +22,7 @@ export class ReactTextEditComponent implements OnInit {
   constructor(
     private fb: FormBuilder,
     private activatedRoute: ActivatedRoute,
-    private reactionService: ReactionService,
+    private commentService: CommentService,
     private authService: AuthService,
     private loadingCtrl: LoadingController,
     private navCtrl: NavController,
@@ -35,12 +37,12 @@ export class ReactTextEditComponent implements OnInit {
 
   onSubmit() {
     this.loading.present();
-    const reaction = new Reaction();
-    reaction.text = this.form.value.text;
-    reaction.topic = this.activatedRoute.snapshot.parent.params.idTopic;
-    reaction.user = this.authService.user._id;
-    reaction.date = moment().toISOString();
-    this.reactionService.create(reaction).then(() => {
+    const comment = new Comment();
+    comment.text = this.form.value.text;
+    comment.topic = this.activatedRoute.snapshot.parent.params.idTopic;
+    comment.user = this.authService.user._id;
+    comment.date = moment().toISOString();
+    this.commentService.create(comment).then(() => {
       this.loading.dismiss();
       this.navCtrl.navigateForward(['/']);
     });

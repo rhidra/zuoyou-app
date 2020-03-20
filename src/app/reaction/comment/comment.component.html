@@ -9,6 +9,9 @@
       <!-- TODO: Add badges -->
       <ion-icon name="checkmark-circle-outline" *ngIf="comment.user.verified"></ion-icon>
     </h2>
+    <div class="comment-like" [ngClass]="{hasLiked: hasLiked}" (click)="like()">
+      <ion-icon [name]="hasLiked ? 'heart' : 'heart-empty'"></ion-icon>
+    </div>
     <div class="comment-text">
       {{comment.text}}
       <span class="comment-date">{{comment.date | date}}</span>

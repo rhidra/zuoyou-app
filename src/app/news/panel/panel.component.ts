@@ -57,6 +57,7 @@ export class PanelComponent implements OnInit {
   rewind() {
     if (this.videoPlayer) {
       this.videoPlayer.seekTime(this.videoPlayer.currentTime - 5);
+      this.videoPlayer.play();
     }
   }
 

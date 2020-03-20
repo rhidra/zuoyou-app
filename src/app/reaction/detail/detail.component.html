@@ -79,22 +79,8 @@
       </ul>
 
       <div class="reaction-comments" *ngIf="!isLoadingComments">
-        <div class="reaction-comment" *ngFor="let comment of commentService.reactionsComments.get(reaction._id)">
-          <ion-avatar>
-            <img [src]="host + comment.user.image" alt="Avatar"/>
-          </ion-avatar>
-          <ion-label>
-            <h2>
-              {{comment.user.name}}
-              <!-- TODO: Add badges -->
-              <ion-icon name="checkmark-circle-outline" *ngIf="comment.user.verified"></ion-icon>
-            </h2>
-            <div class="comment-text">
-              {{comment.text}}
-              <span class="comment-date">{{comment.date | date}}</span>
-            </div>
-          </ion-label>
-        </div>
+        <app-reaction-comment *ngFor="let comment of commentService.reactionsComments.get(reaction._id)" [comment]="comment">
+        </app-reaction-comment>
       </div>
     </div>
   </div>

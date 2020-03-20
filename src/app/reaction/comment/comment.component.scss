@@ -1,0 +1,38 @@
+.reaction-comment {
+  min-height: 64px;
+  border-bottom: var(--ion-color-light-shade) solid 1px;
+  padding-left: 6px;
+  padding-top: 12px;
+
+  ion-avatar {
+    margin-right: 6px;
+    float: left;
+    width: 35px;
+    height: 35px;
+  }
+
+  h2 {
+    font-size: .9em;
+    margin-top: 0;
+    color: #27a5f0;
+    position: relative;
+    bottom: 2px;
+
+    ion-icon {
+      position: relative;
+      top: 2px;
+    }
+  }
+
+  .comment-text {
+    font-size: .9em;
+    margin-bottom: 12px;
+
+    .comment-date {
+      font-size: .6em;
+      position: relative;
+      bottom: 1px;
+      color: var(--ion-color-light-shade);
+    }
+  }
+}

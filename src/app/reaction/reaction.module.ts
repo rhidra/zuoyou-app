@@ -14,6 +14,7 @@ import {ReactDetailComponent} from './detail/detail.component';
 import {VgCoreModule} from 'videogular2/compiled/src/core/core';
 import {VgControlsModule} from 'videogular2/compiled/src/controls/controls';
 import {VgBufferingModule} from 'videogular2/compiled/src/buffering/buffering';
+import {ReactCommentComponent} from './comment/comment.component';
 
 
 @NgModule({
@@ -24,6 +25,7 @@ import {VgBufferingModule} from 'videogular2/compiled/src/buffering/buffering';
     ReactVideoEditComponent,
     ReactSearchComponent,
     ReactDetailComponent,
+    ReactCommentComponent,
   ],
   imports: [
     CommonModule,

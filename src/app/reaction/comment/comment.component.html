@@ -1,0 +1,17 @@
+<div class="reaction-comment">
+  <ion-avatar>
+    <img [src]="host + comment.user.image" alt="Avatar"/>
+  </ion-avatar>
+
+  <ion-label>
+    <h2>
+      {{comment.user.name}}
+      <!-- TODO: Add badges -->
+      <ion-icon name="checkmark-circle-outline" *ngIf="comment.user.verified"></ion-icon>
+    </h2>
+    <div class="comment-text">
+      {{comment.text}}
+      <span class="comment-date">{{comment.date | date}}</span>
+    </div>
+  </ion-label>
+</div>

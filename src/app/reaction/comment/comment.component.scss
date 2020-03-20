@@ -22,6 +22,11 @@
       position: relative;
       top: 2px;
     }
+
+    .comment-counter {
+      color: var(--ion-color-light-shade);
+      font-size: .7em;
+    }
   }
 
   .comment-text {

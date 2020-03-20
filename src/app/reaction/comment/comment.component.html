@@ -8,6 +8,12 @@
       {{comment.user.name}}
       <!-- TODO: Add badges -->
       <ion-icon name="checkmark-circle-outline" *ngIf="comment.user.verified"></ion-icon>
+
+      <span class="comment-counter" *ngIf="comment.likesCounter > 0">
+        &nbsp;
+        {{comment.likesCounter}}
+        <ion-icon name="heart"></ion-icon>
+      </span>
     </h2>
     <div class="comment-like" [ngClass]="{hasLiked: hasLiked}" (click)="like()">
       <ion-icon [name]="hasLiked ? 'heart' : 'heart-empty'"></ion-icon>

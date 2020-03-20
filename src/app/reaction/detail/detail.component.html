@@ -78,7 +78,7 @@
         </li>
       </ul>
 
-      <div class="reaction-comments" *ngIf="!isLoadingComments">
+      <div *ngIf="!isLoadingComments">
         <app-reaction-comment *ngFor="let comment of commentService.reactionsComments.get(reaction._id)" [comment]="comment">
         </app-reaction-comment>
       </div>

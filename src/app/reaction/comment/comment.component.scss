@@ -46,6 +46,7 @@
   .comment-like {
     float: right;
     margin-right: 6px;
+    transition: color .2s;
   }
 
   .comment-like.hasLiked {

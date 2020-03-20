@@ -35,5 +35,8 @@
     </ion-row>
   </ion-grid>
 
+  <app-reaction-comment *ngFor="let comment of commentService.topicsComments.get(idTopic)" [comment]="comment">
+  </app-reaction-comment>
+
   <ion-spinner *ngIf="isLoading"></ion-spinner>
 </ion-content>

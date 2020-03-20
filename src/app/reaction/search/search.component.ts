@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {ReactionService} from '../reaction.service';
 import {ActivatedRoute} from '@angular/router';
 import {environment as env} from '../../../environments/environment';
+import {CommentService} from '../comment.service';
 
 @Component({
   selector: 'app-reaction-search',
@@ -16,6 +17,7 @@ export class ReactSearchComponent implements OnInit {
   constructor(
     private reactionService: ReactionService,
     private activatedRoute: ActivatedRoute,
+    private commentService: CommentService,
   ) { }
 
   ngOnInit() {
@@ -23,6 +25,7 @@ export class ReactSearchComponent implements OnInit {
       this.idTopic = params.idTopic;
       if (this.idTopic) {
         this.reactionService.search(this.idTopic).then(() => this.isLoading = false);
+        this.commentService.searchByTopic(this.idTopic);
       }
     });
   }

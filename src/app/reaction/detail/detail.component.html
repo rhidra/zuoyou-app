@@ -87,16 +87,6 @@
 
 </ion-content>
 
-<ion-footer class="app-footer-reaction-detail">
-  <ion-toolbar>
-    <ion-textarea placeholder="Write a comment..." i18n-placeholder [(ngModel)]="comment"></ion-textarea>
-
-    <ion-buttons slot="end">
-      <ion-button (click)="sendComment()">
-        <ion-icon slot="icon-only" name="send" color="primary"></ion-icon>
-      </ion-button>
-    </ion-buttons>
-  </ion-toolbar>
-</ion-footer>
+<app-add-comment-footer [reactionId]="reaction._id"></app-add-comment-footer>
 
 <ion-spinner *ngIf="isLoading"></ion-spinner>

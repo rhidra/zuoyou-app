@@ -64,16 +64,4 @@ export class ReactDetailComponent implements OnInit {
       this.videoPlayer.play();
     }
   }
-
-  sendComment() {
-    this.authService.onAuthenticated(true).then(() => {
-      if (this.comment) {
-        this.commentService.create({
-          reaction: this.reaction._id,
-          text: this.comment,
-          user: this.authService.user._id,
-        }).then(() => this.comment = '');
-      }
-    });
-  }
 }

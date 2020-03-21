@@ -22,7 +22,7 @@ export class ReactCommentComponent implements OnInit {
   ngOnInit() {
     this.authService.onAuthenticated().then(() => {
       this.commentService.checkLike(this.comment).then(b => this.hasLiked = b);
-    });
+    }).catch(() => {});
   }
 
   like() {

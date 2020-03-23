@@ -6,6 +6,7 @@ import {NativeStorage} from '@ionic-native/native-storage/ngx';
 import {NavController, Platform} from '@ionic/angular';
 import {environment as env} from '../../environments/environment';
 import {LOCAL_STORAGE, WebStorageService} from 'ngx-webstorage-service';
+import {Location} from '@angular/common';
 
 @Injectable({
   providedIn: 'root'
@@ -38,6 +39,7 @@ export class AuthService {
     private storage: NativeStorage,
     private platform: Platform,
     private navCtrl: NavController,
+    private location: Location,
     @Inject(LOCAL_STORAGE) private storageDev: WebStorageService,
 
   ) {
@@ -119,5 +121,18 @@ export class AuthService {
         Promise.all(promises).then(resolve).catch(reject);
       });
     });
+  }
+
+  logout() {
+    const p = [];
+    if (this.platform.is('hybrid')) {
+      p.push(this.storage.remove('refreshToken'));
+      p.push(this.storage.remove('user'));
+    } else if (!env.production) {
+      this.storageDev.remove('refreshToken');
+      this.storageDev.remove('user');
+    }
+
+    Promise.all(p).then(() => location.reload());
   }
 }

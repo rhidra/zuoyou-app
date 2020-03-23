@@ -15,8 +15,8 @@
         <ion-icon name="heart"></ion-icon>
       </span>
     </h2>
-    <div class="comment-like" [ngClass]="{hasLiked: hasLiked}" (click)="like()">
-      <ion-icon [name]="hasLiked ? 'heart' : 'heart-empty'"></ion-icon>
+    <div class="comment-like" [ngClass]="{hasLiked: comment.hasLiked}" (click)="like()">
+      <ion-icon [name]="comment.hasLiked ? 'heart' : 'heart-empty'"></ion-icon>
     </div>
     <div class="comment-text">
       {{comment.text}}

@@ -14,4 +14,5 @@ export class Comment {
   text: string;
 
   likesCounter?: number;
+  hasLiked?: boolean = false;
 }

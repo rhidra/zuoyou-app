@@ -34,19 +34,23 @@ export class CommentService {
   }
 
   searchByTopic(idTopic: string): Promise<void> {
-    return new Promise<void>(resolve => {
-      this.http.get(env.apiUrl + 'comment', {params: {populate: true, topic: idTopic}} as any).subscribe((data: any) => {
-        this.topicsComments.set(idTopic, data);
-        resolve();
+    return this.authService.onAuthenticated().finally(() => {
+      return new Promise<void>(resolve => {
+        this.http.get(env.apiUrl + 'comment', {params: {populate: true, topic: idTopic}} as any).subscribe((data: any) => {
+          this.topicsComments.set(idTopic, data);
+          resolve();
+        });
       });
-    });
+    }).catch(() => {});
   }
 
   searchByReaction(idReaction: string): Promise<void> {
-    return new Promise<void>(resolve => {
-      this.http.get(env.apiUrl + 'comment', {params: {populate: true, reaction: idReaction}} as any).subscribe((data: any) => {
-        this.reactionsComments.set(idReaction, data);
-        resolve();
+    return this.authService.onAuthenticated().finally(() => {
+      return new Promise<void>(resolve => {
+        this.http.get(env.apiUrl + 'comment', {params: {populate: true, reaction: idReaction}} as any).subscribe((data: any) => {
+          this.reactionsComments.set(idReaction, data);
+          resolve();
+        });
       });
     });
   }

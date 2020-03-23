@@ -11,7 +11,6 @@ import {AuthService} from '../../auth/auth.service';
 export class ReactCommentComponent implements OnInit {
 
   host = env.mediaHost;
-  hasLiked: boolean = false;
   @Input() comment: Comment;
 
   constructor(
@@ -19,20 +18,16 @@ export class ReactCommentComponent implements OnInit {
     private authService: AuthService,
   ) { }
 
-  ngOnInit() {
-    this.authService.onAuthenticated().then(() => {
-      this.commentService.checkLike(this.comment).then(b => this.hasLiked = b);
-    }).catch(() => {});
-  }
+  ngOnInit() {}
 
   like() {
     this.authService.onAuthenticated(true).then(() => {
-      if (this.hasLiked) {
+      if (this.comment.hasLiked) {
         this.commentService.unlike(this.comment);
       } else {
         this.commentService.like(this.comment);
       }
-      this.hasLiked = !this.hasLiked;
+      this.comment.hasLiked = !this.comment.hasLiked;
     });
   }
 }

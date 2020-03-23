@@ -2,8 +2,6 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 import { ReactionRoutingModule } from './reaction-routing.module';
-import {ReactTabsComponent} from './tabs/tabs.component';
-import {ReactTextEditComponent} from './text-edit/text-edit.component';
 import {ReactVideoCreateComponent} from './video-create/video-create.component';
 import {IonicModule} from '@ionic/angular';
 import {ReactVideoEditComponent} from './video-edit/video-edit.component';
@@ -20,8 +18,6 @@ import {ReactAddCommentComponent} from './add-comment/add-comment.component';
 
 @NgModule({
   declarations: [
-    ReactTabsComponent,
-    ReactTextEditComponent,
     ReactVideoCreateComponent,
     ReactVideoEditComponent,
     ReactSearchComponent,

@@ -2,7 +2,6 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 import { ReactionRoutingModule } from './reaction-routing.module';
-import {ReactVideoCreateComponent} from './video-create/video-create.component';
 import {IonicModule} from '@ionic/angular';
 import {ReactVideoEditComponent} from './video-edit/video-edit.component';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
@@ -18,7 +17,6 @@ import {ReactAddCommentComponent} from './add-comment/add-comment.component';
 
 @NgModule({
   declarations: [
-    ReactVideoCreateComponent,
     ReactVideoEditComponent,
     ReactSearchComponent,
     ReactDetailComponent,

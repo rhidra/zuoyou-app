@@ -4,6 +4,7 @@ import {PanelComponent} from '../panel/panel.component';
 import {SwiperComponent} from 'angular2-useful-swiper';
 import {AuthService} from '../../auth/auth.service';
 import {NewsFeedService} from '../feed.service';
+import {ReactionService} from '../../reaction/reaction.service';
 
 @Component({
   selector: 'app-news-topic',
@@ -32,6 +33,7 @@ export class TopicComponent {
   constructor(
     private authService: AuthService,
     private feedService: NewsFeedService,
+    private reactionService: ReactionService,
   ) { }
 
   init() {

@@ -2,7 +2,10 @@ import { Injectable } from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {environment as env} from '../../environments/environment';
 import {Reaction} from '../models/reaction.model';
-import { MediaFile } from '@ionic-native/media-capture/ngx';
+import {MediaCapture, MediaFile} from '@ionic-native/media-capture/ngx';
+import {AlertController, NavController} from '@ionic/angular';
+import {FileChooser} from '@ionic-native/file-chooser/ngx';
+import {FilePath} from '@ionic-native/file-path/ngx';
 
 @Injectable({
   providedIn: 'root'
@@ -13,8 +16,43 @@ export class ReactionService {
   reactions = new Map<string, Array<Reaction>>();
 
   constructor(
+    private alertCtrl: AlertController,
     private http: HttpClient,
+    private mediaCapture: MediaCapture,
+    private fileChooser: FileChooser,
+    private filePath: FilePath,
+    private navCtrl: NavController,
   ) { }
+
+  async showDialogCreateCB(idTopic) {
+    const alert = await this.alertCtrl.create({
+      header: 'Clapback',
+      message: 'How do you want to make a Clapback ?',
+      buttons: [{
+        text: 'Open camera',
+        handler: () => {
+          this.mediaCapture.captureVideo().then((data: Array<MediaFile>) => {
+            this.setPendingMediaUrl(data[0].fullPath);
+            this.navCtrl.navigateForward(['/', 'reaction', 'edit', idTopic]);
+          });
+        },
+      }, {
+        text: 'Search files',
+        handler: () => {
+          // TODO: Use another plugin for iOS (iOS Cordova File Picker)
+          this.fileChooser.open({mime: 'video/mp4'})
+            .then(uri => this.filePath.resolveNativePath(uri))
+            .then(uri => {
+              this.setPendingMediaUrl(uri);
+              this.navCtrl.navigateForward(['/', 'reaction', 'edit', idTopic]);
+            })
+            .catch(err => console.error(err));
+        },
+      }]
+    });
+
+    await alert.present();
+  }
 
   create(reaction: Reaction): Promise<Reaction> {
     return new Promise<Reaction>(resolve => {

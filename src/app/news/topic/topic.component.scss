@@ -51,16 +51,17 @@
     margin-left: 12px;
     ion-button {
       --background: white;
-      font-size: 1.1em;
+      font-size: .7em;
       text-transform: none;
       color: var(--ion-color-primary);
       text-decoration-line: none;
-      --padding-end: 12px;
-      --padding-start: 12px;
-      letter-spacing: 0;
+      --padding-end: 10px;
+      --padding-start: 10px;
+      letter-spacing: 0.2px;
       --color-activated: var(--ion-color-primary-shade);
       --box-shadow: black 2px 2px 6px;
       --border-radius: 16px;
+      height: 24px;
     }
   }
 

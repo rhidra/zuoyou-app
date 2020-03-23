@@ -48,12 +48,19 @@
     z-index: 11;
     position: absolute;
     bottom: 5%;
-    text-shadow: black 1px 1px 5px;
-    font-size: 1.5em;
     margin-left: 12px;
-    a {
-      color: white;
+    ion-button {
+      --background: white;
+      font-size: 1.1em;
+      text-transform: none;
+      color: var(--ion-color-primary);
       text-decoration-line: none;
+      --padding-end: 12px;
+      --padding-start: 12px;
+      letter-spacing: 0;
+      --color-activated: var(--ion-color-primary-shade);
+      --box-shadow: black 2px 2px 6px;
+      --border-radius: 16px;
     }
   }
 

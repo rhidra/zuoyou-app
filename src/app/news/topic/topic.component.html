@@ -18,7 +18,10 @@
     </div>
 
     <div class="topic-hashtag">
-        <a [routerLink]="['/', 'reaction', topic._id]">#{{topic.hashtag}}</a>
+        <ion-button [routerLink]="['/', 'reaction', topic._id]">
+            #{{topic.hashtag}}
+            <ion-icon name="ios-arrow-forward" slot="end"></ion-icon>
+        </ion-button>
     </div>
 
     <div class="topic-clapback">

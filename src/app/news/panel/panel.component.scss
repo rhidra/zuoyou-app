@@ -29,13 +29,30 @@
   .topic-author {
     z-index: 12;
     position: absolute;
-    bottom: 12%;
+    top: 45px;
+    right: 0;
     color: white;
     text-shadow: black 1px 1px 5px;
     font-size: 1.1em;
-    margin-left: 12px;
-    width: 80%;
-    text-align: left;
+    margin-right: 24px;
+    text-align: right;
+
+    ion-avatar {
+      width: 35px;
+      height: 35px;
+      box-shadow: black 1px 1px 5px;
+      border: white solid 2px;
+      float: right;
+      position: relative;
+      left: 12px;
+      bottom: 6px;
+    }
+
+    ion-icon {
+      position: relative;
+      top: 2px;
+      left: 2px;
+    }
   }
 
   // TEXT + IMAGE

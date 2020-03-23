@@ -4,6 +4,9 @@
   <div class="full-height" *ngIf="type === 'video'">
 
     <div class="topic-author" *ngIf="panel && panel.author">
+      <ion-avatar>
+        <img [src]="host + panel.author.image" alt=""/>
+      </ion-avatar>
       <span>{{panel.author.name || panel.author.email}}</span>
       <ion-icon name="checkmark-circle-outline" *ngIf="panel.author.verified"></ion-icon>
     </div>

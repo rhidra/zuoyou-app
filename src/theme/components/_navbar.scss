@@ -1,0 +1,13 @@
+ion-header.transparent-gradient {
+  z-index: 100000;
+  visibility: hidden;
+  position: absolute;
+
+  ion-toolbar {
+    --color: white;
+    --min-height: 40px;
+    --background: none;
+    background: linear-gradient(rgba(black, .85), #0000);
+    visibility: visible;
+  }
+}

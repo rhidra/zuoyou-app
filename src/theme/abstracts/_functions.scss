@@ -28,3 +28,8 @@
 @function font($path, $base: $base-url) {
   @return asset($base, 'fonts/', $path);
 }
+
+// Basic function to compute an offset level, based on unix of 6px
+@function offset-level($level: 1) {
+  @return 6px * $level;
+}

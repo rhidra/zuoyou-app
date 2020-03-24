@@ -1,4 +1,4 @@
-<ion-header class="app-header-reaction-detail">
+<ion-header class="transparent-gradient">
   <ion-toolbar>
     <ion-buttons slot="start">
       <ion-back-button defaultHref="/"></ion-back-button>
@@ -9,25 +9,25 @@
 
 <ion-content class="app-reaction-detail">
 
-  <div class="full-height" *ngIf="!isLoading">
+  <div class="video-detail" *ngIf="!isLoading">
     
-    <div class="reaction-buttons full-width">
-      <div class="reaction-button">
+    <div class="full-video-side-buttons">
+      <div>
         <ion-button>
           <ion-icon slot="icon-only" name="share"></ion-icon>
         </ion-button>
       </div>
-      <div class="reaction-button">
+      <div>
         <ion-button [ngClass]="{'liked': hasLiked}" (click)="like()">
           <ion-icon slot="icon-only" name="heart"></ion-icon>
         </ion-button>
       </div>
-      <div class="reaction-button">
+      <div>
         <ion-button (click)="rewind()">
           <ion-icon slot="icon-only" name="refresh"></ion-icon>
         </ion-button>
       </div>
-      <div class="reaction-button">
+      <div>
         <ion-button>
           <ion-icon slot="icon-only" name="warning"></ion-icon>
         </ion-button>
@@ -46,34 +46,34 @@
       </video>
     </vg-player>
 
-    <div class="reaction-footer">
+    <div class="video-footer">
       
-      <div class="reaction-author">
+      <div class="video-name">
         <ion-avatar>
           <img [src]="host + reaction.user.image" alt="Avatar">
         </ion-avatar>
-        <div class="author-name">
+        <div class="margin-left-sm">
           <span>{{reaction.user.name}}</span>
           <!-- TODO: Add badges -->
-          <ion-icon name="checkmark-circle-outline" *ngIf="reaction.user.verified"></ion-icon>
+          <ion-icon class="fix-pos" name="checkmark-circle-outline" *ngIf="reaction.user.verified"></ion-icon>
         </div>
       </div>
 
-      <ul class="reaction-stats">
+      <ul class="stats">
         <li>
-          <ion-icon name="calendar"></ion-icon>
+          <ion-icon color="medium" name="calendar"></ion-icon>
           {{reaction.date | date}}
         </li>
         <li>
-          <ion-icon name="eye"></ion-icon>
+          <ion-icon class="fix-pos" color="medium" name="eye"></ion-icon>
           {{reaction.viewsCounter}} &nbsp;
-          <ion-icon name="heart"></ion-icon>
+          <ion-icon class="fix-pos" color="medium" name="heart"></ion-icon>
           {{reaction.likesCounter}} &nbsp;
-          <ion-icon name="chatbubbles"></ion-icon>
+          <ion-icon class="fix-pos" color="medium" name="chatbubbles"></ion-icon>
           {{reaction.commentsCounter}}
         </li>
         <li *ngIf="reaction.text">
-          <ion-icon name="create"></ion-icon>
+          <ion-icon class="fix-pos" color="medium" name="create"></ion-icon>
           {{reaction.text}}
         </li>
       </ul>

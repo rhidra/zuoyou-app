@@ -1,0 +1,19 @@
+// Different sizes of avatar
+$size-sm: 35px;
+$size-lg: 45px;
+
+@mixin border-white() {
+  border: white solid 2px;
+}
+
+ion-avatar.avatar-sm {
+  width: $size-sm;
+  height: $size-sm;
+  @include border-white();
+}
+
+ion-avatar.avatar-lg {
+  width: $size-lg;
+  height: $size-lg;
+  @include border-white();
+}

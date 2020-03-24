@@ -7,15 +7,15 @@
     <h2>
       {{comment.user.name}}
       <!-- TODO: Add badges -->
-      <ion-icon name="checkmark-circle-outline" *ngIf="comment.user.verified"></ion-icon>
+      <ion-icon class="fix-pos" name="checkmark-circle-outline" *ngIf="comment.user.verified"></ion-icon>
 
       <span class="comment-counter" *ngIf="comment.likesCounter > 0">
         &nbsp;
         {{comment.likesCounter}}
-        <ion-icon name="heart"></ion-icon>
+        <ion-icon class="fix-pos" name="heart"></ion-icon>
       </span>
     </h2>
-    <div class="comment-like" [ngClass]="{hasLiked: comment.hasLiked}" (click)="like()">
+    <div class="comment-like margin-right-sm" [ngClass]="{hasLiked: comment.hasLiked}" (click)="like()">
       <ion-icon [name]="comment.hasLiked ? 'heart' : 'heart-empty'"></ion-icon>
     </div>
     <div class="comment-text">

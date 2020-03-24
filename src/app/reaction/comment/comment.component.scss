@@ -1,27 +1,21 @@
 .reaction-comment {
+  @extend .padding-left-sm;
+  @extend .padding-top;
   min-height: 64px;
   border-bottom: var(--ion-color-light-shade) solid 1px;
-  padding-left: 6px;
-  padding-top: 12px;
 
   ion-avatar {
-    margin-right: 6px;
+    @extend .avatar-sm;
+    @extend .margin-right-sm;
     float: left;
-    width: 35px;
-    height: 35px;
   }
 
   h2 {
-    font-size: .9em;
+    font-size: .9em; // TODO: Put in variable
     margin-top: 0;
-    color: #27a5f0;
+    color: #27a5f0; // TODO: Put in variable
     position: relative;
     bottom: 2px;
-
-    ion-icon {
-      position: relative;
-      top: 2px;
-    }
 
     .comment-counter {
       color: var(--ion-color-light-shade);
@@ -31,12 +25,12 @@
 
   .comment-text {
     font-size: .8em;
-    margin-bottom: 12px;
-    margin-right: 30px;
+    @extend .margin-bottom;
+    @extend .margin-right-lg;
     margin-left: 41px;
 
     .comment-date {
-      font-size: .6em;
+      font-size: .6em; // TODO: Put in variable
       position: relative;
       bottom: 1px;
       color: var(--ion-color-light-shade);
@@ -45,8 +39,7 @@
 
   .comment-like {
     float: right;
-    margin-right: 6px;
-    transition: color .2s;
+    @include linear-animation();
   }
 
   .comment-like.hasLiked {

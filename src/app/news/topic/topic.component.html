@@ -1,30 +1,24 @@
 <div class="app-topic full-height">
-    <div class="topic-buttons full-width">
-        <div class="topic-button">
-            <ion-button>
-                <ion-icon slot="icon-only" name="share"></ion-icon>
-            </ion-button>
-        </div>
-        <div class="topic-button">
-            <ion-button [ngClass]="{'liked': hasLiked}" (click)="like()">
-                <ion-icon slot="icon-only" name="heart"></ion-icon>
-            </ion-button>
-        </div>
-        <div class="topic-button" *ngIf="showRewind">
-            <ion-button (click)="rewind()">
-                <ion-icon slot="icon-only" name="refresh"></ion-icon>
-            </ion-button>
-        </div>
+    <div class="full-video-side-buttons">
+        <ion-button>
+            <ion-icon slot="icon-only" name="share"></ion-icon>
+        </ion-button>
+        <ion-button [ngClass]="{'liked': hasLiked}" (click)="like()">
+            <ion-icon slot="icon-only" name="heart"></ion-icon>
+        </ion-button>
+        <ion-button *ngIf="showRewind" (click)="rewind()">
+            <ion-icon slot="icon-only" name="refresh"></ion-icon>
+        </ion-button>
     </div>
 
-    <div class="topic-hashtag">
+    <div class="full-video-hashtag margin-left">
         <ion-button [routerLink]="['/', 'reaction', topic._id]">
             #{{topic.hashtag}}
             <ion-icon name="ios-arrow-forward" slot="end"></ion-icon>
         </ion-button>
     </div>
 
-    <div class="topic-clapback">
+    <div class="full-video-fab margin-right">
         <ion-button (click)="reactionService.showDialogCreateCB(topic._id)">
             <ion-icon slot="icon-only" name="chatbubbles"></ion-icon>
         </ion-button>

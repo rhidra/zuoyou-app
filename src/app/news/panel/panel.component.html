@@ -3,12 +3,12 @@
   <!-- VIDEO -->
   <div class="full-height" *ngIf="type === 'video'">
 
-    <div class="topic-author" *ngIf="panel && panel.author">
+    <div class="full-video-author margin-left-lg" *ngIf="panel && panel.author">
       <ion-avatar>
         <img [src]="host + panel.author.image" alt=""/>
       </ion-avatar>
       <span>{{panel.author.name || panel.author.email}}</span>
-      <ion-icon name="checkmark-circle-outline" *ngIf="panel.author.verified"></ion-icon>
+      <ion-icon class="fix-pos" name="checkmark-circle-outline" *ngIf="panel.author.verified"></ion-icon>
     </div>
 
     <vg-player class="full-video full-height" (onPlayerReady)="onPlayerReady($event)">
@@ -25,27 +25,23 @@
   </div>
 
   <!-- TEXT + IMAGE -->
-  <div class="full-height" *ngIf="type === 'text'">
-    <ion-img *ngIf="panel.image" [src]="host + panel.image" class="top-image"></ion-img>
-    <!-- TODO: Maybe remove ?
-    <h1 class="news-title" *ngIf="panel.title">
-      {{item.title}}
-    </h1>
-    -->
-    <p *ngIf="!tappingText || !panel.textAlt" [innerHTML]="panel.text" class="news-text">
-    <p *ngIf="tappingText && panel.textAlt" [innerHTML]="panel.textAlt" class="news-text">
+  <div class="half-text full-height" *ngIf="type === 'text'">
+    <ion-img *ngIf="panel.image" [src]="host + panel.image"></ion-img>
+
+    <p *ngIf="!tappingText || !panel.textAlt" [innerHTML]="panel.text">
+    <p *ngIf="tappingText && panel.textAlt" [innerHTML]="panel.textAlt">
     </p>
   </div>
 
   <!-- QUIZ -->
-  <div class="full-height panel-quiz" *ngIf="type === 'quiz' && !isLoading">
+  <div class="full-height quiz-panel" *ngIf="type === 'quiz' && !isLoading">
     <h1 *ngIf="!quiz.isPoll" i18n><span>QUIZ</span></h1>
     <h1 *ngIf="quiz.isPoll" i18n><span>POLL</span></h1>
-    <h2><span>{{quiz.question}}</span></h2>
+    <h2><span class="padding-sm">{{quiz.question}}</span></h2>
     <h3><span>{{quiz.content}}</span></h3>
     <div class="quiz-buttons">
       <div *ngFor="let choice of quiz.choices">
-        <ion-button [ngClass]="quizChoice && quizChoice === choice._id ? 'quiz-button-' + choice.color : ''" (click)="vote(choice._id)">
+        <ion-button class="btn-text margin-bottom" [ngClass]="quizChoice && quizChoice === choice._id ? 'btn-' + choice.color : ''" (click)="vote(choice._id)">
           {{choice.text}}
         </ion-button>
       </div>

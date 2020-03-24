@@ -16,23 +16,23 @@
   <ion-grid *ngIf="!isLoading">
     <ion-row>
       <ion-col size="6" *ngFor="let reaction of reactionService.reactions.get(idTopic)">
-        <div class="reaction-card" [routerLink]="['/', 'reaction', 'detail', reaction._id]">
+        <div class="img-card" [routerLink]="['/', 'reaction', 'detail', reaction._id]">
           <img [src]="host + reaction.video + '?thumbnail'" alt="" class="full-width"/>
 
-          <div class="footer-reaction">
+          <div class="card-footer">
             <ion-avatar class="avatar">
               <img [src]="host + reaction.user.image" alt="Avatar">
             </ion-avatar>
-            <div class="description">
+            <div class="content">
               {{reaction.text.length > 100 ? (reaction.text | slice:0:100) + '...' : reaction.text}}
             </div>
-            <div class="footer-text">
+            <div class="stats">
               {{reaction.viewsCounter}}
-              <ion-icon icon="eye"></ion-icon> &nbsp;
+              <ion-icon class="fix-pos" name="eye"></ion-icon> &nbsp;
               {{reaction.likesCounter}}
-              <ion-icon icon="heart"></ion-icon> &nbsp;
+              <ion-icon class="fix-pos" name="heart"></ion-icon> &nbsp;
               {{reaction.commentsCounter}}
-              <ion-icon name="chatbubbles"></ion-icon>
+              <ion-icon class="fix-pos" name="chatbubbles"></ion-icon>
             </div>
           </div>
         </div>

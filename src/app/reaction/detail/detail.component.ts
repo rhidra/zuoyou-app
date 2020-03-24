@@ -37,7 +37,8 @@ export class ReactDetailComponent implements OnInit {
           this.isLoading = false;
           return this.authService.onAuthenticated();
         }).then(() => this.reactionService.checkLike(this.reaction))
-          .then(liked => this.hasLiked = liked);
+          .then(liked => this.hasLiked = liked)
+          .catch(err => console.log(err));
         this.commentService.searchByReaction(id).then(() => this.isLoadingComments = false);
       }
     });

@@ -1,32 +1,8 @@
 .app-feed {
-  // TODO : Put in a CSS library global property
-  .full-height {
-    height: 100%;
-    overflow: hidden;
-  }
-
-  .full-width {
-    width: 100%;
-  }
-
   ion-header {
-    visibility: hidden;
-    position: absolute;
-
-    ion-toolbar {
-      --color: white;
-      --min-height: 40px;
-      --background: none;
-      background: linear-gradient(#000000d9, #0000);
-      visibility: visible;
-      ion-button {
-        font-family: Hanzipen;
-        font-size: 1.2em;
-      }
-    }
-
-    ion-title {
-      font-family: 'Hanzipen';
+    ion-button.main-button {
+      font-family: Hanzipen;
+      font-size: 1.2em; // TODO: Put in variable
     }
   }
 
@@ -35,5 +11,4 @@
     height: 100%;
     position: absolute;
   }
-
 }

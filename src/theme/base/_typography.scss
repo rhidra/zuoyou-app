@@ -1,0 +1,36 @@
+@function typography-level($font-size, $line-height: $font-size, $font-weight: 400) {
+  @return (
+    font-size: $font-size,
+    line-height: $line-height,
+    font-weight: $font-weight
+  );
+}
+
+@font-face {
+  font-family: 'Hanzipen';
+  src: url('./assets/fonts/hanzipen.otf');
+}
+
+@function font-size($level) {
+  @return map-get($level, font-size);
+}
+
+@function line-height($level) {
+  @return map-get($level, line-height);
+}
+
+@function font-weight($level) {
+  @return map-get($level, font-weight);
+}
+
+
+$title:         typography-level(1.4em);
+$subtext:       typography-level(12.8px, 20px, 400);
+$very-big-icon: typography-level(200px);
+$big-icon:      typography-level(2.35em);
+$small-icon:    typography-level(1.4em);
+
+
+.text-center {
+  text-align: center;
+}

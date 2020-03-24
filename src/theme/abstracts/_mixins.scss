@@ -1,0 +1,143 @@
+// -----------------------------------------------------------------------------
+// This file contains all application-wide Sass mixins.
+// -----------------------------------------------------------------------------
+
+
+
+/// Add a background image in the box
+/// @param {String} $type - The image to add
+/// @param {Background Size} $size [cover]
+/// @param {Background Position} $position [center center]
+@mixin background_image ($image, $size: cover, $position: center center, $useParallax: false, $repeat: no-repeat) {
+  background-size: $size;
+  background-position: $position;
+  background-repeat: $repeat;
+  @if $image != '' {
+    background-image: image($image);
+  }
+
+  @if $useParallax == true {
+    background-attachment: fixed;
+  }
+}
+
+/// Make the background image a bit more dark
+/// @param {Number} $strength [0.8]
+@mixin background_opacity-filter ($strength: 0.8) {
+  &:after {
+    width: 100%;
+    height: 100%;
+    content: "";
+    display: block;
+    background: #000;
+    opacity: $strength;
+  }
+}
+
+/// Add a shadow to the box
+/// @param {Number} $level - The strength of the shadow (between 1 to 5)
+/// @param {Color} $color [black] - The color of the shadow
+@mixin box_shadow ($level, $color: black) {
+
+  @if $level == 1 {
+    box-shadow: 0 1px 3px rgba($color, 0.12), 0 1px 2px rgba($color, 0.24);
+  } @else if $level == 2 {
+    box-shadow: 0 3px 6px rgba($color, 0.16), 0 3px 6px rgba($color, 0.23);
+  } @else if $level == 3 {
+    box-shadow: 0 10px 20px rgba($color, 0.19), 0 6px 6px rgba($color, 0.23);
+  } @else if $level == 4 {
+    box-shadow: 0 14px 28px rgba($color, 0.25), 0 10px 10px rgba($color, 0.22);
+  } @else if $level == 5 {
+    box-shadow: 0 19px 38px rgba($color, 0.30), 0 15px 12px rgba($color, 0.22);
+  }
+}
+
+/// Specify the different text colors
+@mixin color_alternatives() {
+
+  &[data-text-color="purple"]{
+    color: $purple;
+  }
+
+  &[data-text-color="blue"]{
+    color: $blue;
+  }
+
+  &[data-text-color="green"]{
+    color: $green;
+  }
+
+  &[data-text-color="orange"]{
+    color: $orange;
+  }
+
+  &[data-text-color="red"]{
+    color: $red;
+  }
+
+  &[data-text-color="pink"]{
+    color: $pink;
+  }
+
+  &[data-text-color="brown"]{
+    color: $brown;
+  }
+
+  &[data-text-color="grey"]{
+    color: $grey;
+  }
+
+  &[data-text-color="white"]{
+    color: white;
+  }
+}
+
+/// Event wrapper
+/// @author Harry Roberts
+/// @param {Bool} $self [false] - Whether or not to include current selector
+/// @link https://twitter.com/csswizardry/status/478938530342006784 Original tweet from Harry Roberts
+@mixin on-event($self: false) {
+  @if $self {
+    &,
+    &:hover,
+    &:active,
+    &:focus {
+      @content;
+    }
+  } @else {
+    &:hover,
+    &:active,
+    &:focus {
+      @content;
+    }
+  }
+}
+
+/// Make a context based selector a little more friendly
+/// @author Hugo Giraudel
+/// @param {String} $context
+@mixin when-inside($context) {
+  #{$context} & {
+    @content;
+  }
+}
+
+
+/// Add a filter on an image that make it darker
+/// @param {double} opacity
+@mixin darker-img($opacity: 0.5) {
+  position: relative;
+  z-index: 0;
+  &:after {
+    position: absolute;
+    z-index: -1;
+    width: 100%;
+    height: 100%;
+    display: block;
+    left: 0;
+    top: 0;
+    content: "";
+    background-color: rgba(0, 0, 0, $opacity);
+  }
+}
+

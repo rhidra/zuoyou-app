@@ -27,10 +27,7 @@
 @import "~videogular2/fonts/videogular.css";
 @import '~swiper/css/swiper.min.css';
 
-@font-face {
-  font-family: 'Hanzipen';
-  src: url('assets/fonts/hanzipen.otf');
-}
+@import 'theme/main';
 
 @import "app/app.component";
 @import "app/news/feed/feed.component";

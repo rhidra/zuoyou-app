@@ -84,9 +84,8 @@
       </div>
     </div>
   </div>
-
 </ion-content>
 
-<app-add-comment-footer [reactionId]="reaction._id"></app-add-comment-footer>
+<app-add-comment-footer [reactionId]="reaction ? reaction._id : ''"></app-add-comment-footer>
 
 <ion-spinner *ngIf="isLoading"></ion-spinner>

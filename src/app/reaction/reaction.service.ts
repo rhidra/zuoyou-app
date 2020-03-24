@@ -6,6 +6,7 @@ import {MediaCapture, MediaFile} from '@ionic-native/media-capture/ngx';
 import {AlertController, NavController} from '@ionic/angular';
 import {FileChooser} from '@ionic-native/file-chooser/ngx';
 import {FilePath} from '@ionic-native/file-path/ngx';
+import {AuthService} from '../auth/auth.service';
 
 @Injectable({
   providedIn: 'root'
@@ -22,6 +23,7 @@ export class ReactionService {
     private fileChooser: FileChooser,
     private filePath: FilePath,
     private navCtrl: NavController,
+    private authService: AuthService,
   ) { }
 
   async showDialogCreateCB(idTopic) {
@@ -61,16 +63,18 @@ export class ReactionService {
   }
 
   search(idTopic: string): Promise<void> {
-    return new Promise<void>(resolve => {
-      this.http.get(env.apiUrl + 'reaction', {params: {populate: true, topic: idTopic}} as any).subscribe((data: any) => {
-        this.reactions.set(idTopic, data);
-        resolve();
+    return this.authService.getToken().then(() => {
+      return new Promise<void>(resolve => {
+        this.http.get(env.apiUrl + 'reaction', {params: {populate: true, topic: idTopic}} as any).subscribe((data: any) => {
+          this.reactions.set(idTopic, data);
+          resolve();
+        });
       });
     });
   }
 
-  get(id: string): Promise<Reaction> {
-    return new Promise<Reaction>(resolve => {
+  get(id: string): Promise<any> {
+    return this.authService.getToken().then(() => {
       let reaction: Reaction = null;
       for (const [_, reactions] of this.reactions.entries()) {
         const result = reactions.find(r => r._id === id);
@@ -80,9 +84,9 @@ export class ReactionService {
         }
       }
       if (reaction) {
-        resolve(reaction);
+        return Promise.resolve(reaction);
       } else {
-        this.http.get(env.apiUrl + 'reaction/' + id).subscribe((data: any) => resolve(data));
+        return new Promise(r => this.http.get(env.apiUrl + 'reaction/' + id).subscribe((data: any) => r(data)));
       }
     });
   }

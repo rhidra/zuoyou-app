@@ -18,7 +18,6 @@ export class ReactDetailComponent implements OnInit {
   reaction: Reaction;
   videoPlayer: VgAPI;
   host = env.mediaHost;
-  hasLiked: boolean = false;
   comment: string;
 
   constructor(
@@ -32,14 +31,15 @@ export class ReactDetailComponent implements OnInit {
     this.activatedRoute.params.subscribe(params => {
       const id = params.id;
       if (id) {
-        this.reactionService.get(id).then(reaction => {
-          this.reaction = reaction;
-          this.isLoading = false;
-          return this.authService.onAuthenticated();
-        }).then(() => this.reactionService.checkLike(this.reaction))
-          .then(liked => this.hasLiked = liked)
-          .catch(err => console.log(err));
-        this.commentService.searchByReaction(id).then(() => this.isLoadingComments = false);
+        this.authService.getToken()
+          .then(token => this.reactionService.get(id))
+          .then(reaction => {
+            this.reaction = reaction;
+            this.isLoading = false;
+            return Promise.resolve();
+          })
+          .then(() => this.commentService.searchByReaction(id))
+          .then(() => this.isLoadingComments = false);
       }
     });
   }
@@ -51,11 +51,12 @@ export class ReactDetailComponent implements OnInit {
 
   like() {
     this.authService.onAuthenticated(true).then(() => {
-      if (this.hasLiked) {
-        this.reactionService.unlike(this.reaction).then(() => this.hasLiked = false);
+      if (this.reaction.hasLiked) {
+        this.reactionService.unlike(this.reaction);
       } else {
-        this.reactionService.like(this.reaction).then(() => this.hasLiked = true);
+        this.reactionService.like(this.reaction);
       }
+      this.reaction.hasLiked = !this.reaction.hasLiked;
     });
   }
 

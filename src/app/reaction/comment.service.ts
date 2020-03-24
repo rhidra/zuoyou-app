@@ -3,7 +3,6 @@ import {HttpClient} from '@angular/common/http';
 import {environment as env} from '../../environments/environment';
 import {Comment} from '../models/comment.model';
 import {AuthService} from '../auth/auth.service';
-import {Reaction} from '../models/reaction.model';
 
 @Injectable({
   providedIn: 'root'
@@ -34,7 +33,7 @@ export class CommentService {
   }
 
   searchByTopic(idTopic: string): Promise<void> {
-    return this.authService.onAuthenticated().finally(() => {
+    return this.authService.getToken().then(() => {
       return new Promise<void>(resolve => {
         this.http.get(env.apiUrl + 'comment', {params: {populate: true, topic: idTopic}} as any).subscribe((data: any) => {
           this.topicsComments.set(idTopic, data);
@@ -45,7 +44,7 @@ export class CommentService {
   }
 
   searchByReaction(idReaction: string): Promise<void> {
-    return this.authService.onAuthenticated().finally(() => {
+    return this.authService.getToken().then(() => {
       return new Promise<void>(resolve => {
         this.http.get(env.apiUrl + 'comment', {params: {populate: true, reaction: idReaction}} as any).subscribe((data: any) => {
           this.reactionsComments.set(idReaction, data);
@@ -55,8 +54,8 @@ export class CommentService {
     });
   }
 
-  get(id: string): Promise<Comment> {
-    return new Promise<Comment>(resolve => {
+  get(id: string): Promise<any> {
+    return this.authService.getToken().then(() => {
       let comment: Comment = null;
       for (const map of [this.topicsComments, this.reactionsComments]) {
         for (const [_, comments] of map.entries()) {
@@ -69,9 +68,9 @@ export class CommentService {
         if (comment) { break; }
       }
       if (comment) {
-        resolve(comment);
+        return Promise.resolve(comment as any);
       } else {
-        this.http.get(env.apiUrl + 'comment/' + id).subscribe((data: any) => resolve(data));
+        return new Promise<Comment>(r => this.http.get(env.apiUrl + 'comment/' + id).subscribe((data: any) => r(data)));
       }
     });
   }

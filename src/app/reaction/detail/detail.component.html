@@ -18,7 +18,7 @@
         </ion-button>
       </div>
       <div>
-        <ion-button [ngClass]="{'liked': hasLiked}" (click)="like()">
+        <ion-button [ngClass]="{'liked': reaction.hasLiked}" (click)="like()">
           <ion-icon slot="icon-only" name="heart"></ion-icon>
         </ion-button>
       </div>

@@ -14,4 +14,5 @@ export class Reaction {
   likesCounter?: number;
   commentsCounter?: number;
   viewsCounter?: number;
+  hasLiked?: boolean;
 }

@@ -19,7 +19,6 @@ export class TopicComponent {
 
   currentSlide: number = 1;
   showRewind = true;
-  hasLiked = false;
   config = {
     pagination: '.swiper-pagination',
     spaceBetween: 0,
@@ -35,12 +34,6 @@ export class TopicComponent {
     private feedService: NewsFeedService,
     private reactionService: ReactionService,
   ) { }
-
-  init() {
-    this.authService.onAuthenticated().then(() => {
-      this.feedService.checkLike(this.topic).then(liked => this.hasLiked = liked);
-    }).catch(() => {});
-  }
 
   startViewing() {
     this.startPanel(this.currentSlide);
@@ -73,11 +66,12 @@ export class TopicComponent {
 
   like() {
     this.authService.onAuthenticated(true).then(() => {
-      if (this.hasLiked) {
-        this.feedService.unlike(this.topic).then(() => this.hasLiked = false);
+      if (this.topic.hasLiked) {
+        this.feedService.unlike(this.topic);
       } else {
-        this.feedService.like(this.topic).then(() => this.hasLiked = true);
+        this.feedService.like(this.topic);
       }
+      this.topic.hasLiked = !this.topic.hasLiked;
     });
   }
 

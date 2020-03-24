@@ -37,14 +37,6 @@ export class NewsFeedComponent implements OnInit {
     });
   }
 
-  ionViewDidEnter() {
-    // TODO: Find something more elegant
-    setTimeout(() => {
-      const topics = this.topicComponents.toArray();
-      topics.forEach(topic => topic.init());
-    }, 500);
-  }
-
   slideChanged(event) {
     const topics = this.topicComponents.toArray();
     this.slides.getActiveIndex().then(slideIndex => topics[slideIndex].startViewing());

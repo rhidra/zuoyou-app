@@ -16,6 +16,7 @@ export class Topic {
     viewsCounter?: number;
     commentsCounter?: number;
     clapbacksCounter?: number;
+    hasLiked?: boolean;
 }
 
 export class TopicPanel {

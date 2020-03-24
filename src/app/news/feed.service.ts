@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {Topic} from '../models/topic.model';
 import {environment as env} from '../../environments/environment';
+import {AuthService} from '../auth/auth.service';
 
 @Injectable({
   providedIn: 'root'
@@ -12,24 +13,25 @@ export class NewsFeedService {
 
   constructor(
       private http: HttpClient,
+      private authService: AuthService,
   ) { }
 
   load(): Promise<void> {
-    return new Promise((resolve, reject) => {
+    return this.authService.getToken().then(() => new Promise(resolve =>
       this.http.get(env.apiUrl + 'topic/', {params: {populate: true, approved: true}} as any).subscribe((data: any) => {
         this.topics = data;
         resolve();
-      }, reject);
-    });
+      })
+    ));
   }
 
   getTopic(id: string): Promise<Topic> {
-    return new Promise<Topic>(resolve => {
+    return this.authService.getToken().then(() => {
       const topic = this.topics.find(t => t._id === id);
       if (topic) {
-        resolve(topic);
+        return Promise.resolve(topic);
       } else {
-        this.http.get(env.apiUrl + 'topic/' + id).subscribe((data: Topic) => resolve(data));
+        return new Promise(r => this.http.get(env.apiUrl + 'topic/' + id).subscribe((data: Topic) => r(data)));
       }
     });
   }

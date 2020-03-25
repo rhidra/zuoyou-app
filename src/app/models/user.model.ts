@@ -4,9 +4,15 @@ export class User {
     email: string;
     phone: string;
     image: string;
+    description: string;
 
     level: string;
     verified: boolean;
 
     permissions: Array<string>;
+
+    viewsCounter?: number;
+    likesCounter?: number;
+    clapbacksCounter?: number;
+    commentsCounter?: number;
 }

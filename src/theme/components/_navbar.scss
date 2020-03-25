@@ -11,3 +11,9 @@ ion-header.transparent-gradient {
     visibility: visible;
   }
 }
+
+ion-header.app-navbar {
+  ion-toolbar {
+    --min-height: 40px;
+  }
+}

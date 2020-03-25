@@ -1,0 +1,23 @@
+.app-grid-main {
+  .header {
+    ion-avatar {
+      float: left;
+    }
+
+    ion-col {
+      @extend .margin-top;
+      @extend .margin-bottom-sm;
+      text-align: center;
+    }
+    h2 {
+      font-size: .9em;
+      font-weight: bold;
+      margin-bottom: 0;
+      margin-top: 0;
+
+    }
+    p {
+      font-size: .8em;
+    }
+  }
+}

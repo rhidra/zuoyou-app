@@ -1,0 +1,49 @@
+<ion-header class="app-navbar">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/"></ion-back-button>
+    </ion-buttons>
+    <ion-title *ngIf="!isLoading">{{user.name}}</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="app-grid-main full-height" *ngIf="!isLoading">
+  <div class="header">
+    <div class="margin-bottom">
+      <ion-avatar class="margin">
+        <img [src]="host + user.image" alt="Avatar"/>
+      </ion-avatar>
+
+      <ion-grid>
+        <ion-row>
+          <ion-col>
+            {{user.clapbacksCounter}}
+            <ion-icon class="fix-pos" color="primary" name="chatbubbles"></ion-icon><br/>
+            Clapbacks
+          </ion-col>
+          <ion-col>
+            {{user.viewsCounter}}
+            <ion-icon class="fix-pos" color="primary" name="eye"></ion-icon><br/>
+            Views
+          </ion-col>
+          <ion-col>
+            {{user.likesCounter}}
+            <ion-icon class="fix-pos" color="primary" name="heart"></ion-icon><br/>
+            Likes
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </div>
+    <h2 class="margin-left">
+      {{user.name}}
+      <ion-icon class="fix-pos" name="checkmark-circle-outline" *ngIf="user.verified"></ion-icon>
+    </h2>
+
+    <p class="margin-top-sm margin-left margin-right">
+      {{user.description}}
+    </p>
+  </div>
+
+</ion-content>
+
+<ion-spinner *ngIf="isLoading"></ion-spinner>

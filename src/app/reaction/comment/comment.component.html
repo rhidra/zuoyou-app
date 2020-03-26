@@ -19,7 +19,7 @@
       <ion-icon [name]="comment.hasLiked ? 'heart' : 'heart-empty'"></ion-icon>
     </div>
     <div class="comment-text">
-      {{comment.text}}
+      <span [innerHtml]="comment.text | italic | bold | nl2br"></span>
       <span class="comment-date">{{comment.date | date}}</span>
     </div>
   </ion-label>

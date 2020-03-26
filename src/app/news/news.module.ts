@@ -14,6 +14,8 @@ import {FontAwesomeModule} from '@fortawesome/angular-fontawesome';
 import {TopicComponent} from './topic/topic.component';
 import {NewsFeedService} from './feed.service';
 import {QuizService} from './quiz.service';
+import {UtilsModule} from '../utils/utils.module';
+import {Nl2BrPipeModule} from 'nl2br-pipe';
 
 
 @NgModule({
@@ -32,6 +34,8 @@ import {QuizService} from './quiz.service';
     VgOverlayPlayModule,
     VgBufferingModule,
     FontAwesomeModule,
+    UtilsModule,
+    Nl2BrPipeModule,
   ],
   providers: [
     NewsFeedService,

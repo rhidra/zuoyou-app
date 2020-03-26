@@ -13,6 +13,8 @@ import {VgControlsModule} from 'videogular2/compiled/src/controls/controls';
 import {VgBufferingModule} from 'videogular2/compiled/src/buffering/buffering';
 import {ReactCommentComponent} from './comment/comment.component';
 import {ReactAddCommentComponent} from './add-comment/add-comment.component';
+import {UtilsModule} from '../utils/utils.module';
+import {Nl2BrPipeModule} from 'nl2br-pipe';
 
 
 @NgModule({
@@ -31,7 +33,9 @@ import {ReactAddCommentComponent} from './add-comment/add-comment.component';
     VgCoreModule,
     VgControlsModule,
     VgBufferingModule,
-    FormsModule
+    FormsModule,
+    UtilsModule,
+    Nl2BrPipeModule
   ],
   providers: [
     ReactionService,

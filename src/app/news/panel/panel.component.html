@@ -28,8 +28,8 @@
   <div class="half-text full-height" *ngIf="type === 'text'">
     <ion-img *ngIf="panel.image" [src]="host + panel.image"></ion-img>
 
-    <p *ngIf="!tappingText || !panel.textAlt" [innerHTML]="panel.text">
-    <p *ngIf="tappingText && panel.textAlt" [innerHTML]="panel.textAlt">
+    <p *ngIf="!tappingText || !panel.textAlt" [innerHTML]="panel.text | italic | bold | nl2br">
+    <p *ngIf="tappingText && panel.textAlt" [innerHTML]="panel.textAlt | italic | bold | nl2br">
     </p>
   </div>
 
@@ -37,12 +37,12 @@
   <div class="full-height quiz-panel" *ngIf="type === 'quiz' && !isLoading">
     <h1 *ngIf="!quiz.isPoll" i18n><span>QUIZ</span></h1>
     <h1 *ngIf="quiz.isPoll" i18n><span>POLL</span></h1>
-    <h2><span class="padding-sm">{{quiz.question}}</span></h2>
-    <h3><span>{{quiz.content}}</span></h3>
+    <h2><span class="padding-sm">{{quiz.question | italic | bold}}</span></h2>
+    <h3><span>{{quiz.content | italic | bold}}</span></h3>
     <div class="quiz-buttons">
       <div *ngFor="let choice of quiz.choices">
         <ion-button class="btn-text margin-bottom" [ngClass]="quizChoice && quizChoice === choice._id ? 'btn-' + choice.color : ''" (click)="vote(choice._id)">
-          {{choice.text}}
+          {{choice.text | italic | bold}}
         </ion-button>
       </div>
     </div>

@@ -73,8 +73,8 @@
           {{reaction.commentsCounter}}
         </li>
         <li *ngIf="reaction.text">
-          <ion-icon class="fix-pos" color="medium" name="create"></ion-icon>
-          {{reaction.text}}
+          <ion-icon class="fix-pos" color="medium" name="create"></ion-icon> &nbsp;
+          <span [innerHTML]="reaction.text | italic | bold | nl2br"></span>
         </li>
       </ul>
 

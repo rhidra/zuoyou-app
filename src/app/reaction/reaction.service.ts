@@ -62,11 +62,22 @@ export class ReactionService {
     });
   }
 
-  search(idTopic: string): Promise<void> {
+  searchByTopic(idTopic: string): Promise<void> {
     return this.authService.getToken().then(() => {
       return new Promise<void>(resolve => {
         this.http.get(env.apiUrl + 'reaction', {params: {populate: true, topic: idTopic}} as any).subscribe((data: any) => {
-          this.reactions.set(idTopic, data);
+          this.reactions.set('topic-' + idTopic, data);
+          resolve();
+        });
+      });
+    });
+  }
+
+  searchByUser(idUser: string): Promise<void> {
+    return this.authService.getToken().then(() => {
+      return new Promise<void>(resolve => {
+        this.http.get(env.apiUrl + 'reaction', {params: {user: idUser}} as any).subscribe((data: any) => {
+          this.reactions.set('user-' + idUser, data);
           resolve();
         });
       });

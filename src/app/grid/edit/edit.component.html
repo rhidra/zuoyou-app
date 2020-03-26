@@ -1,0 +1,28 @@
+<ion-header class="app-navbar">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/"></ion-back-button>
+    </ion-buttons>
+    <ion-title i18n>Edit profile</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <form [formGroup]="form" *ngIf="!isLoading">
+    <ion-list>
+
+      <app-image-upload formControlName="image"></app-image-upload>
+
+      <ion-item>
+        <ion-label position="floating" i18n>Name</ion-label>
+        <ion-input formControlName="name"></ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-label position="floating" i18n>Bio</ion-label>
+        <ion-textarea rows="6" formControlName="description"></ion-textarea>
+      </ion-item>
+    </ion-list>
+  </form>
+  <ion-spinner *ngIf="isLoading"></ion-spinner>
+</ion-content>

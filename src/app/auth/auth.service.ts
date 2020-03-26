@@ -101,6 +101,16 @@ export class AuthService {
     timer();
   }
 
+  editUser(user: User): Promise<any> {
+    Object.assign(this.user, user);
+    if (this.platform.is('hybrid')) {
+      return this.storage.setItem('user', user);
+    } else {
+      this.storageDev.set('user', this.user);
+      return Promise.resolve();
+    }
+  }
+
   login(phone: string, code: string) {
     return new Promise((resolve, reject) => {
       this.http.post(env.apiUrl + 'auth/phone/login', {id: this.pendingId, phone, code}).subscribe((res: any) => {

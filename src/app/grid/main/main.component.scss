@@ -8,6 +8,13 @@
       @extend .margin-top;
       @extend .margin-bottom-sm;
       text-align: center;
+
+      span.counter {
+        font-weight: bold;
+      }
+      span.text {
+        font-size: 1em;
+      }
     }
     h2 {
       font-size: .9em;
@@ -18,6 +25,14 @@
     }
     p {
       font-size: .8em;
+    }
+  }
+
+  ion-grid.reactions {
+    padding: 0;
+
+    ion-col {
+      padding: 1px 1px;
     }
   }
 }

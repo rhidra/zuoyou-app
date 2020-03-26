@@ -15,13 +15,13 @@
 <ion-content class="app-reaction-search">
   <ion-grid *ngIf="!isLoading">
     <ion-row>
-      <ion-col size="6" *ngFor="let reaction of reactionService.reactions.get(idTopic)">
+      <ion-col size="6" *ngFor="let reaction of reactionService.reactions.get('topic-' + idTopic)">
         <div class="img-card" [routerLink]="['/', 'reaction', 'detail', reaction._id]">
           <img [src]="host + reaction.video + '?thumbnail'" alt="" class="full-width"/>
 
           <div class="card-footer">
             <ion-avatar class="avatar">
-              <img [src]="host + reaction.user.image" alt="Avatar">
+              <img [src]="reaction.user.image ? (host + reaction.user.image) : '/assets/img/avatar.png'" alt="Avatar">
             </ion-avatar>
             <div class="content">
               {{reaction.text.length > 100 ? (reaction.text | slice:0:100) + '...' : reaction.text}}

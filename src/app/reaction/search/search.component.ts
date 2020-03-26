@@ -24,7 +24,7 @@ export class ReactSearchComponent implements OnInit {
     this.activatedRoute.params.subscribe(params => {
       this.idTopic = params.idTopic;
       if (this.idTopic) {
-        this.reactionService.search(this.idTopic).then(() => this.isLoading = false);
+        this.reactionService.searchByTopic(this.idTopic).then(() => this.isLoading = false);
         this.commentService.searchByTopic(this.idTopic);
       }
     });

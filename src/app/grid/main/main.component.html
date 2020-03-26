@@ -44,7 +44,7 @@
       <ion-icon class="fix-pos" name="checkmark-circle-outline" *ngIf="user.verified"></ion-icon>
     </h2>
 
-    <p [innerHTML]="user.description | bold | italic | nl2br" class="margin-top-sm margin-left margin-right">
+    <p [innerHTML]="user.description | bold | italic | hashtag | nl2br" class="margin-top-sm margin-left margin-right">
     </p>
   </div>
 

@@ -6,6 +6,7 @@ import {ImageUploadComponent} from './image-upload/image-upload.component';
 import {IonicModule} from '@ionic/angular';
 import { BoldPipe } from './bold.pipe';
 import { ItalicPipe } from './italic.pipe';
+import { HashtagPipe } from './hashtag.pipe';
 
 
 @NgModule({
@@ -13,11 +14,13 @@ import { ItalicPipe } from './italic.pipe';
     ImageUploadComponent,
     BoldPipe,
     ItalicPipe,
+    HashtagPipe,
   ],
   exports: [
     ImageUploadComponent,
     BoldPipe,
-    ItalicPipe
+    ItalicPipe,
+    HashtagPipe
   ],
   imports: [
     CommonModule,

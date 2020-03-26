@@ -28,8 +28,8 @@
   <div class="half-text full-height" *ngIf="type === 'text'">
     <ion-img *ngIf="panel.image" [src]="host + panel.image"></ion-img>
 
-    <p *ngIf="!tappingText || !panel.textAlt" [innerHTML]="panel.text | italic | bold | nl2br">
-    <p *ngIf="tappingText && panel.textAlt" [innerHTML]="panel.textAlt | italic | bold | nl2br">
+    <p *ngIf="!tappingText || !panel.textAlt" [innerHTML]="panel.text | italic | bold | hashtag | nl2br">
+    <p *ngIf="tappingText && panel.textAlt" [innerHTML]="panel.textAlt | italic | bold | hashtag | nl2br">
     </p>
   </div>
 

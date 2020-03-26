@@ -1,6 +1,6 @@
 <div class="reaction-comment">
   <ion-avatar>
-    <img [src]="host + comment.user.image" alt="Avatar"/>
+    <img [src]="comment.user.image ? (host + comment.user.image) : '/assets/img/avatar.png'" alt="Avatar"/>
   </ion-avatar>
 
   <ion-label>

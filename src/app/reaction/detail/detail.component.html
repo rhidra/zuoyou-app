@@ -50,7 +50,7 @@
       
       <div class="video-name">
         <ion-avatar>
-          <img [src]="host + reaction.user.image" alt="Avatar">
+          <img [src]="reaction.user.image ? (host + reaction.user.image) : '/assets/img/avatar.png'" alt="Avatar">
         </ion-avatar>
         <div class="margin-left-sm">
           <span>{{reaction.user.name}}</span>

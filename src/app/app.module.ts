@@ -21,6 +21,7 @@ import {FileChooser} from '@ionic-native/file-chooser/ngx';
 import {File} from '@ionic-native/file/ngx';
 import {FilePath} from '@ionic-native/file-path/ngx';
 import {ReactionService} from './reaction/reaction.service';
+import {LocalNotifications} from '@ionic-native/local-notifications/ngx';
 
 @NgModule({
   declarations: [AppComponent],
@@ -41,6 +42,7 @@ import {ReactionService} from './reaction/reaction.service';
     File, // TODO: Make a mock for File plugin
     FileChooser, // TODO: Make a mock for FileChooser plugin
     FilePath, // TODO: Make a mock for FilePath plugin
+    LocalNotifications,
     { provide: MediaCapture, useClass: window.hasOwnProperty('cordova') ? MediaCapture : MediaCaptureMock },
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
     { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true },

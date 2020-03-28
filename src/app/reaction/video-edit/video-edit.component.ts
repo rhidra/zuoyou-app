@@ -11,6 +11,7 @@ import {ActivatedRoute} from '@angular/router';
 import {File} from '@ionic-native/file/ngx';
 import {Topic} from '../../models/topic.model';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
+import {LocalNotifications} from '@ionic-native/local-notifications/ngx';
 declare var FileTransferManager: any;
 
 @Component({
@@ -36,6 +37,7 @@ export class ReactVideoEditComponent implements OnInit {
     private feedService: NewsFeedService,
     private toastCtrl: ToastController,
     private loadingCtrl: LoadingController,
+    private notifications: LocalNotifications,
   ) { }
 
   ngOnInit() {
@@ -60,18 +62,14 @@ export class ReactVideoEditComponent implements OnInit {
     this.authService.onAuthenticated(true).then(() => {
       const uploader = FileTransferManager.init();
 
-      uploader.on('success', (upload) => this.uploadDone(JSON.parse(upload.serverResponse).filename));
-
-      uploader.on('progress', (upload) => {
-        console.log('uploading: ' + upload.id + ' progress: ' + upload.progress + '%');
+      uploader.on('success', (upload) => {
+        if (upload.state === 'UPLOADED') {
+          this.uploadDone(JSON.parse(upload.serverResponse).filename);
+        }
       });
 
       uploader.on('error', (uploadException) => {
-        if (uploadException.id) {
-          console.log('upload: ' + uploadException.id + ' has failed');
-        } else {
-          console.error('uploader caught an error: ' + uploadException.error);
-        }
+        this.notifications.schedule({id: 1, title: 'Error: Clapback not uploaded !'});
       });
 
       uploader.startUpload({
@@ -99,7 +97,6 @@ export class ReactVideoEditComponent implements OnInit {
     this.reaction.topic = this.topic._id;
 
     return this.reactionService.create(this.reaction)
-      .then(reaction => this.toastCtrl.create({message: 'Clapback successfully published !', duration: 2000}))
-      .then(toast => toast.present());
+      .then(() => this.notifications.schedule({id: 1, title: 'Clapback successfully published !'}));
   }
 }

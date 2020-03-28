@@ -1,11 +1,11 @@
 <div class="reaction-comment">
-  <ion-avatar>
+  <ion-avatar [routerLink]="['/', 'grid', comment.user._id]" class="pointer">
     <img [src]="comment.user.image ? (host + comment.user.image) : '/assets/img/avatar.png'" alt="Avatar"/>
   </ion-avatar>
 
   <ion-label>
     <h2>
-      {{comment.user.name}}
+      <span [routerLink]="['/', 'grid', comment.user._id]" class="pointer">{{comment.user.name}}</span>
       <!-- TODO: Add badges -->
       <ion-icon class="fix-pos" name="checkmark-circle-outline" *ngIf="comment.user.verified"></ion-icon>
 

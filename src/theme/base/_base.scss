@@ -12,8 +12,13 @@
   overflow: hidden;
 }
 
+// TODO: Put this in a more appropriate file
 span.hastag {
   color: blue;
+}
+
+.pointer {
+  cursor: pointer;
 }
 
 .margin-sm { margin: offset-level(1) !important; }

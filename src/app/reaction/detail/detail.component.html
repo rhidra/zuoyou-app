@@ -48,7 +48,7 @@
 
     <div class="video-footer">
       
-      <div class="video-name">
+      <div class="video-name pointer" [routerLink]="['/', 'grid', reaction.user._id]">
         <ion-avatar>
           <img [src]="reaction.user.image ? (host + reaction.user.image) : '/assets/img/avatar.png'" alt="Avatar">
         </ion-avatar>

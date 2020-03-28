@@ -11,6 +11,7 @@ import {ActivatedRoute} from '@angular/router';
 import {File} from '@ionic-native/file/ngx';
 import {Topic} from '../../models/topic.model';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
+declare var FileTransferManager: any;
 
 @Component({
   selector: 'app-video-edit',
@@ -56,34 +57,49 @@ export class ReactVideoEditComponent implements OnInit {
   }
 
   onSubmit() {
-    this.loading.present();
-    const directory = this.mediaUrl.substring(0, this.mediaUrl.lastIndexOf('/'));
-    const name = this.mediaUrl.substring(this.mediaUrl.lastIndexOf('/') + 1);
+    this.authService.onAuthenticated(true).then(() => {
+      const uploader = FileTransferManager.init();
 
-    this.file.readAsArrayBuffer(directory, name)
-      .then((data: ArrayBuffer) => new Promise(resolve => {
-        const blob = new Blob([data], {type: 'video/mp4'});
-        const uploadData = new FormData();
-        uploadData.append('media', blob, name);
-        this.http.post(env.apiUrl + 'media', uploadData, {reportProgress: true, observe: 'events'}).subscribe((r: any) => {
-          if (r.type === HttpEventType.Response) {
-            resolve(r.body.filename);
-          }
-        });
+      uploader.on('success', (upload) => this.uploadDone(JSON.parse(upload.serverResponse).filename));
 
-      })).then((filename: string) => {
-        this.reaction = new Reaction();
-        this.reaction.date = moment().toISOString();
-        this.reaction.video = filename;
-        this.reaction.text = this.form.value.text;
-        this.reaction.user = this.authService.user._id;
-        this.reaction.topic = this.topic._id;
-        return this.reactionService.create(this.reaction);
-
-      }).then(reaction => {
-        this.loading.dismiss();
-        this.toastCtrl.create({message: 'Clapback successfully published !', duration: 1000}).then(toast => toast.present());
-        this.navCtrl.navigateBack(['/']);
+      uploader.on('progress', (upload) => {
+        console.log('uploading: ' + upload.id + ' progress: ' + upload.progress + '%');
       });
+
+      uploader.on('error', (uploadException) => {
+        if (uploadException.id) {
+          console.log('upload: ' + uploadException.id + ' has failed');
+        } else {
+          console.error('uploader caught an error: ' + uploadException.error);
+        }
+      });
+
+      uploader.startUpload({
+        id: this.authService.user._id + this.topic._id,
+        filePath: this.mediaUrl,
+        fileKey: 'media',
+        serverUrl: env.apiUrl + 'media',
+        showNotification: true,
+        notificationTitle: 'Uploading clapback ...',
+        headers: {
+          Authorization: `Bearer ${this.authService.accessToken}`,
+        }
+      });
+
+      this.navCtrl.navigateRoot('/');
+    });
+  }
+
+  uploadDone(filename: string) {
+    this.reaction = new Reaction();
+    this.reaction.date = moment().toISOString();
+    this.reaction.video = filename;
+    this.reaction.text = this.form.value.text;
+    this.reaction.user = this.authService.user._id;
+    this.reaction.topic = this.topic._id;
+
+    return this.reactionService.create(this.reaction)
+      .then(reaction => this.toastCtrl.create({message: 'Clapback successfully published !', duration: 2000}))
+      .then(toast => toast.present());
   }
 }

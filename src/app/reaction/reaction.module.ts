@@ -38,7 +38,6 @@ import {Nl2BrPipeModule} from 'nl2br-pipe';
     Nl2BrPipeModule
   ],
   providers: [
-    ReactionService,
   ],
 })
 export class ReactionModule { }

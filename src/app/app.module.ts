@@ -20,6 +20,7 @@ import {MediaCaptureMock} from '../mocks/media-capture';
 import {FileChooser} from '@ionic-native/file-chooser/ngx';
 import {File} from '@ionic-native/file/ngx';
 import {FilePath} from '@ionic-native/file-path/ngx';
+import {ReactionService} from './reaction/reaction.service';
 
 @NgModule({
   declarations: [AppComponent],
@@ -33,6 +34,7 @@ import {FilePath} from '@ionic-native/file-path/ngx';
     FontAwesomeModule,
   ],
   providers: [
+    ReactionService,
     StatusBar,
     SplashScreen,
     NativeStorage,

@@ -1,41 +1,45 @@
 $size-sm: 45px;
 $size-lg: 60px;
 
+@mixin button-colors($color: primary) {
+  --background: var(--ion-color-#{$color});
+  --background-activated: var(--ion-color-#{$color});
+  --background-focused: var(--ion-color-#{$color}-shade);
+  --background-hover: var(--ion-color-#{$color}-shade);
+  --color: var(--ion-color-#{$color}-contrast);
+  --color-activated: var(--ion-color-#{$color}-contrast);
+}
+
 ion-button.btn-icon-small {
   width: $size-sm;
   height: $size-sm;
   font-size: 11px; // TODO: Put in variable
   padding-bottom: offset-level(1);
-  --color: black;
-  --color-activated: #353535; // TODO: Put in variable
-  --background: #DDDDDDA0; // TODO: Put in variable
+  --opacity: .6;
+  @include button-colors(medium);
   --border-radius: 32px;
 
   &.liked {
-    --background: var(--ion-color-primary);
-    --color: var(--ion-color-primary-contrast);
-    --color-activated: var(--ion-color-light);
+    --opacity: 1;
+    @include button-colors(primary);
   }
 }
 
 ion-button.btn-small-text {
   height: 24px;
-  --background: white;
+  @include button-colors(light);
+  --color: var(--ion-color-primary);
   font-size: .7em; // TODO: Put in variable
   letter-spacing: 0.2px; // TODO: Put in variable
   --padding-end: 10px;
   --padding-start: 10px;
-  --color: var(--ion-color-primary);
-  --color-activated: var(--ion-color-primary-shade);
   --border-radius: 16px;
   --box-shadow: black 2px 2px 6px;
   text-transform: none;
 }
 
 ion-button.btn-text {
-  --background: white;
-  --color: black;
-  --color-activated: black;
+  @include button-colors(light);
   min-width: 200px;
   --border-radius: 20px;
   text-transform: inherit;
@@ -48,12 +52,11 @@ ion-button.btn-icon-large {
   font-size: 15px; // TODO: Put in variable
 }
 
-ion-button.btn-red {--background: red; color: white;}
-ion-button.btn-green {--background: green; color: white;}
-ion-button.btn-blue {--background: blue; color: white;}
-ion-button.btn-orange {--background: orange; color: white;}
-ion-button.btn-purple {--background: purple; color: white;}
-ion-button.btn-black {--background: black; color: white;}
-ion-button.btn-white {--background: white; color: black;}
-ion-button.btn-yellow {--background: yellow; color: white;}
-ion-button.btn-grey {--background: grey; color: white;}
+ion-button.btn-red { @include button-colors(primary); }
+ion-button.btn-green { @include button-colors(success); }
+ion-button.btn-white { @include button-colors(light); }
+ion-button.btn-yellow { @include button-colors(warning); }
+ion-button.btn-black { @include button-colors(dark); }
+ion-button.btn-purple { @include button-colors(purple); }
+ion-button.btn-blue { @include button-colors(secondary); }
+ion-button.btn-grey { @include button-colors(medium); }

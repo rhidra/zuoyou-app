@@ -49,9 +49,6 @@
   z-index: 11;
   position: absolute;
   bottom: 5%;
-  ion-button {
-    @extend .btn-small-text;
-  }
 }
 
 .full-video-fab {

@@ -6,10 +6,28 @@ import {environment as env} from '../../../environments/environment';
 import {VgAPI} from 'videogular2/compiled/src/core/services/vg-api';
 import {AuthService} from '../../auth/auth.service';
 import {CommentService} from '../comment.service';
+import {animate, keyframes, state, style, transition, trigger} from '@angular/animations';
 
 @Component({
   selector: 'app-reaction-detail',
   templateUrl: './detail.component.html',
+  animations: [
+    trigger('heart', [
+      state('liked', style({
+        transform: 'scale(0)',
+        opacity: 1,
+      })),
+      transition('* => liked', [
+        animate('1200ms ease-in-out', keyframes([
+          style({transform: 'scale(0%)', opacity: 1, offset: 0}),
+          style({transform: 'scale(700%)', opacity: 1, offset: .2}),
+          style({transform: 'scale(600%)', opacity: 1, offset: .4}),
+          style({transform: 'scale(600%)', opacity: 1, offset: .8}),
+          style({transform: 'scale(600%)', opacity: 0, offset: 1}),
+        ]))
+      ])
+    ])
+  ]
 })
 export class ReactDetailComponent implements OnInit {
 
@@ -19,6 +37,7 @@ export class ReactDetailComponent implements OnInit {
   videoPlayer: VgAPI;
   host = env.mediaHost;
   comment: string;
+  heartState: string = 'notLiked';
 
   constructor(
     private activatedRoute: ActivatedRoute,
@@ -57,6 +76,7 @@ export class ReactDetailComponent implements OnInit {
         this.reactionService.like(this.reaction);
       }
       this.reaction.hasLiked = !this.reaction.hasLiked;
+      this.heartState = this.reaction.hasLiked ? 'liked' : 'notLiked';
     });
   }
 

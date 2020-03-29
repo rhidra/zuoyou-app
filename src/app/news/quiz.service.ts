@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import {environment as env} from '../../environments/environment';
 import {HttpClient} from '@angular/common/http';
-import {Quiz, QuizChoice} from '../models/quiz.model';
+import {Quiz, QuizChoice, QuizResult} from '../models/quiz.model';
 
 @Injectable({
   providedIn: 'root'
@@ -30,6 +30,12 @@ export class QuizService {
     if (!quiz || !choiceId) { return new Promise<any>(null); }
     return new Promise(resolve => {
       this.http.post(env.apiUrl + 'quiz/vote/' + quiz._id, {choice: choiceId}).subscribe(data => resolve(data));
+    });
+  }
+
+  getResults(idQuiz: string): Promise<Array<QuizResult>> {
+    return new Promise(resolve => {
+      this.http.get(env.apiUrl + 'quiz/vote/' + idQuiz + '/results').subscribe((data: any) => resolve(data));
     });
   }
 }

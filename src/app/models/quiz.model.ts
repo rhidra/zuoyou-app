@@ -14,3 +14,8 @@ export class QuizChoice {
   color: string;
   goodAnswer: boolean;
 }
+
+export class QuizResult {
+  choice: string;
+  count: number;
+}

@@ -2,7 +2,7 @@ import {Component, HostListener, Input, NgZone, OnInit} from '@angular/core';
 import {VgAPI} from 'videogular2/compiled/src/core/services/vg-api';
 import {TopicPanel} from '../../models/topic.model';
 import {QuizService} from '../quiz.service';
-import {Quiz} from '../../models/quiz.model';
+import {Quiz, QuizResult} from '../../models/quiz.model';
 import {AuthService} from '../../auth/auth.service';
 import {environment as env} from '../../../environments/environment';
 
@@ -30,6 +30,7 @@ export class PanelComponent implements OnInit {
   videoPlayer: VgAPI = null;
   quiz: Quiz;
   quizChoice: string;
+  quizResults: Array<QuizResult>;
   isActive = false;
   isLoading = false;
   host = env.mediaHost;
@@ -88,15 +89,19 @@ export class PanelComponent implements OnInit {
       this.quiz = quiz;
       this.isLoading = false;
     });
-    this.authService.onAuthenticated().then(() => {
-      this.quizService.getVote(this.panel.quiz).then(quizChoice => this.quizChoice = quizChoice);
-    }).catch(() => {});
+    this.authService.onAuthenticated()
+      .then(() => this.quizService.getVote(this.panel.quiz))
+      .then(quizChoice => this.quizChoice = quizChoice)
+      .then(() => this.quizChoice ? this.quizService.getResults(this.panel.quiz) : null)
+      .then(results => this.quizResults = results)
+      .catch(() => {});
   }
 
   vote(choiceId: string) {
-    this.authService.onAuthenticated(true).then(() => {
-      this.quizChoice = choiceId;
-      this.quizService.vote(this.quiz, choiceId);
-    });
+    this.authService.onAuthenticated(true)
+      .then(() => this.quizChoice = choiceId)
+      .then(() => this.quizService.vote(this.quiz, choiceId))
+      .then(() => this.quizService.getResults(this.quiz._id))
+      .then(results => this.quizResults = results);
   }
 }

@@ -22,12 +22,14 @@ import {File} from '@ionic-native/file/ngx';
 import {FilePath} from '@ionic-native/file-path/ngx';
 import {ReactionService} from './reaction/reaction.service';
 import {LocalNotifications} from '@ionic-native/local-notifications/ngx';
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 
 @NgModule({
   declarations: [AppComponent],
   entryComponents: [],
   imports: [
     BrowserModule,
+    BrowserAnimationsModule,
     HttpClientModule,
     IonicModule.forRoot(),
     AppRoutingModule,

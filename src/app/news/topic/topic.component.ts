@@ -1,4 +1,5 @@
-import {Component, Input, OnInit, QueryList, ViewChild, ViewChildren} from '@angular/core';
+import {Component, Input, QueryList, ViewChild, ViewChildren} from '@angular/core';
+import {animate, keyframes, state, style, transition, trigger} from '@angular/animations';
 import {Topic} from '../../models/topic.model';
 import {PanelComponent} from '../panel/panel.component';
 import {SwiperComponent} from 'angular2-useful-swiper';
@@ -9,6 +10,23 @@ import {ReactionService} from '../../reaction/reaction.service';
 @Component({
   selector: 'app-news-topic',
   templateUrl: './topic.component.html',
+  animations: [
+    trigger('heart', [
+      state('liked', style({
+        transform: 'scale(0)',
+        opacity: 1,
+      })),
+      transition('* => liked', [
+        animate('1200ms ease-in-out', keyframes([
+          style({transform: 'scale(0%)', opacity: 1, offset: 0}),
+          style({transform: 'scale(700%)', opacity: 1, offset: .2}),
+          style({transform: 'scale(600%)', opacity: 1, offset: .4}),
+          style({transform: 'scale(600%)', opacity: 1, offset: .8}),
+          style({transform: 'scale(600%)', opacity: 0, offset: 1}),
+        ]))
+      ])
+    ])
+  ]
 })
 export class TopicComponent {
 
@@ -18,6 +36,7 @@ export class TopicComponent {
   @ViewChildren(PanelComponent) newsPanel: QueryList<PanelComponent>;
 
   currentSlide: number = 1;
+  heartState: string = 'notLiked';
   showRewind = true;
   config = {
     pagination: '.swiper-pagination',
@@ -72,6 +91,7 @@ export class TopicComponent {
         this.feedService.like(this.topic);
       }
       this.topic.hasLiked = !this.topic.hasLiked;
+      this.heartState = this.topic.hasLiked ? 'liked' : 'notLiked';
     });
   }
 

@@ -21,6 +21,7 @@ ion-button.btn-icon-small {
 
   &.liked {
     --opacity: 1;
+    @include scale-bounce(1.2, 300ms);
     @include button-colors(primary);
   }
 }
@@ -52,11 +53,12 @@ ion-button.btn-icon-large {
   font-size: 15px; // TODO: Put in variable
 }
 
-ion-button.btn-red { @include button-colors(primary); }
-ion-button.btn-green { @include button-colors(success); }
-ion-button.btn-white { @include button-colors(light); }
-ion-button.btn-yellow { @include button-colors(warning); }
-ion-button.btn-black { @include button-colors(dark); }
-ion-button.btn-purple { @include button-colors(purple); }
-ion-button.btn-blue { @include button-colors(secondary); }
-ion-button.btn-grey { @include button-colors(medium); }
+$sb: 1.03;
+ion-button.btn-red { @include button-colors(primary); @include scale-bounce($sb);}
+ion-button.btn-green { @include button-colors(success); @include scale-bounce($sb);}
+ion-button.btn-white { @include button-colors(light); @include scale-bounce($sb);}
+ion-button.btn-yellow { @include button-colors(warning); @include scale-bounce($sb);}
+ion-button.btn-black { @include button-colors(dark); @include scale-bounce($sb);}
+ion-button.btn-purple { @include button-colors(purple); @include scale-bounce($sb);}
+ion-button.btn-blue { @include button-colors(secondary); @include scale-bounce($sb);}
+ion-button.btn-grey { @include button-colors(medium); @include scale-bounce($sb);}

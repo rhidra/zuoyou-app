@@ -13,9 +13,5 @@ export class QuizChoice {
   text: string;
   color: string;
   goodAnswer: boolean;
-}
-
-export class QuizResult {
-  choice: string;
-  count: number;
+  count?: number;
 }

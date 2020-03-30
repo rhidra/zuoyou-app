@@ -148,3 +148,14 @@
     background-color: rgba(0, 0, 0, $opacity);
   }
 }
+
+/// Set the background color of an Ionic button
+/// @param {color} string of the Ionic variable color to use
+@mixin button-colors($color: primary) {
+  --background: var(--ion-color-#{$color});
+  --background-activated: var(--ion-color-#{$color});
+  --background-focused: var(--ion-color-#{$color}-shade);
+  --background-hover: var(--ion-color-#{$color}-shade);
+  --color: var(--ion-color-#{$color}-contrast);
+  --color-activated: var(--ion-color-#{$color}-contrast);
+}

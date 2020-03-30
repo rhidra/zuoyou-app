@@ -1,15 +1,6 @@
 $size-sm: 45px;
 $size-lg: 60px;
 
-@mixin button-colors($color: primary) {
-  --background: var(--ion-color-#{$color});
-  --background-activated: var(--ion-color-#{$color});
-  --background-focused: var(--ion-color-#{$color}-shade);
-  --background-hover: var(--ion-color-#{$color}-shade);
-  --color: var(--ion-color-#{$color}-contrast);
-  --color-activated: var(--ion-color-#{$color}-contrast);
-}
-
 ion-button.btn-icon-small {
   width: $size-sm;
   height: $size-sm;
@@ -39,26 +30,9 @@ ion-button.btn-small-text {
   text-transform: none;
 }
 
-ion-button.btn-text {
-  @include button-colors(light);
-  min-width: 200px;
-  --border-radius: 20px;
-  text-transform: inherit;
-}
-
 ion-button.btn-icon-large {
   width: $size-lg;
   height: $size-lg;
   --border-radius: 43px;
   font-size: 15px; // TODO: Put in variable
 }
-
-$sb: 1.03;
-ion-button.btn-red { @include button-colors(primary); @include scale-bounce($sb);}
-ion-button.btn-green { @include button-colors(success); @include scale-bounce($sb);}
-ion-button.btn-white { @include button-colors(light); @include scale-bounce($sb);}
-ion-button.btn-yellow { @include button-colors(warning); @include scale-bounce($sb);}
-ion-button.btn-black { @include button-colors(dark); @include scale-bounce($sb);}
-ion-button.btn-purple { @include button-colors(purple); @include scale-bounce($sb);}
-ion-button.btn-blue { @include button-colors(secondary); @include scale-bounce($sb);}
-ion-button.btn-grey { @include button-colors(medium); @include scale-bounce($sb);}

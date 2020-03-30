@@ -1,0 +1,89 @@
+@import '../../../theme/base/colors';
+
+.quiz-panel {
+  background-image: url("/assets/img/bg.png");
+  background-size: contain;
+  color: white;
+
+  h1, h2, h3 {
+    @extend .margin-left;
+    text-transform: uppercase;
+    text-align: left;
+    @include linear-animation(300ms);
+    span {
+      background: var(--ion-color-primary);
+    }
+  }
+  h1 {
+    margin-top: 50px;
+    &.results {margin-top: 30px;}
+  }
+  h2 {
+    font-size: 1.6em; // TODO: Put in variable
+    margin-top: 15%;
+    &.results {margin-top: 0;}
+  }
+  h3 {
+    font-size: .8em; // TODO: Put in variable
+    &.results {margin-top: 0;}
+  }
+
+  .quiz-choices {
+    position: relative;
+    margin-top: 10%;
+    width: 100%;
+    @include ease-in-animation();
+
+    ion-card {
+      @include ease-in-animation();
+      --background: white;
+      position: relative;
+      overflow: hidden;
+      &.not-choosen {
+        transform: scale(.9);
+        opacity: .9;
+      }
+
+      ion-card-header {
+        background: transparent;
+        ion-card-title {
+          text-align: left;
+          font-size: 1.2em;
+          span.counter {
+            font-size: .8em;
+            float: right;
+            color: var(--ion-color-medium-shade);
+          }
+        }
+      }
+
+      ion-card-content {
+        text-align: left;
+        font-size: .8em;
+        padding-top: 0;
+        line-height: 1.2em;
+        ion-range {
+          padding: 0;
+          height: 10px;
+          --bar-height: 4px;
+          pointer-events: none;
+        }
+      }
+
+      span.bar {
+        @include ease-in-animation(1000ms);
+        display: block;
+        height: 100%;
+        position: absolute;
+
+        @each $color, $color_ionic in $colors {
+          &.bg-#{"" + $color} {
+            background: rgba(var(--ion-color-#{$color_ionic}-rgb), .5);
+            border-right: 3px solid rgba(var(--ion-color-#{$color_ionic}-rgb), .8);
+          }
+
+        }
+      }
+    }
+  }
+}

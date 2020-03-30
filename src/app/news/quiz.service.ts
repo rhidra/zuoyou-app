@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import {environment as env} from '../../environments/environment';
 import {HttpClient} from '@angular/common/http';
-import {Quiz, QuizChoice, QuizResult} from '../models/quiz.model';
+import {Quiz, QuizChoice} from '../models/quiz.model';
 
 @Injectable({
   providedIn: 'root'
@@ -33,7 +33,7 @@ export class QuizService {
     });
   }
 
-  getResults(idQuiz: string): Promise<Array<QuizResult>> {
+  getResults(idQuiz: string): Promise<Array<any>> {
     return new Promise(resolve => {
       this.http.get(env.apiUrl + 'quiz/vote/' + idQuiz + '/results').subscribe((data: any) => resolve(data));
     });

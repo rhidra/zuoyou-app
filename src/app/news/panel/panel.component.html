@@ -35,16 +35,24 @@
 
   <!-- QUIZ -->
   <div class="full-height quiz-panel" *ngIf="type === 'quiz' && !isLoading">
-    <h1 *ngIf="!quiz.isPoll" i18n><span>QUIZ</span></h1>
-    <h1 *ngIf="quiz.isPoll" i18n><span>POLL</span></h1>
-    <h2><span class="padding-sm">{{quiz.question | italic | bold}}</span></h2>
-    <h3><span>{{quiz.content | italic | bold}}</span></h3>
-    <div class="quiz-buttons">
-      <div *ngFor="let choice of quiz.choices">
-        <ion-button class="btn-text margin-bottom" [ngClass]="quizChoice && quizChoice === choice._id ? 'btn-' + choice.color : ''" (click)="vote(choice._id)">
-          {{choice.text | italic | bold}}
-        </ion-button>
-      </div>
+    <h1  i18n [ngClass]="{results: quizChoice && !quiz.isPoll}">
+      <span *ngIf="!quiz.isPoll">QUIZ</span>
+      <span *ngIf="quiz.isPoll">POLL</span>
+    </h1>
+    <h2 [ngClass]="{results: quizChoice && !quiz.isPoll}"><span class="padding-sm">{{quiz.question | italic | bold}}</span></h2>
+    <h3 [ngClass]="{results: quizChoice && !quiz.isPoll}"><span>{{quiz.content | italic | bold}}</span></h3>
+
+    <div class="quiz-choices" [ngClass]="{results: quizChoice}">
+      <ion-card *ngFor="let choice of quiz.choices" (click)="quizChoice ? '' : vote(choice._id)" class="margin-bottom ion-activatable pointer" [ngClass]="{'not-choosen': quizChoice && quizChoice !== choice._id}">
+        <ion-ripple-effect></ion-ripple-effect>
+        <span class="bar bg-{{choice.color}}" [ngStyle]="{width: (choice.count*100/maxCount || 0) + '%'}"></span>
+        <ion-card-header class="padding-bottom padding-top">
+          <ion-card-title>
+            {{choice.text | italic | bold}}
+            <span class="counter" *ngIf="quizChoice">{{choice.count*100/maxCount | number:'1.0-0'}}% - {{choice.count}}/{{maxCount}}</span>
+          </ion-card-title>
+        </ion-card-header>
+      </ion-card>
     </div>
   </div>
 </div>

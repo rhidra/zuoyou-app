@@ -78,34 +78,6 @@
   }
 }
 
-.quiz-panel {
-  background-image: url("/assets/img/bg.png");
-  background-size: contain;
-  color: white;
-
-  h1, h2, h3 {
-    @extend .margin-left;
-    text-transform: uppercase;
-    text-align: left;
-    span {
-      background: var(--ion-color-primary);
-    }
-  }
-  h1 {
-    margin-top: 50px;
-  }
-  h2 {
-    font-size: 1.6em; // TODO: Put in variable
-    margin-top: 15%;
-  }
-  h3 {
-    font-size: .8em; // TODO: Put in variable
-  }
-  .quiz-buttons {
-    margin-top: 20%;
-  }
-}
-
 .img-card {
   overflow: hidden;
   background-color: white;

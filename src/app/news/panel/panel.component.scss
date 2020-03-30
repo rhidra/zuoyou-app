@@ -39,7 +39,7 @@
       --background: white;
       position: relative;
       overflow: hidden;
-      &.not-choosen {
+      &.lower {
         transform: scale(.9);
         opacity: .9;
       }

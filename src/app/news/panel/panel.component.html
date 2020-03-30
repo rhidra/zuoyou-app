@@ -43,15 +43,33 @@
     <h3 [ngClass]="{results: quizChoice && !quiz.isPoll}"><span>{{quiz.content | italic | bold}}</span></h3>
 
     <div class="quiz-choices" [ngClass]="{results: quizChoice}">
-      <ion-card *ngFor="let choice of quiz.choices" (click)="quizChoice ? '' : vote(choice._id)" class="margin-bottom ion-activatable pointer" [ngClass]="{'not-choosen': quizChoice && quizChoice !== choice._id}">
+
+      <ion-card *ngFor="let choice of quiz.choices"
+                (click)="quizChoice ? '' : vote(choice._id)"
+                class="margin-bottom ion-activatable pointer"
+                [color]="quizChoice && !quiz.isPoll && choice.goodAnswer ? 'success' :
+                        quizChoice && !quiz.isPoll && !choice.goodAnswer && quizChoice == choice._id ? 'danger' : ''"
+                [ngClass]="{'lower': quizChoice && quiz.isPoll && quizChoice !== choice._id}">
+
         <ion-ripple-effect></ion-ripple-effect>
-        <span class="bar bg-{{choice.color}}" [ngStyle]="{width: (choice.count*100/maxCount || 0) + '%'}"></span>
+
+        <span *ngIf="quizChoice && quiz.isPoll" class="bar bg-{{choice.color}}" [ngStyle]="{width: (choice.count*100/maxCount || 0) + '%'}"></span>
+
         <ion-card-header class="padding-bottom padding-top">
           <ion-card-title>
             {{choice.text | italic | bold}}
-            <span class="counter" *ngIf="quizChoice">{{choice.count*100/maxCount | number:'1.0-0'}}% - {{choice.count}}/{{maxCount}}</span>
+            <span class="counter" *ngIf="quizChoice && quiz.isPoll">{{choice.count*100/maxCount | number:'1.0-0'}}% - {{choice.count}}/{{maxCount}}</span>
           </ion-card-title>
         </ion-card-header>
+      </ion-card>
+
+      <ion-card class="margin-top-lg" *ngIf="quizChoice && !quiz.isPoll">
+        <ion-card-content class="padding-top">
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas tempor a lacus in mollis.
+          Nullam eu vestibulum turpis. Phasellus non cursus lorem, et fermentum quam. Curabitur congue diam sed eleifend ornare.
+          Duis ultricies pharetra semper. Sed blandit facilisis erat at venenatis. Proin tellus ligula, volutpat et dignissim ut,
+          aliquet a sem. Etiam vestibulum porta pulvinar. In hac habitasse platea dictumst. Lorem ipsum dolor sit amet, consectetur
+        </ion-card-content>
       </ion-card>
     </div>
   </div>

@@ -35,14 +35,14 @@
 
   <!-- QUIZ -->
   <div class="full-height quiz-panel" *ngIf="type === 'quiz' && !isLoading">
-    <h1  i18n [ngClass]="{results: quizChoice && !quiz.isPoll}">
+    <h1  i18n [ngClass]="{reduce: quizChoice && !quiz.isPoll && quiz.explanationText}">
       <span *ngIf="!quiz.isPoll">QUIZ</span>
       <span *ngIf="quiz.isPoll">POLL</span>
     </h1>
-    <h2 [ngClass]="{results: quizChoice && !quiz.isPoll}"><span class="padding-sm">{{quiz.question | italic | bold}}</span></h2>
-    <h3 [ngClass]="{results: quizChoice && !quiz.isPoll}"><span>{{quiz.content | italic | bold}}</span></h3>
+    <h2 [ngClass]="{reduce: quizChoice && !quiz.isPoll && quiz.explanationText}"><span class="padding-sm">{{quiz.question | italic | bold}}</span></h2>
+    <h3 [ngClass]="{reduce: quizChoice && !quiz.isPoll && quiz.explanationText}"><span>{{quiz.content | italic | bold}}</span></h3>
 
-    <div class="quiz-choices" [ngClass]="{results: quizChoice}">
+    <div class="quiz-choices">
 
       <ion-card *ngFor="let choice of quiz.choices"
                 (click)="quizChoice ? '' : vote(choice._id)"
@@ -63,12 +63,8 @@
         </ion-card-header>
       </ion-card>
 
-      <ion-card class="margin-top-lg" *ngIf="quizChoice && !quiz.isPoll">
-        <ion-card-content class="padding-top">
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas tempor a lacus in mollis.
-          Nullam eu vestibulum turpis. Phasellus non cursus lorem, et fermentum quam. Curabitur congue diam sed eleifend ornare.
-          Duis ultricies pharetra semper. Sed blandit facilisis erat at venenatis. Proin tellus ligula, volutpat et dignissim ut,
-          aliquet a sem. Etiam vestibulum porta pulvinar. In hac habitasse platea dictumst. Lorem ipsum dolor sit amet, consectetur
+      <ion-card class="margin-top-lg" *ngIf="quizChoice && !quiz.isPoll && quiz.explanationText">
+        <ion-card-content class="padding-top" [innerHTML]="quiz.explanationText | bold | italic | nl2br">
         </ion-card-content>
       </ion-card>
     </div>

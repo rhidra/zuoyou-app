@@ -85,15 +85,16 @@ export class PanelComponent implements OnInit {
 
   loadQuiz() {
     this.isLoading = true;
-    this.quizService.get(this.panel.quiz).then(quiz => {
-      this.quiz = quiz;
-      this.isLoading = false;
-    });
-    this.authService.onAuthenticated()
+    this.quizService.get(this.panel.quiz)
+      .then(quiz => {
+        this.quiz = quiz;
+        this.isLoading = false;
+        return this.authService.onAuthenticated();
+      })
       .then(() => this.quizService.getVote(this.panel.quiz))
-      // .then(quizChoice => this.quizChoice = quizChoice)
-      // .then(() => this.quizChoice ? this.quizService.getResults(this.panel.quiz) : null)
-      // .then(results => this.setResults(results))
+      .then(quizChoice => this.quizChoice = quizChoice)
+      .then(() => this.quizChoice && this.quiz.isPoll ? this.quizService.getResults(this.panel.quiz) : null)
+      .then(results => this.setResults(results))
       .catch(() => {});
   }
 
@@ -101,16 +102,14 @@ export class PanelComponent implements OnInit {
     this.authService.onAuthenticated(true)
       .then(() => this.quizChoice = choiceId)
       .then(() => this.quizService.vote(this.quiz, choiceId))
-      .then(() => this.quizService.getResults(this.quiz._id))
+      .then(() => this.quiz.isPoll ? this.quizService.getResults(this.quiz._id) : null)
       .then(results => this.setResults(results));
   }
 
   setResults(results: Array<any>) {
-    results[0].count = 20;
-    results[1].count = 30;
-    results[2].count = 5;
-    this.quiz.choices.forEach(choice => choice.count = results.find(r => r.choice === choice._id).count);
-    this.maxCount = results.reduce((a, b) => a + b.count, 0);
-
+    if (results) {
+      this.quiz.choices.forEach(choice => choice.count = results.find(r => r.choice === choice._id).count);
+      this.maxCount = results.reduce((a, b) => a + b.count, 0);
+    }
   }
 }

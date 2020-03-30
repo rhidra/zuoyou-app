@@ -24,7 +24,7 @@
               <img [src]="reaction.user.image ? (host + reaction.user.image) : '/assets/img/avatar.png'" alt="Avatar">
             </ion-avatar>
             <div class="content"
-                 [innerHTML]="(reaction.text.length > 100 ? (reaction.text | slice:0:100) + '...' : reaction.text) | italic | bold | hashtag | nl2br">
+                 [innerHTML]="(reaction.text.length > 100 ? (reaction.text | slice:0:100) + '...' : reaction.text) | italic | bold | nl2br">
             </div>
             <div class="stats">
               {{reaction.viewsCounter}}

@@ -39,6 +39,7 @@
       --background: white;
       position: relative;
       overflow: hidden;
+      transform-origin: left;
       &.lower {
         transform: scale(.9);
         opacity: .9;

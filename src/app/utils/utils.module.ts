@@ -7,6 +7,8 @@ import {IonicModule} from '@ionic/angular';
 import { BoldPipe } from './bold.pipe';
 import { ItalicPipe } from './italic.pipe';
 import { HashtagPipe } from './hashtag.pipe';
+import {ChipInputComponent} from './chip-input/chip-input.component';
+import {FormsModule} from '@angular/forms';
 
 
 @NgModule({
@@ -15,17 +17,20 @@ import { HashtagPipe } from './hashtag.pipe';
     BoldPipe,
     ItalicPipe,
     HashtagPipe,
+    ChipInputComponent,
   ],
   exports: [
     ImageUploadComponent,
     BoldPipe,
     ItalicPipe,
-    HashtagPipe
+    HashtagPipe,
+    ChipInputComponent,
   ],
   imports: [
     CommonModule,
     UtilsRoutingModule,
-    IonicModule
+    IonicModule,
+    FormsModule
   ]
 })
 export class UtilsModule { }

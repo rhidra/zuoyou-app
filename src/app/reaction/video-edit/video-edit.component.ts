@@ -24,6 +24,7 @@ export class ReactVideoEditComponent implements OnInit {
   mediaUrl: string;
   reaction: Reaction;
   form: FormGroup;
+  isLoading = true;
   loading: any;
 
   constructor(
@@ -44,18 +45,21 @@ export class ReactVideoEditComponent implements OnInit {
     this.activatedRoute.params.subscribe(params => {
       const id = params.idTopic;
       if (id) {
-        this.feedService.getTopic(id).then(topic => this.topic = topic);
+        this.feedService.getTopic(id)
+          .then(topic => this.topic = topic)
+          .then(() => this.initForm());
       }
     });
     this.mediaUrl = this.reactionService.getPendingMediaUrl();
     this.loadingCtrl.create({message: 'Please wait...'}).then(l => this.loading = l);
-    this.initForm();
   }
 
   initForm() {
     this.form = this.fb.group({
-      text: ['', Validators.required],
+      text: [''],
+      hashtags: [this.topic.hashtags || [], [Validators.required]],
     });
+    this.isLoading = false;
   }
 
   onSubmit() {
@@ -93,6 +97,7 @@ export class ReactVideoEditComponent implements OnInit {
     this.reaction.date = moment().toISOString();
     this.reaction.video = filename;
     this.reaction.text = this.form.value.text;
+    this.reaction.hashtags = this.form.value.hashtags;
     this.reaction.user = this.authService.user._id;
     this.reaction.topic = this.topic._id;
 

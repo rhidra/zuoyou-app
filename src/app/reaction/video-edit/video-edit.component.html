@@ -10,7 +10,7 @@
 </ion-header>
 
 <ion-content>
-  <form [formGroup]="form" (ngSubmit)="onSubmit()">
+  <form [formGroup]="form" (ngSubmit)="onSubmit()" *ngIf="!isLoading">
     <ion-list>
       <ion-item *ngIf="mediaUrl">
         <ion-avatar slot="start">
@@ -26,8 +26,10 @@
         <ion-label position="floating" i18n>Add a description...</ion-label>
         <ion-textarea formControlName="text"></ion-textarea>
       </ion-item>
+
+      <app-chip-input formControlName="hashtags" [suggestedTags]="topic.suggestedHashtags"></app-chip-input>
     </ion-list>
 
-    <ion-button expand="block" (click)="onSubmit()" i18n>Publish !</ion-button>
+    <ion-button expand="block" [disabled]="form.invalid" (click)="onSubmit()" i18n>Publish !</ion-button>
   </form>
 </ion-content>

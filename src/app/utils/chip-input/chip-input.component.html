@@ -1,0 +1,8 @@
+<ion-item>
+  <ion-textarea placeholder="Add hashtags ..." i18n-placeholder [(ngModel)]="input" (keyup.enter)="addTag()" (ionBlur)="addTag()" (ngModelChange)="onKey()">
+    <ion-chip [color]="selected.has(tag) ? 'primary' : ''" *ngFor="let tag of tags" (click)="toggle(tag)">
+      #{{tag}}
+      <ion-icon *ngIf="custom.has(tag)" name="close-circle"></ion-icon>
+    </ion-chip>
+  </ion-textarea>
+</ion-item>

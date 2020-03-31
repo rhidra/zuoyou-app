@@ -18,11 +18,11 @@ import {ReactionService} from '../../reaction/reaction.service';
       })),
       transition('* => liked', [
         animate('1200ms ease-in-out', keyframes([
-          style({transform: 'scale(0%)', opacity: 1, offset: 0}),
-          style({transform: 'scale(700%)', opacity: 1, offset: .2}),
-          style({transform: 'scale(600%)', opacity: 1, offset: .4}),
-          style({transform: 'scale(600%)', opacity: 1, offset: .8}),
-          style({transform: 'scale(600%)', opacity: 0, offset: 1}),
+          style({transform: 'scale(0)', opacity: 1, offset: 0}),
+          style({transform: 'scale(7)', opacity: 1, offset: .2}),
+          style({transform: 'scale(6)', opacity: 1, offset: .4}),
+          style({transform: 'scale(6)', opacity: 1, offset: .8}),
+          style({transform: 'scale(6)', opacity: 0, offset: 1}),
         ]))
       ])
     ])

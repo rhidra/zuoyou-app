@@ -35,8 +35,6 @@
       <app-chip-input formControlName="hashtags" [suggestedTags]="topic.hashtags.concat(topic.suggestedHashtags)"></app-chip-input>
     </ion-list>
 
-    <pre>{{form.value|json}}</pre>
-
     <ion-button expand="block" *ngIf="isCreation" [disabled]="form.invalid" (click)="onSubmit()" i18n>Publish !</ion-button>
   </form>
 </ion-content>

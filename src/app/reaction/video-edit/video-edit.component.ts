@@ -22,8 +22,9 @@ export class ReactVideoEditComponent implements OnInit {
 
   topic: Topic;
   mediaUrl: string;
-  reaction: Reaction;
+  reaction: Reaction = new Reaction();
   form: FormGroup;
+  isCreation: boolean;
   isLoading = true;
   loading: any;
 
@@ -43,9 +44,18 @@ export class ReactVideoEditComponent implements OnInit {
 
   ngOnInit() {
     this.activatedRoute.params.subscribe(params => {
-      const id = params.idTopic;
-      if (id) {
-        this.feedService.getTopic(id)
+      const idTopic = params.idTopic;
+      const idReaction = params.idReaction;
+      if (idTopic) {
+        this.isCreation = true;
+        this.feedService.getTopic(idTopic)
+          .then(topic => this.topic = topic)
+          .then(() => this.initForm());
+      } else if (idReaction) {
+        this.isCreation = false;
+        this.reactionService.get(idReaction)
+          .then(reaction => this.reaction = reaction)
+          .then(() => this.feedService.getTopic(this.reaction.topic as string))
           .then(topic => this.topic = topic)
           .then(() => this.initForm());
       }
@@ -56,40 +66,48 @@ export class ReactVideoEditComponent implements OnInit {
 
   initForm() {
     this.form = this.fb.group({
-      text: [''],
-      hashtags: [this.topic.hashtags || [], [Validators.required]],
+      text: [this.reaction.text || ''],
+      hashtags: [(this.isCreation ? this.topic.hashtags : this.reaction.hashtags) || [], [Validators.required]],
     });
     this.isLoading = false;
   }
 
   onSubmit() {
-    this.authService.onAuthenticated(true).then(() => {
-      const uploader = FileTransferManager.init();
+    if (this.isCreation) {
+      this.authService.onAuthenticated(true)
+        .then(() => this.uploadVideo());
+    } else {
+      Object.assign(this.reaction, this.form.value);
+      return this.reactionService.edit(this.reaction).then(() => this.navCtrl.pop());
+    }
+  }
 
-      uploader.on('success', (upload) => {
-        if (upload.state === 'UPLOADED') {
-          this.uploadDone(JSON.parse(upload.serverResponse).filename);
-        }
-      });
+  uploadVideo() {
+    const uploader = FileTransferManager.init();
 
-      uploader.on('error', (uploadException) => {
-        this.notifications.schedule({id: 1, title: 'Error: Clapback not uploaded !'});
-      });
-
-      uploader.startUpload({
-        id: this.authService.user._id + this.topic._id,
-        filePath: this.mediaUrl,
-        fileKey: 'media',
-        serverUrl: env.apiUrl + 'media',
-        showNotification: true,
-        notificationTitle: 'Uploading clapback ...',
-        headers: {
-          Authorization: `Bearer ${this.authService.accessToken}`,
-        }
-      });
-
-      this.navCtrl.navigateRoot('/');
+    uploader.on('success', (upload) => {
+      if (upload.state === 'UPLOADED') {
+        this.uploadDone(JSON.parse(upload.serverResponse).filename);
+      }
     });
+
+    uploader.on('error', (uploadException) => {
+      this.notifications.schedule({id: 1, title: 'Error: Clapback not uploaded !'});
+    });
+
+    uploader.startUpload({
+      id: this.authService.user._id + this.topic._id,
+      filePath: this.mediaUrl,
+      fileKey: 'media',
+      serverUrl: env.apiUrl + 'media',
+      showNotification: true,
+      notificationTitle: 'Uploading clapback ...',
+      headers: {
+        Authorization: `Bearer ${this.authService.accessToken}`,
+      }
+    });
+
+    this.navCtrl.navigateRoot('/');
   }
 
   uploadDone(filename: string) {

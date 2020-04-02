@@ -3,6 +3,11 @@
     <ion-buttons slot="start">
       <ion-back-button defaultHref="/"></ion-back-button>
     </ion-buttons>
+    <ion-buttons slot="primary" *ngIf="canEdit && reaction">
+      <ion-button [routerLink]="['/', 'reaction', 'edit', reaction._id]">
+        <ion-icon slot="icon-only" color="primary" name="create"></ion-icon>
+      </ion-button>
+    </ion-buttons>
     <ion-title i18n>Clapback</ion-title>
   </ion-toolbar>
 </ion-header>

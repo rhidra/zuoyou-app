@@ -35,7 +35,7 @@ export class ReactionService {
         handler: () => {
           this.mediaCapture.captureVideo().then((data: Array<MediaFile>) => {
             this.setPendingMediaUrl(data[0].fullPath);
-            this.navCtrl.navigateForward(['/', 'reaction', 'edit', idTopic]);
+            this.navCtrl.navigateForward(['/', 'reaction', 'upload', idTopic]);
           });
         },
       }, {
@@ -46,7 +46,7 @@ export class ReactionService {
             .then(uri => this.filePath.resolveNativePath(uri))
             .then(uri => {
               this.setPendingMediaUrl(uri);
-              this.navCtrl.navigateForward(['/', 'reaction', 'edit', idTopic]);
+              this.navCtrl.navigateForward(['/', 'reaction', 'upload', idTopic]);
             })
             .catch(err => console.error(err));
         },
@@ -59,6 +59,12 @@ export class ReactionService {
   create(reaction: Reaction): Promise<Reaction> {
     return new Promise<Reaction>(resolve => {
       this.http.post(env.apiUrl + 'reaction/', reaction).subscribe((data: any) => resolve(data));
+    });
+  }
+
+  edit(reaction: Reaction): Promise<void> {
+    return new Promise(resolve => {
+      this.http.post(env.apiUrl + 'reaction/' + reaction._id, reaction).subscribe((data: any) => resolve());
     });
   }
 

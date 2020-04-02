@@ -7,6 +7,7 @@ import {VgAPI} from 'videogular2/compiled/src/core/services/vg-api';
 import {AuthService} from '../../auth/auth.service';
 import {CommentService} from '../comment.service';
 import {animate, keyframes, state, style, transition, trigger} from '@angular/animations';
+import {User} from '../../models/user.model';
 
 @Component({
   selector: 'app-reaction-detail',
@@ -37,6 +38,7 @@ export class ReactDetailComponent implements OnInit {
   videoPlayer: VgAPI;
   host = env.mediaHost;
   comment: string;
+  canEdit: boolean = false;
   heartState: string = 'notLiked';
 
   constructor(
@@ -58,7 +60,10 @@ export class ReactDetailComponent implements OnInit {
             return Promise.resolve();
           })
           .then(() => this.commentService.searchByReaction(id))
-          .then(() => this.isLoadingComments = false);
+          .then(() => this.isLoadingComments = false)
+          .then(() => this.authService.onAuthenticated())
+          .then(() => this.canEdit = this.authService.user._id === (this.reaction.user as User)._id)
+          .catch(() => {});
       }
     });
   }

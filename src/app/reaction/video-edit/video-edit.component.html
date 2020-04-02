@@ -4,6 +4,11 @@
     <ion-buttons slot="start">
       <ion-back-button defaultHref="/"></ion-back-button>
     </ion-buttons>
+    <ion-buttons slot="primary" *ngIf="!isCreation">
+      <ion-button (click)="onSubmit()">
+        <ion-icon slot="icon-only" color="primary" name="checkmark"></ion-icon>
+      </ion-button>
+    </ion-buttons>
 
     <ion-title i18n>Clapback</ion-title>
   </ion-toolbar>
@@ -27,9 +32,11 @@
         <ion-textarea formControlName="text"></ion-textarea>
       </ion-item>
 
-      <app-chip-input formControlName="hashtags" [suggestedTags]="topic.suggestedHashtags"></app-chip-input>
+      <app-chip-input formControlName="hashtags" [suggestedTags]="topic.hashtags.concat(topic.suggestedHashtags)"></app-chip-input>
     </ion-list>
 
-    <ion-button expand="block" [disabled]="form.invalid" (click)="onSubmit()" i18n>Publish !</ion-button>
+    <pre>{{form.value|json}}</pre>
+
+    <ion-button expand="block" *ngIf="isCreation" [disabled]="form.invalid" (click)="onSubmit()" i18n>Publish !</ion-button>
   </form>
 </ion-content>

@@ -4,9 +4,9 @@ import { CommonModule } from '@angular/common';
 import { UtilsRoutingModule } from './utils-routing.module';
 import {ImageUploadComponent} from './image-upload/image-upload.component';
 import {IonicModule} from '@ionic/angular';
-import { BoldPipe } from './bold.pipe';
-import { ItalicPipe } from './italic.pipe';
-import { HashtagPipe } from './hashtag.pipe';
+import { BoldPipe } from './pipes/bold.pipe';
+import { ItalicPipe } from './pipes/italic.pipe';
+import { HashtagPipe } from './pipes/hashtag.pipe';
 import {ChipInputComponent} from './chip-input/chip-input.component';
 import {FormsModule} from '@angular/forms';
 

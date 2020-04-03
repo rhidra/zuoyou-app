@@ -20,7 +20,7 @@ export class LoginComponent implements OnInit {
       private fb: FormBuilder,
       private router: Router,
       private route: ActivatedRoute,
-      private authService: AuthService
+      private authService: AuthService,
   ) {}
 
   ngOnInit() {
@@ -41,6 +41,6 @@ export class LoginComponent implements OnInit {
 
   login() {
     this.authService.login(this.form.value.phone, this.form.value.code)
-      .then(() => this.router.navigateByUrl(this.returnUrl));
+      .then(() => this.router.navigateByUrl(this.returnUrl).then(() => location.reload()));
   }
 }

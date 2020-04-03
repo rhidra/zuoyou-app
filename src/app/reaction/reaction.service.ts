@@ -15,7 +15,7 @@ import {Query} from '../utils/query.service';
 export class ReactionService {
 
   url: string;
-  reactions: Array<Reaction>;
+  reactions: Array<Reaction> = [];
 
   constructor(
     private alertCtrl: AlertController,

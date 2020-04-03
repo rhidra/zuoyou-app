@@ -41,6 +41,6 @@ export class LoginComponent implements OnInit {
 
   login() {
     this.authService.login(this.form.value.phone, this.form.value.code)
-      .then(() => this.router.navigate([this.returnUrl]));
+      .then(() => this.router.navigateByUrl(this.returnUrl));
   }
 }

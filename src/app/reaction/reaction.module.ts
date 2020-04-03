@@ -5,7 +5,6 @@ import { ReactionRoutingModule } from './reaction-routing.module';
 import {IonicModule} from '@ionic/angular';
 import {ReactVideoEditComponent} from './video-edit/video-edit.component';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
-import {ReactionService} from './reaction.service';
 import {ReactSearchComponent} from './search/search.component';
 import {ReactDetailComponent} from './detail/detail.component';
 import {VgCoreModule} from 'videogular2/compiled/src/core/core';

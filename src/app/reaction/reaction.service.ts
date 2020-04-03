@@ -7,6 +7,7 @@ import {AlertController, NavController} from '@ionic/angular';
 import {FileChooser} from '@ionic-native/file-chooser/ngx';
 import {FilePath} from '@ionic-native/file-path/ngx';
 import {AuthService} from '../auth/auth.service';
+import {Query} from '../utils/query.service';
 
 @Injectable({
   providedIn: 'root'
@@ -14,7 +15,7 @@ import {AuthService} from '../auth/auth.service';
 export class ReactionService {
 
   url: string;
-  reactions = new Map<string, Array<Reaction>>();
+  reactions: Array<Reaction>;
 
   constructor(
     private alertCtrl: AlertController,
@@ -72,7 +73,7 @@ export class ReactionService {
     return this.authService.getToken().then(() => {
       return new Promise<void>(resolve => {
         this.http.get(env.apiUrl + 'reaction', {params: {populate: true, topic: idTopic}} as any).subscribe((data: any) => {
-          this.reactions.set('topic-' + idTopic, data);
+          this.reactions = data;
           resolve();
         });
       });
@@ -83,7 +84,18 @@ export class ReactionService {
     return this.authService.getToken().then(() => {
       return new Promise<void>(resolve => {
         this.http.get(env.apiUrl + 'reaction', {params: {user: idUser}} as any).subscribe((data: any) => {
-          this.reactions.set('user-' + idUser, data);
+          this.reactions = data;
+          resolve();
+        });
+      });
+    });
+  }
+
+  searchByQuery(query: Query): Promise<void> {
+    return this.authService.getToken().then(() => {
+      return new Promise<void>(resolve => {
+        this.http.get(env.apiUrl + 'reaction', {params: {tags: query.hashtags}} as any).subscribe((data: any) => {
+          this.reactions = data;
           resolve();
         });
       });
@@ -92,14 +104,8 @@ export class ReactionService {
 
   get(id: string): Promise<any> {
     return this.authService.getToken().then(() => {
-      let reaction: Reaction = null;
-      for (const [_, reactions] of this.reactions.entries()) {
-        const result = reactions.find(r => r._id === id);
-        if (result) {
-          reaction = result;
-          break;
-        }
-      }
+      const reaction = this.reactions.find(r => r._id === id);
+
       if (reaction) {
         return Promise.resolve(reaction);
       } else {

@@ -16,7 +16,7 @@
     </div>
 
     <div class="full-video-hashtag margin-left">
-        <ion-button class="btn-small-text" [routerLink]="['/', 'reaction', topic._id]">
+        <ion-button class="btn-small-text" [routerLink]="['/', 'reaction', topic._id]" [queryParams]="{tags: topic.hashtags}">
             #{{topic.hashtags[0]}}
             <ion-icon name="ios-arrow-forward" slot="end"></ion-icon>
         </ion-button>

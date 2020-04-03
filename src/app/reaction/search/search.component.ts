@@ -3,6 +3,7 @@ import {ReactionService} from '../reaction.service';
 import {ActivatedRoute} from '@angular/router';
 import {environment as env} from '../../../environments/environment';
 import {CommentService} from '../comment.service';
+import {Query, QueryService} from '../../utils/query.service';
 
 @Component({
   selector: 'app-reaction-search',
@@ -18,14 +19,21 @@ export class ReactSearchComponent implements OnInit {
     private reactionService: ReactionService,
     private activatedRoute: ActivatedRoute,
     private commentService: CommentService,
+    private queryService: QueryService,
   ) { }
 
   ngOnInit() {
     this.activatedRoute.params.subscribe(params => {
       this.idTopic = params.idTopic;
       if (this.idTopic) {
-        this.reactionService.searchByTopic(this.idTopic).then(() => this.isLoading = false);
         this.commentService.searchByTopic(this.idTopic);
+      }
+    });
+    this.activatedRoute.queryParamMap.subscribe(query => {
+      const q: Query = this.queryService.parseQuery(query);
+      if (q) {
+        this.reactionService.searchByQuery(q).then(() => this.isLoading = false);
+
       }
     });
   }

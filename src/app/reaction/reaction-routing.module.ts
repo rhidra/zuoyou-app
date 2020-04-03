@@ -10,6 +10,7 @@ const routes: Routes = [
   { path: 'upload/:idTopic', component: ReactVideoEditComponent, canActivate: [AuthGuardService] },
   { path: 'edit/:idReaction', component: ReactVideoEditComponent, canActivate: [AuthGuardService] },
   { path: ':idTopic', component: ReactSearchComponent },
+  { path: '', component: ReactSearchComponent },
   { path: 'detail/:id', component: ReactDetailComponent },
 ];
 

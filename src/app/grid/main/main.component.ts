@@ -29,7 +29,7 @@ export class GridMainComponent implements OnInit {
     this.activatedRoute.params.subscribe(params => {
       let p: Promise<any>;
       if (params.userId) {
-        p = this.authService.onAuthenticated()
+        p = this.authService.getToken()
           .then(() => this.userService.get(params.userId)).then(user => {
           this.user = user;
           this.isOwn = this.authService.user ? this.authService.user._id === this.user._id : false;

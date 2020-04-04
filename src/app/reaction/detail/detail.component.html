@@ -94,8 +94,8 @@
       </div>
     </div>
   </div>
+  <app-empty-view *ngIf="isLoading" spinner="true"></app-empty-view>
 </ion-content>
 
 <app-add-comment-footer [reactionId]="reaction ? reaction._id : ''"></app-add-comment-footer>
 
-<ion-spinner *ngIf="isLoading"></ion-spinner>

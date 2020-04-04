@@ -56,7 +56,7 @@
     </ion-row>
   </ion-grid>
 
-  <app-empty-view *ngIf="!isLoadingReactions"
+  <app-empty-view *ngIf="!isLoadingReactions && reactionService.reactions.length === 0"
                   i18n-text [text]="isOwn ? 'You have no clapbacks !' : 'There is no clapback here !'"
                   [buttonText]="isOwn ? 'Start browsing the news !' : ''" link="/">
   </app-empty-view>

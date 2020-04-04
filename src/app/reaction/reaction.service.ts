@@ -97,7 +97,7 @@ export class ReactionService {
   searchByQuery(query: Query): Promise<void> {
     return this.authService.getToken().then(() => {
       return new Promise<void>(resolve => {
-        this.http.get(env.apiUrl + 'reaction', {params: {tags: query.hashtags}} as any).subscribe((data: any) => {
+        this.http.get(env.apiUrl + 'reaction', {params: {populate: true, tags: query.hashtags}} as any).subscribe((data: any) => {
           this.reactions = data;
           resolve();
         });

@@ -42,7 +42,7 @@
   </ion-grid>
 
   <app-empty-view *ngIf="!isLoading && reactionService.reactions.length === 0"
-                  i18n-buttonText buttonText="Give us your opinion !" (buttonClick)="reactionService.showDialogCreateCB(idTopic)"
+                  i18n-buttonText [buttonText]="idTopic ? 'Give us your opinion !' : ''" (buttonClick)="reactionService.showDialogCreateCB(idTopic)"
                   i18n-text text="No Clapback has been found !">
   </app-empty-view>
 

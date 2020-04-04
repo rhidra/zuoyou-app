@@ -71,17 +71,6 @@ export class ReactionService {
     });
   }
 
-  searchByTopic(idTopic: string): Promise<void> {
-    return this.authService.getToken().then(() => {
-      return new Promise<void>(resolve => {
-        this.http.get(env.apiUrl + 'reaction', {params: {populate: true, topic: idTopic}} as any).subscribe((data: any) => {
-          this.reactions = data;
-          resolve();
-        });
-      });
-    });
-  }
-
   searchByUser(user: User): Promise<void> {
     return this.authService.getToken().then(() => {
       return new Promise<void>(resolve => {

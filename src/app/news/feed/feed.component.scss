@@ -17,4 +17,9 @@
     height: 100%;
     position: absolute;
   }
+
+  ion-content {
+    @extend .margin-top-lg;
+    height: 100vh;
+  }
 }

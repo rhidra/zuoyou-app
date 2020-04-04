@@ -17,11 +17,11 @@ export class NewsFeedService {
   ) { }
 
   load(): Promise<void> {
-    return this.authService.getToken().then(() => new Promise(resolve =>
+    return this.authService.getToken().then(() => new Promise((resolve, reject) =>
       this.http.get(env.apiUrl + 'topic/', {params: {populate: true, approved: true}} as any).subscribe((data: any) => {
         this.topics = data;
         resolve();
-      })
+      }, () => reject())
     ));
   }
 

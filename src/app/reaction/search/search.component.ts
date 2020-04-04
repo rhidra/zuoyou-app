@@ -17,6 +17,7 @@ export class ReactSearchComponent implements OnInit {
   idTopic: string;
   titleHashtag: string;
   isLoading;
+  noConnection: boolean = false;
   searchbarContent: string;
   host = env.mediaHost;
 
@@ -58,6 +59,14 @@ export class ReactSearchComponent implements OnInit {
 
   search(q: Query) {
     this.isLoading = true;
-    this.reactionService.searchByQuery(q).then(() => this.isLoading = false);
+    this.reactionService.searchByQuery(q)
+      .then(() => {
+        this.isLoading = false;
+        this.noConnection = false;
+      })
+      .catch(() => {
+        this.isLoading = false;
+        this.noConnection = true;
+      });
   }
 }

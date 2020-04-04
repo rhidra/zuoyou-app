@@ -14,6 +14,7 @@ export class NewsFeedComponent implements OnInit {
   @ViewChildren(TopicComponent) topicComponents: QueryList<TopicComponent>;
 
   isLoading: boolean = true;
+  noConnection: boolean = false;
 
   slidesOpt = {
     direction: 'vertical',
@@ -27,13 +28,18 @@ export class NewsFeedComponent implements OnInit {
   ) { }
 
   ngOnInit() {
+    this.isLoading = true;
     this.feedService.load().then(() => {
       this.isLoading = false;
+      this.noConnection = false;
       // TODO: This does not work. The first video to appear should be in autoplay
       setTimeout(() => {
         const topics = this.topicComponents.toArray();
         topics[0].startViewing();
       });
+    }).catch(() => {
+      this.isLoading = false;
+      this.noConnection = true;
     });
   }
 

@@ -3,7 +3,7 @@
     <ion-buttons slot="start">
       <ion-back-button defaultHref="/"></ion-back-button>
     </ion-buttons>
-    <ion-buttons slot="primary">
+    <ion-buttons slot="primary" *ngIf="idTopic">
       <ion-button (click)="reactionService.showDialogCreateCB(idTopic)">
         <ion-icon slot="icon-only" color="primary" name="add"></ion-icon>
       </ion-button>
@@ -41,9 +41,12 @@
     </ion-row>
   </ion-grid>
 
-  <app-empty-view *ngIf="!isLoading && reactionService.reactions.length === 0"
+  <app-empty-view *ngIf="!isLoading && !noConnection && reactionService.reactions.length === 0"
                   i18n-buttonText [buttonText]="idTopic ? 'Give us your opinion !' : ''" (buttonClick)="reactionService.showDialogCreateCB(idTopic)"
                   i18n-text text="No Clapback has been found !">
+  </app-empty-view>
+
+  <app-empty-view *ngIf="!isLoading && noConnection" i18n-text text="You don't seem connected to the internet ..." icon="wifi">
   </app-empty-view>
 
   <app-empty-view *ngIf="isLoading" spinner="true"></app-empty-view>

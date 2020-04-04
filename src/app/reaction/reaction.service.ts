@@ -8,6 +8,8 @@ import {FileChooser} from '@ionic-native/file-chooser/ngx';
 import {FilePath} from '@ionic-native/file-path/ngx';
 import {AuthService} from '../auth/auth.service';
 import {Query} from '../utils/query.service';
+import {UserService} from '../grid/user.service';
+import {User} from '../models/user.model';
 
 @Injectable({
   providedIn: 'root'
@@ -80,11 +82,12 @@ export class ReactionService {
     });
   }
 
-  searchByUser(idUser: string): Promise<void> {
+  searchByUser(user: User): Promise<void> {
     return this.authService.getToken().then(() => {
       return new Promise<void>(resolve => {
-        this.http.get(env.apiUrl + 'reaction', {params: {user: idUser}} as any).subscribe((data: any) => {
+        this.http.get(env.apiUrl + 'reaction', {params: {user: user._id}} as any).subscribe((data: any) => {
           this.reactions = data;
+          this.reactions.forEach(r => r.user = user);
           resolve();
         });
       });

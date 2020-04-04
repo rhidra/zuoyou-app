@@ -45,7 +45,7 @@ export class GridMainComponent implements OnInit {
         });
       }
 
-      p.then(() => this.reactionService.searchByUser(this.user._id))
+      p.then(() => this.reactionService.searchByUser(this.user))
         .then(() => this.isLoadingReactions = false);
     });
   }

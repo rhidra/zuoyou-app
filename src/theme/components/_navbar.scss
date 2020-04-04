@@ -16,4 +16,10 @@ ion-header.app-navbar {
   ion-toolbar {
     --min-height: 40px;
   }
+
+  ion-searchbar {
+    .searchbar-input {
+      box-shadow: none;
+    }
+  }
 }

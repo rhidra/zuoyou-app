@@ -114,6 +114,10 @@ export class ReactionService {
     });
   }
 
+  clear() {
+    this.reactions = [];
+  }
+
   checkLike(reaction: Reaction): Promise<boolean> {
     return new Promise<boolean>(resolve => {
       this.http.get(env.apiUrl + 'like/reaction', {params: {reaction: reaction._id}}).subscribe((data: any) => {

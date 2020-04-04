@@ -1,9 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit, ViewChild} from '@angular/core';
 import {ReactionService} from '../reaction.service';
 import {ActivatedRoute} from '@angular/router';
 import {environment as env} from '../../../environments/environment';
 import {CommentService} from '../comment.service';
 import {Query, QueryService} from '../../utils/query.service';
+import {IonSearchbar} from '@ionic/angular';
 
 @Component({
   selector: 'app-reaction-search',
@@ -11,8 +12,11 @@ import {Query, QueryService} from '../../utils/query.service';
 })
 export class ReactSearchComponent implements OnInit {
 
+  @ViewChild('searchbar', {static: false}) searchbar: IonSearchbar;
+
   idTopic: string;
-  isLoading = true;
+  isLoading;
+  searchbarContent: string;
   host = env.mediaHost;
 
   constructor(
@@ -32,9 +36,26 @@ export class ReactSearchComponent implements OnInit {
     this.activatedRoute.queryParamMap.subscribe(query => {
       const q: Query = this.queryService.parseQuery(query);
       if (q) {
-        this.reactionService.searchByQuery(q).then(() => this.isLoading = false);
-
+        this.search(q);
+      } else {
+        this.reactionService.clear();
       }
     });
+  }
+
+  ionViewDidEnter() {
+    if (!this.idTopic) {
+      this.searchbar.setFocus();
+    }
+  }
+
+  updateSearch() {
+    const q = this.queryService.parseString(this.searchbarContent);
+    this.search(q);
+  }
+
+  search(q: Query) {
+    this.isLoading = true;
+    this.reactionService.searchByQuery(q).then(() => this.isLoading = false);
   }
 }

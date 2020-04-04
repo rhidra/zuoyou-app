@@ -3,6 +3,12 @@
     ion-button.main-button {
       font-family: Hanzipen;
       font-size: 1.2em; // TODO: Put in variable
+      --border-radius: 15px;
+    }
+
+    ion-button.search-button {
+      --border-radius: 15px;
+      color: rgba(255, 255, 255, 219);
     }
   }
 

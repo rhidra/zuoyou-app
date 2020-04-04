@@ -6,7 +6,13 @@
           左右
         </ion-button>
       </ion-buttons>
+      <ion-buttons slot="primary">
+        <ion-button class="search-button" routerLink="/reaction">
+          <ion-icon name="search"></ion-icon>
+        </ion-button>
+      </ion-buttons>
     </ion-toolbar>
+
   </ion-header>
 
   <ion-slides [options]="slidesOpt" *ngIf="!isLoading" (ionSlideDidChange)="slideChanged($event)" #slides>

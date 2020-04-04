@@ -8,7 +8,8 @@
         <ion-icon slot="icon-only" color="primary" name="add"></ion-icon>
       </ion-button>
     </ion-buttons>
-    <ion-title i18n>Clapbacks</ion-title>
+    <ion-title i18n *ngIf="idTopic">Clapbacks</ion-title>
+    <ion-searchbar #searchbar i18n *ngIf="!idTopic" i18n-placeholder placeholder="Search..." [(ngModel)]="searchbarContent" (ngModelChange)="updateSearch()" debounce="200"></ion-searchbar>
   </ion-toolbar>
 </ion-header>
 
@@ -46,4 +47,4 @@
   <ion-spinner *ngIf="isLoading"></ion-spinner>
 </ion-content>
 
-<app-add-comment-footer [topicId]="idTopic"></app-add-comment-footer>
+<app-add-comment-footer *ngIf="idTopic" [topicId]="idTopic"></app-add-comment-footer>

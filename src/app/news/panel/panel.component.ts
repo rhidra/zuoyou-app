@@ -11,8 +11,7 @@ import {environment as env} from '../../../environments/environment';
   templateUrl: './panel.component.html',
 })
 export class PanelComponent implements OnInit {
-
-
+  
   _panel: TopicPanel;
   @Input()
   set panel(p: TopicPanel) {

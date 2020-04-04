@@ -1,0 +1,26 @@
+.empty-view {
+  padding-top: 36px;
+  padding-bottom: 36px;
+  text-align: center;
+
+  ion-text {
+    text-align: center;
+    font-size: 1.2em;
+
+    ion-icon {
+      font-size: font-size($very-big-icon);
+
+      display: block;
+      margin-left: auto;
+      margin-right: auto;
+    }
+  }
+
+  ion-spinner {
+    display: block;
+    width: 100%;
+    height: 30%;
+    --color: var(--ion-color-primary);
+    margin-top: 10px;
+  }
+}

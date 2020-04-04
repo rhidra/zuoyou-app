@@ -1,0 +1,9 @@
+<div class="empty-view">
+  <ion-text [color]="color" *ngIf="!spinner">
+    <ion-icon [name]="icon"></ion-icon>
+    <p>{{text}}</p>
+  </ion-text>
+  <ion-button *ngIf="buttonText" (click)="buttonClick.emit()">{{buttonText}}</ion-button>
+
+  <ion-spinner name="crescent" *ngIf="spinner"></ion-spinner>
+</div>

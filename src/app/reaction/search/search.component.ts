@@ -15,6 +15,7 @@ export class ReactSearchComponent implements OnInit {
   @ViewChild('searchbar', {static: false}) searchbar: IonSearchbar;
 
   idTopic: string;
+  titleHashtag: string;
   isLoading;
   searchbarContent: string;
   host = env.mediaHost;
@@ -36,6 +37,7 @@ export class ReactSearchComponent implements OnInit {
     this.activatedRoute.queryParamMap.subscribe(query => {
       const q: Query = this.queryService.parseQuery(query);
       if (q) {
+        this.titleHashtag = q.hashtags[0];
         this.search(q);
       } else {
         this.reactionService.clear();

@@ -9,6 +9,7 @@ import { ItalicPipe } from './pipes/italic.pipe';
 import { HashtagPipe } from './pipes/hashtag.pipe';
 import {ChipInputComponent} from './chip-input/chip-input.component';
 import {FormsModule} from '@angular/forms';
+import {EmptyViewComponent} from './empty-view/empty-view.component';
 
 
 @NgModule({
@@ -18,6 +19,7 @@ import {FormsModule} from '@angular/forms';
     ItalicPipe,
     HashtagPipe,
     ChipInputComponent,
+    EmptyViewComponent,
   ],
   exports: [
     ImageUploadComponent,
@@ -25,6 +27,7 @@ import {FormsModule} from '@angular/forms';
     ItalicPipe,
     HashtagPipe,
     ChipInputComponent,
+    EmptyViewComponent,
   ],
   imports: [
     CommonModule,

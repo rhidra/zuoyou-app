@@ -8,7 +8,7 @@
         <ion-icon slot="icon-only" color="primary" name="add"></ion-icon>
       </ion-button>
     </ion-buttons>
-    <ion-title i18n *ngIf="idTopic">Clapbacks</ion-title>
+    <ion-title i18n *ngIf="idTopic">#{{titleHashtag}}</ion-title>
     <ion-searchbar #searchbar i18n *ngIf="!idTopic" i18n-placeholder placeholder="Search..." [(ngModel)]="searchbarContent" (ngModelChange)="updateSearch()" debounce="200"></ion-searchbar>
   </ion-toolbar>
 </ion-header>
@@ -41,10 +41,15 @@
     </ion-row>
   </ion-grid>
 
+  <app-empty-view *ngIf="!isLoading && reactionService.reactions.length === 0"
+                  i18n-buttonText buttonText="Give us your opinion !" (buttonClick)="reactionService.showDialogCreateCB(idTopic)"
+                  i18n-text text="No Clapback has been found !">
+  </app-empty-view>
+
+  <app-empty-view *ngIf="isLoading" spinner="true"></app-empty-view>
+
   <app-reaction-comment *ngFor="let comment of commentService.topicsComments.get(idTopic)" [comment]="comment">
   </app-reaction-comment>
-
-  <ion-spinner *ngIf="isLoading"></ion-spinner>
 </ion-content>
 
 <app-add-comment-footer *ngIf="idTopic" [topicId]="idTopic"></app-add-comment-footer>

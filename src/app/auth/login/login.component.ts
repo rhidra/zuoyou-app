@@ -16,11 +16,11 @@ export class LoginComponent implements OnInit {
   returnUrl: string = '/';
 
   constructor(
-      private navCtrl: NavController,
-      private fb: FormBuilder,
-      private router: Router,
-      private route: ActivatedRoute,
-      private authService: AuthService,
+      public navCtrl: NavController,
+      public fb: FormBuilder,
+      public router: Router,
+      public route: ActivatedRoute,
+      public authService: AuthService,
   ) {}
 
   ngOnInit() {

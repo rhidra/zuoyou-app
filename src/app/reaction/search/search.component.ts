@@ -22,10 +22,10 @@ export class ReactSearchComponent implements OnInit {
   host = env.mediaHost;
 
   constructor(
-    private reactionService: ReactionService,
-    private activatedRoute: ActivatedRoute,
-    private commentService: CommentService,
-    private queryService: QueryService,
+    public reactionService: ReactionService,
+    public activatedRoute: ActivatedRoute,
+    public commentService: CommentService,
+    public queryService: QueryService,
   ) { }
 
   ngOnInit() {

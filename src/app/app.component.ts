@@ -15,10 +15,10 @@ export class AppComponent {
   host = env.mediaHost;
 
   constructor(
-    private platform: Platform,
-    private splashScreen: SplashScreen,
-    private statusBar: StatusBar,
-    private authService: AuthService,
+    public platform: Platform,
+    public splashScreen: SplashScreen,
+    public statusBar: StatusBar,
+    public authService: AuthService,
   ) {
     this.platform.ready().then(() => {
       this.statusBar.styleDefault();

@@ -8,7 +8,7 @@ export class Comment {
   topic?: string | Topic;
   reaction?: string | Reaction;
 
-  user: string | User;
+  user: User;
   date?: string;
 
   text: string;

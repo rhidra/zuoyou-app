@@ -5,7 +5,7 @@ export class Reaction {
   _id?: string;
 
   topic: string | Topic;
-  user: string | User;
+  user: User;
   date: string;
   hashtags: Array<string>;
 

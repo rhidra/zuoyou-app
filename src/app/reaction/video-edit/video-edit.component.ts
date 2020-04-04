@@ -116,7 +116,7 @@ export class ReactVideoEditComponent implements OnInit {
     this.reaction.video = filename;
     this.reaction.text = this.form.value.text;
     this.reaction.hashtags = this.form.value.hashtags;
-    this.reaction.user = this.authService.user._id;
+    this.reaction.user = (this.authService.user._id as any);
     this.reaction.topic = this.topic._id;
 
     return this.reactionService.create(this.reaction)

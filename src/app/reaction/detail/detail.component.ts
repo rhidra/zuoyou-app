@@ -42,10 +42,10 @@ export class ReactDetailComponent implements OnInit {
   heartState: string = 'notLiked';
 
   constructor(
-    private activatedRoute: ActivatedRoute,
-    private reactionService: ReactionService,
-    private authService: AuthService,
-    private commentService: CommentService,
+    public activatedRoute: ActivatedRoute,
+    public reactionService: ReactionService,
+    public authService: AuthService,
+    public commentService: CommentService,
   ) { }
 
   ngOnInit() {

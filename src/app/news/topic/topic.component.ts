@@ -49,9 +49,9 @@ export class TopicComponent {
   };
 
   constructor(
-    private authService: AuthService,
-    private feedService: NewsFeedService,
-    private reactionService: ReactionService,
+    public authService: AuthService,
+    public feedService: NewsFeedService,
+    public reactionService: ReactionService,
   ) { }
 
   startViewing() {

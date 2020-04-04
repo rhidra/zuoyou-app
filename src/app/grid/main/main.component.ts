@@ -19,10 +19,10 @@ export class GridMainComponent implements OnInit {
   host = env.mediaHost;
 
   constructor(
-    private authService: AuthService,
-    private activatedRoute: ActivatedRoute,
-    private userService: UserService,
-    private reactionService: ReactionService,
+    public authService: AuthService,
+    public activatedRoute: ActivatedRoute,
+    public userService: UserService,
+    public reactionService: ReactionService,
   ) { }
 
   ngOnInit() {

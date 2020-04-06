@@ -15,7 +15,7 @@
 
   </ion-header>
 
-  <ion-slides [options]="slidesOpt" *ngIf="!isLoading && !noConnection" (ionSlideDidChange)="slideChanged($event)" #slides>
+  <ion-slides [options]="slidesOpt" *ngIf="!isLoading && !noConnection && feedService.topics.length !== 0" (ionSlideDidChange)="slideChanged($event)" #slides>
     <ion-slide *ngFor="let topic of feedService.topics" style="height: 100%">
       <app-news-topic [topic]="topic" class="full-height full-width">
       </app-news-topic>
@@ -24,5 +24,13 @@
 
   <ion-content *ngIf="!isLoading && noConnection">
     <app-empty-view i18n-text text="You don't seem connected to the internet ..." icon="wifi"></app-empty-view>
+  </ion-content>
+
+  <ion-content *ngIf="!isLoading && !noConnection && feedService.topics.length === 0">
+    <app-empty-view i18n-text text="There don't seem to be any news here ..."></app-empty-view>
+  </ion-content>
+
+  <ion-content *ngIf="isLoading">
+    <app-empty-view spinner="true"></app-empty-view>
   </ion-content>
 </div>

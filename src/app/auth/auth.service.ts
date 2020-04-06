@@ -41,9 +41,8 @@ export class AuthService {
     private navCtrl: NavController,
     private location: Location,
     @Inject(LOCAL_STORAGE) private storageDev: WebStorageService,
-
   ) {
-    this.loadFromStorage();
+    this.platform.ready().then(() => this.loadFromStorage());
   }
 
   loadFromStorage(): Promise<any> {

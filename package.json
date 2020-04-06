@@ -35,7 +35,7 @@
     "@ionic/angular": "~4.11.0",
     "@types/moment": "~2.13.0",
     "angular2-useful-swiper": "~8.0.1-beta.1",
-    "cordova-android": "8.1.0",
+    "cordova-android": "^8.1.0",
     "cordova-browser": "6.0.0",
     "cordova-plugin-androidx": "1.0.2",
     "cordova-plugin-androidx-adapter": "1.1.0",
@@ -113,8 +113,8 @@
       "cordova-plugin-local-notification": {}
     },
     "platforms": [
-      "android",
-      "browser"
+      "browser",
+      "android"
     ]
   }
 }

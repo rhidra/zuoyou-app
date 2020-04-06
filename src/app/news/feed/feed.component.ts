@@ -35,7 +35,9 @@ export class NewsFeedComponent implements OnInit {
       // TODO: This does not work. The first video to appear should be in autoplay
       setTimeout(() => {
         const topics = this.topicComponents.toArray();
-        topics[0].startViewing();
+        if (topics[0]) {
+          topics[0].startViewing();
+        }
       });
     }).catch(() => {
       this.isLoading = false;

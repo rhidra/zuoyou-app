@@ -31,7 +31,9 @@ export class LoginComponent implements OnInit {
   initForm() {
     this.form = this.fb.group({
       phone: ['', [Validators.pattern('[0-9]{10,12}'), Validators.required]],
-      code: env.production ? ['', [Validators.pattern('[0-9]{6}'), Validators.required]] : [''],
+      // TODO: Remove that when a proper authentication SMS code works
+      code: ['', [Validators.required]]
+      // code: env.production ? ['', [Validators.pattern('[0-9]{6}'), Validators.required]] : [''],
     });
   }
 

@@ -50,4 +50,8 @@ export class GridMainComponent implements OnInit {
     });
   }
 
+  uploadNewProfilePic(image: any) {
+    this.user.image = image;
+    this.userService.edit(this.user);
+  }
 }

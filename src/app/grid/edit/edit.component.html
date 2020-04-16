@@ -11,7 +11,12 @@
   <form [formGroup]="form" *ngIf="!isLoading">
     <ion-list>
 
-      <app-image-upload formControlName="image"></app-image-upload>
+      <ion-item appMediaUpload (uploadDone)="form.patchValue({image: $event})">
+        <ion-avatar slot="start">
+          <img [src]="form.value.image ? (host + form.value.image) : '/assets/img/avatar.png'" alt="Avatar"/>
+        </ion-avatar>
+        <ion-label i18n>Upload a profile pic</ion-label>
+      </ion-item>
 
       <ion-item>
         <ion-label position="floating" i18n>Name</ion-label>

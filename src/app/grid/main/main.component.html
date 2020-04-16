@@ -15,7 +15,7 @@
 <ion-content class="app-grid-main full-height" *ngIf="!isLoading">
   <div class="header">
     <div class="margin-bottom">
-      <ion-avatar class="margin">
+      <ion-avatar class="margin pointer" [appMediaUpload]="isOwn" (uploadDone)="uploadNewProfilePic($event)">
         <img [src]="user.image ? (host + user.image) : '/assets/img/avatar.png'" alt="Avatar"/>
       </ion-avatar>
 

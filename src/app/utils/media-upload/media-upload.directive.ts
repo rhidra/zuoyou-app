@@ -1,27 +1,22 @@
-import {Component, forwardRef, OnInit} from '@angular/core';
+import {Directive, EventEmitter, HostListener, Input, Output} from '@angular/core';
 import {MediaCapture, MediaFile} from '@ionic-native/media-capture/ngx';
 import {environment as env} from '../../../environments/environment';
+import {HttpClient, HttpEventType} from '@angular/common/http';
 import {AlertController, LoadingController} from '@ionic/angular';
 import {FileChooser} from '@ionic-native/file-chooser/ngx';
 import {FilePath} from '@ionic-native/file-path/ngx';
 import {File} from '@ionic-native/file/ngx';
-import {HttpClient, HttpEventType} from '@angular/common/http';
-import {ControlValueAccessor, NG_VALUE_ACCESSOR} from '@angular/forms';
 
-@Component({
-  selector: 'app-image-upload',
-  templateUrl: './image-upload.component.html',
-  providers: [
-    {provide: NG_VALUE_ACCESSOR, multi: true, useExisting: forwardRef(() => ImageUploadComponent)}
-  ]
+@Directive({
+  selector: '[appMediaUpload]'
 })
-export class ImageUploadComponent implements OnInit, ControlValueAccessor {
+export class MediaUploadDirective {
 
-  host = env.mediaHost;
-  uri: string;
+  @Input() title: string = 'Change profile picture';
+  @Input() appMediaUpload: boolean = true;
+  @Output() uploadDone = new EventEmitter();
+
   loading: any;
-
-  propagateChange: any = () => {};
 
   constructor(
     private alertCtrl: AlertController,
@@ -33,13 +28,14 @@ export class ImageUploadComponent implements OnInit, ControlValueAccessor {
     private loadingCtrl: LoadingController,
   ) { }
 
-  ngOnInit() {
-    this.loadingCtrl.create({message: 'Please wait...'}).then(l => this.loading = l);
-  }
+  @HostListener('click')
+  async onClick() {
+    if (!this.appMediaUpload) { return; }
 
-  async showDialog() {
+    this.loading = await this.loadingCtrl.create({message: 'Please wait...'});
+
     const alert = await this.alertCtrl.create({
-      header: 'Change profile picture',
+      header: this.title,
       buttons: [{
         text: 'Take photo',
         handler: () => {
@@ -76,21 +72,10 @@ export class ImageUploadComponent implements OnInit, ControlValueAccessor {
             resolve(r.body.filename);
           }
         });
-
-      })).then((filename: string) => {
-      this.uri = filename;
-      this.propagateChange(this.uri);
-      this.loading.dismiss();
-    });
+      }))
+      .then((filename: string) => {
+        this.uploadDone.emit(filename);
+        this.loading.dismiss();
+      });
   }
-
-  writeValue(obj: any): void {
-    this.uri = obj;
-  }
-
-  registerOnChange(fn: any): void {
-    this.propagateChange = fn;
-  }
-
-  registerOnTouched(fn: any): void {}
 }

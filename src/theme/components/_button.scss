@@ -34,5 +34,7 @@ ion-button.btn-icon-large {
   width: $size-lg;
   height: $size-lg;
   --border-radius: 43px;
-  font-size: 15px; // TODO: Put in variable
+  ion-icon {
+    transform: scale(1.5);
+  }
 }

@@ -17,4 +17,4 @@ For Android, use debug to install without signing the APK.
 ionic cordova build android --prod --debug
 ```
 
-Use release, then sign to put in an app marketplace.
+Use `--release`, then sign to put in an app marketplace.

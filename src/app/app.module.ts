@@ -1,5 +1,5 @@
-import { NgModule } from '@angular/core';
-import { BrowserModule } from '@angular/platform-browser';
+import {Injectable, NgModule} from '@angular/core';
+import {BrowserModule} from '@angular/platform-browser';
 import { RouteReuseStrategy } from '@angular/router';
 
 import { IonicModule, IonicRouteStrategy } from '@ionic/angular';
@@ -23,6 +23,16 @@ import {FilePath} from '@ionic-native/file-path/ngx';
 import {ReactionService} from './reaction/reaction.service';
 import {LocalNotifications} from '@ionic-native/local-notifications/ngx';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import {HAMMER_GESTURE_CONFIG, HammerGestureConfig} from '@angular/platform-browser';
+
+@Injectable()
+export class CustomHammerConfig extends HammerGestureConfig {
+  overrides = {
+    press: {time: 250},
+    pinch: {enable: false},
+    rotate: {enable: false},
+  };
+}
 
 @NgModule({
   declarations: [AppComponent],
@@ -48,6 +58,7 @@ import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
     { provide: MediaCapture, useClass: window.hasOwnProperty('cordova') ? MediaCapture : MediaCaptureMock },
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
     { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true },
+    { provide: HAMMER_GESTURE_CONFIG, useClass: CustomHammerConfig },
   ],
   bootstrap: [AppComponent]
 })

@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import {Injectable, NgModule} from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 import { UtilsRoutingModule } from './utils-routing.module';
@@ -10,6 +10,7 @@ import {ChipInputComponent} from './chip-input/chip-input.component';
 import {FormsModule} from '@angular/forms';
 import {EmptyViewComponent} from './empty-view/empty-view.component';
 import { MediaUploadDirective } from './media-upload/media-upload.directive';
+import { DoubleTapDirective } from './double-tap/double-tap.directive';
 
 
 @NgModule({
@@ -20,6 +21,7 @@ import { MediaUploadDirective } from './media-upload/media-upload.directive';
     ChipInputComponent,
     EmptyViewComponent,
     MediaUploadDirective,
+    DoubleTapDirective,
   ],
   exports: [
     BoldPipe,
@@ -28,12 +30,13 @@ import { MediaUploadDirective } from './media-upload/media-upload.directive';
     ChipInputComponent,
     EmptyViewComponent,
     MediaUploadDirective,
+    DoubleTapDirective,
   ],
   imports: [
     CommonModule,
     UtilsRoutingModule,
     IonicModule,
     FormsModule
-  ]
+  ],
 })
 export class UtilsModule { }

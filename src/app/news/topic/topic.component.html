@@ -29,7 +29,7 @@
     </div>
 
     <swiper [config]="config" #swiperComp>
-        <div class="swiper-wrapper">
+        <div class="swiper-wrapper" doubleTapable (doubleTap)="like()">
             <div class="swiper-slide">
                 <app-news-panel [panel]="topic.leftPanel" class="full-height full-width">
                 </app-news-panel>

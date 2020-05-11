@@ -30,19 +30,23 @@ export class GridMainComponent implements OnInit {
       let p: Promise<any>;
       if (params.userId) {
         p = this.authService.getToken()
-          .then(() => this.userService.get(params.userId)).then(user => {
-          this.user = user;
-          this.isOwn = this.authService.user ? this.authService.user._id === this.user._id : false;
-          this.isLoading = false;
-          return Promise.resolve();
-        });
+          .then(() => this.userService.get(params.userId))
+          .then(user => {
+            this.user = user;
+            this.isOwn = this.authService.user ? this.authService.user._id === this.user._id : false;
+            this.isLoading = false;
+            return Promise.resolve();
+          });
       } else {
-        p = this.authService.onAuthenticated(true).then(() => {
-          this.user = this.authService.user;
-          this.isLoading = false;
-          this.isOwn = true;
-          return Promise.resolve();
-        });
+        p = this.authService.onAuthenticated(true)
+          .then(() => this.userService.get(this.authService.user._id))
+          .then(user => {
+            this.authService.editUser(user);
+            this.user = user;
+            this.isOwn = true;
+            this.isLoading = false;
+            return Promise.resolve();
+          });
       }
 
       p.then(() => this.reactionService.searchByUser(this.user))

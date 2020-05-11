@@ -23,7 +23,7 @@
   </ion-slides>
 
   <ion-content *ngIf="!isLoading && noConnection">
-    <app-empty-view i18n-text text="You don't seem connected to the internet ..." icon="wifi"></app-empty-view>
+    <app-empty-view i18n-text text="The server is unreachable. Are you connected to the internet ?" icon="wifi"></app-empty-view>
   </ion-content>
 
   <ion-content *ngIf="!isLoading && !noConnection && feedService.topics.length === 0">

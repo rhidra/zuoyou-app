@@ -29,18 +29,20 @@ export class NewsFeedComponent implements OnInit {
 
   ngOnInit() {
     this.isLoading = true;
-    this.feedService.load().then(() => {
-      this.isLoading = false;
-      this.noConnection = false;
-      setTimeout(() => {
-        const topics = this.topicComponents.toArray();
-        if (topics[0]) {
-          topics[0].startViewing();
-        }
+    this.authService.getToken().then(() => {
+      this.feedService.load().then(() => {
+        this.isLoading = false;
+        this.noConnection = false;
+        setTimeout(() => {
+          const topics = this.topicComponents.toArray();
+          if (topics[0]) {
+            topics[0].startViewing();
+          }
+        });
+      }).catch(() => {
+        this.isLoading = false;
+        this.noConnection = true;
       });
-    }).catch(() => {
-      this.isLoading = false;
-      this.noConnection = true;
     });
   }
 

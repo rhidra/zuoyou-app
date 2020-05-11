@@ -32,7 +32,6 @@ export class NewsFeedComponent implements OnInit {
     this.feedService.load().then(() => {
       this.isLoading = false;
       this.noConnection = false;
-      // TODO: This does not work. The first video to appear should be in autoplay
       setTimeout(() => {
         const topics = this.topicComponents.toArray();
         if (topics[0]) {
@@ -43,6 +42,18 @@ export class NewsFeedComponent implements OnInit {
       this.isLoading = false;
       this.noConnection = true;
     });
+  }
+
+  ionViewDidEnter() {
+    if (this.slides) {
+      const topics = this.topicComponents.toArray();
+      this.slides.getActiveIndex().then(slideIndex => topics[slideIndex].startViewing());
+    }
+  }
+
+  ionViewWillLeave() {
+    const topics = this.topicComponents.toArray();
+    this.slides.getActiveIndex().then(slideIndex => topics[slideIndex].stopViewing());
   }
 
   slideChanged(event) {

@@ -57,6 +57,19 @@ export class AuthService {
     return Promise.all(p);
   }
 
+  saveInStorage(): Promise<any> {
+    const promises = [];
+    if (this.platform.is('hybrid')) {
+      promises.push(this.storage.setItem('refreshToken', this.refreshToken));
+      promises.push(this.storage.setItem('user', this.user));
+    } else if (!env.production) {
+      this.storageDev.set('refreshToken', this.refreshToken);
+      this.storageDev.set('user', this.user);
+    }
+
+    return Promise.all(promises);
+  }
+
   isTokenExpired(): boolean {
     if (!this.accessToken) { return true; }
     const decoded = jwt_decode(this.accessToken);
@@ -119,15 +132,7 @@ export class AuthService {
         this.user = new User();
         Object.assign(this.user, res.user);
         this.accessToken = res.token;
-        const promises = [];
-        if (this.platform.is('hybrid')) {
-          promises.push(this.storage.setItem('refreshToken', this.refreshToken));
-          promises.push(this.storage.setItem('user', this.user));
-        } else if (!env.production) {
-          this.storageDev.set('refreshToken', this.refreshToken);
-          this.storageDev.set('user', this.user);
-        }
-        Promise.all(promises).then(resolve).catch(reject);
+        this.saveInStorage().then(resolve).catch(reject);
       });
     });
   }

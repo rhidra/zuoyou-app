@@ -5,7 +5,7 @@
 
     <div class="full-video-author margin-left-lg" *ngIf="panel && panel.author">
       <ion-avatar [routerLink]="['/', 'grid', panel.author._id]" class="pointer">
-        <img [src]="panel.author.image ? (host + panel.author.image) : '/assets/img/avatar.png'" alt=""/>
+        <img [src]="panel.author.image ? (host + panel.author.image + '?width=50&height=50') : '/assets/img/avatar.png'" alt=""/>
       </ion-avatar>
       <span [routerLink]="['/', 'grid', panel.author._id]" class="pointer">{{panel.author.name || panel.author.email}}</span>
       <ion-icon class="fix-pos" name="checkmark-circle-outline" *ngIf="panel.author.verified"></ion-icon>

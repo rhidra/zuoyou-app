@@ -16,7 +16,7 @@
   <div class="header">
     <div class="margin-bottom">
       <ion-avatar class="margin pointer" [appMediaUpload]="isOwn" (uploadDone)="uploadNewProfilePic($event)">
-        <img [src]="user.image ? (host + user.image) : '/assets/img/avatar.png'" alt="Avatar"/>
+        <img [src]="user.image ? (host + user.image + '?width=80&height=80') : '/assets/img/avatar.png'" alt="Avatar"/>
       </ion-avatar>
 
       <ion-grid>

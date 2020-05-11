@@ -1,0 +1,49 @@
+# Deploy automatically using Gitlab CI
+
+variables:
+  ENV SDK_URL: https://dl.google.com/android/repository/sdk-tools-linux-3859397.zip
+  ANDROID_HOME: /usr/local/android-sdk
+  ANDROID_VERSION: 28
+  ANDROID_BUILD_TOOLS_VERSION: 27.0.3
+  OUTPUT_PATH: platforms/android/app/build/outputs/apk/debug/app-debug.apk
+
+deploy-android:
+  image:
+    name: gradle:4.10.0-jdk8
+    entrypoint: ['exec -u 0 -it gradle:4.10.0-jdk8 -c bash']
+  stage: deploy
+  only: [master]
+  script:
+    - mkdir $ANDROID_HOME .android
+    - cd $ANDROID_HOME
+
+    # Download Android SDK
+    - curl -o sdk.zip $SDK_URL
+    - unzip sdk.zip
+    - rm sdk.zip
+    - mkdir $ANDROID_HOME/licenses
+    - echo "24333f8a63b6825ea9c5514f83c2829b004d1fee" > "$ANDROID_HOME/licenses/android-sdk-license"
+    - yes | $ANDROID_HOME/tools/bin/sdkmanager --licenses
+
+    # Install Android build tool and libraries
+    - $ANDROID_HOME/tools/bin/sdkmanager --update
+    - $ANDROID_HOME/tools/bin/sdkmanager "build-tools;${ANDROID_BUILD_TOOLS_VERSION}" "platforms;android-${ANDROID_VERSION}" "platform-tools"
+    - apt-get update && apt-get install build-essential -y && apt-get install file -y && apt-get install apt-utils -y
+
+    # Install node
+    - cd ~
+    - curl -o- https://raw.githubusercontent.com/creationix/nvm/v0.33.1/install.sh | bash
+    - bash
+    - nvm install node
+    - nvm use node
+
+    # Install frameworks
+    # - npm i -g @angular/cli
+    - npm i -g @ionic/cli
+    - npm i -g cordova
+
+    # Build the APK
+    - ionic cordova build android --prod --debug
+
+    # Send the APK file to Slack
+    - curl -F file=$OUTPUT_PATH -F channels=#sentry -F token=$SLACK_TOKEN https://slack.com/api/files.upload
